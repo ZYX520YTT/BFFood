@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="food.neusoft.com.food.MainActivity">
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bar_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal"
+        android:paddingBottom="7dp"
+        android:paddingTop="6dp" >
+
+        <RadioButton
+            android:id="@+id/radio0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/main_home"
+            android:gravity="center"
+            android:text="@string/main_home"
+            android:textColor="@drawable/main_textcolor"
+            android:textSize="@dimen/bar_text" />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/main_nearby"
+            android:gravity="center"
+            android:text="@string/main_attachment"
+            android:textColor="@drawable/main_textcolor"
+            android:textSize="@dimen/bar_text" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/main_order"
+            android:gravity="center"
+            android:text="@string/main_order"
+            android:textColor="@drawable/main_textcolor"
+            android:textSize="@dimen/bar_text" />
+
+        <RadioButton
+            android:id="@+id/radio3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/main_mine"
+            android:gravity="center"
+            android:text="@string/main_mine"
+            android:textColor="@drawable/main_textcolor"
+            android:textSize="@dimen/bar_text" />
+
+    </RadioGroup>
+
+    <food.neusoft.com.food.widget.NoScrollViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/radioGroup"
+        android:layout_alignParentLeft="true" />
+
+</RelativeLayout>

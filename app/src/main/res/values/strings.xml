@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">food</string>
+
+    <!--Fragment页面-->
+    <string name="main_home">首页</string>
+    <string name="main_attachment">附近</string>
+    <string name="main_order">预约</string>
+    <string name="main_mine">我的</string>
+
+
+    <!--首页-->
+    <string name="title_hot">热门</string>
+    <string name="title_hotpot">火锅</string>
+    <string name="title_western">西餐</string>
+    <string name="title_dessert">甜品</string>
+    <string name="title_drink">饮品</string>
+
+
+    <!--热门-->
+    <string name="hot_find_food">发现美食</string>
+    <string name="hot_food1">脆香鸡腿</string>
+    <string name="hot_food2">红烧猪蹄</string>
+    <string name="hot_food3">正中川味</string>
+    <string name="hot_food4">养颜汤锅</string>
+    <string name="hot_food5">砂锅串串</string>
+    <string name="hot_food6">生椒牛排</string>
+
+
+    <!--附近-->
+    <string name="attach_findfood">寻找附近的美食</string>
+
+
+    <!--我的-->
+    <string name="dialogPicture">图库</string>
+    <string name="photo">拍照</string>
+    <string name="mine_collect">我的收藏</string>
+    <string name="mine_order">我的预约</string>
+    <string name="mine_local">我的地址</string>
+    <string name="mine_share">我的分享</string>
+
+
+    <!--网络-->
+    <string name="toast_network_error1">网络链接错误，请稍后再试！</string>
+    <string name="toast_network_error2">数据异常！</string>
+    <string name="toast_network_error3">获取数据错误！</string>
+    <string name="toast_network_error4">JSON数据异常！</string>
+
+
+    <!--下拉刷新和加载更多-->
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="refresh_succeed">刷新成功</string>
+    <string name="refresh_fail">刷新失败</string>
+    <string name="pullup_to_load">上拉加载更多</string>
+    <string name="release_to_load">释放立即加载</string>
+    <string name="loading">正在加载...</string>
+    <string name="load_succeed">加载成功</string>
+    <string name="load_fail">加载失败</string>
+</resources>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    >
+
+    <RelativeLayout
+        android:id="@+id/llyt_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="18dp"
+        android:layout_alignParentLeft="true"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rl_one"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_image_one"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/pic_dessert_one" />
+
+            <ImageView
+                android:id="@+id/iv_photolefttype_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/view_privilige" />
+
+            <ImageView
+                android:id="@+id/iv_photorighttype_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/iv_photolefttype_one"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/view_yu" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_storename_one"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_one"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="6.5dp"
+            android:text="抹茶土司(春熙路店)xxxxxxxxxx"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <RatingBar
+            android:id="@+id/item_rating_one"
+            android:layout_width="wrap_content"
+            android:layout_height="12dp"
+            android:layout_alignLeft="@+id/tv_storename_one"
+            android:layout_below="@id/tv_storename_one"
+            android:layout_marginTop="5dp"
+            android:isIndicator="true"
+            android:progressDrawable="@drawable/process_ratingbar"
+            android:rating="3" />
+
+        <TextView
+            android:id="@+id/tv_youhui_one"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_storename_one"
+            android:layout_below="@+id/item_rating_one"
+            android:layout_marginTop="5dp"
+            android:singleLine="true"
+            android:text="会员可享受8折优惠"
+            android:textColor="@color/black"
+            android:textSize="8sp" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/llyt_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="18dp"
+        android:layout_alignParentRight="true">
+
+        <RelativeLayout
+            android:id="@+id/rl_two"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="7dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_image_two"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/pic_dessert_two" />
+
+            <ImageView
+                android:id="@+id/iv_photolefttype_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/view_privilige" />
+
+            <ImageView
+                android:id="@+id/iv_photorighttype_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/iv_photolefttype_two"
+                android:layout_marginLeft="3dp"
+                android:src="@drawable/view_yu" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_storename_two"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_two"
+            android:layout_marginTop="6.5dp"
+            android:singleLine="true"
+            android:text="抹茶土司(春熙路店)xxxxxxxxxxxxx"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <RatingBar
+            android:id="@+id/item_rating_two"
+            android:layout_width="wrap_content"
+            android:layout_height="12dp"
+            android:layout_alignLeft="@+id/tv_storename_two"
+            android:layout_below="@id/tv_storename_two"
+            android:layout_marginTop="5dp"
+            android:isIndicator="true"
+            android:progressDrawable="@drawable/process_ratingbar"
+            android:rating="3" />
+
+        <TextView
+            android:id="@+id/tv_youhui_two"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_storename_two"
+            android:layout_below="@+id/item_rating_two"
+            android:layout_marginTop="5dp"
+            android:singleLine="true"
+            android:text="会员可享受8折优惠"
+            android:textColor="@color/black"
+            android:textSize="8sp" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

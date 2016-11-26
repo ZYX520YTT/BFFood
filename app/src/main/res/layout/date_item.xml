@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rb1"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    style="@style/radiostyle_date"
+    android:gravity="center"
+    android:textColor="#fff" />

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        >
+
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/re_arrow"
+            android:layout_margin="12dp"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="附近"
+            android:textSize="20dp"
+            android:textColor="#000"
+            />
+    </RelativeLayout>
+
+
+    <food.neusoft.com.food.widget.pulltorefresh.PullToRefreshLayout
+        android:id="@+id/refresh_view"
+        android:layout_below="@+id/rl_title"
+        android:layout_marginTop="6.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/refresh_head" />
+
+        <food.neusoft.com.food.widget.pulltorefresh.PullableScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <food.neusoft.com.food.widget.ShowListView
+                    android:id="@+id/ls_show"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/title_line_height"
+                    android:divider="@null">
+                </food.neusoft.com.food.widget.ShowListView>
+
+
+            </RelativeLayout>
+
+
+        </food.neusoft.com.food.widget.pulltorefresh.PullableScrollView>
+
+        <include layout="@layout/load_more" />
+
+    </food.neusoft.com.food.widget.pulltorefresh.PullToRefreshLayout>
+
+
+
+
+
+
+</RelativeLayout>
