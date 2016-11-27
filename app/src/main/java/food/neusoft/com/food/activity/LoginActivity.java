@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.auth.QQAuth;
 import com.tencent.tauth.IUiListener;
@@ -22,13 +25,22 @@ import com.tencent.tauth.UiError;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import cz.msebera.android.httpclient.Header;
 import food.neusoft.com.food.MainActivity;
 import food.neusoft.com.food.R;
+import food.neusoft.com.food.thread.HttpUtils;
+import food.neusoft.com.food.thread.Url;
 
 import static food.neusoft.com.food.NApplication.ImageUrl;
 import static food.neusoft.com.food.NApplication.nickname;
 
+/**
+ * 登录界面
+ */
 public class LoginActivity extends AppCompatActivity {
+
+
+    private AsyncHttpResponseHandler login_handler;
 
 
     private Context context;
@@ -62,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         context=this;
         ViewUtils.inject(this);
+        dohandler();
         Init();
     }
 
@@ -88,9 +101,12 @@ public class LoginActivity extends AppCompatActivity {
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"登录",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                finish();
+                if(judge()){
+//                    Toast.makeText(context,"登录",Toast.LENGTH_SHORT).show();
+//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                    finish();
+                    loginInfo();
+                }
             }
         });
 
@@ -129,6 +145,30 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    /**
+     * 登录
+     */
+    private void loginInfo(){
+        RequestParams params=new RequestParams();
+        params.put("userId ",et_number.getText().toString());
+        params.put("userPassword ",et_password.getText().toString());
+        HttpUtils.get(context, Url.login,params,login_handler);
+    }
+
+    //判断登录信息是否合法
+    private boolean judge(){
+        if(TextUtils.isEmpty(et_number.getText().toString())){
+            Toast.makeText(context, "用户名不能为空",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }else if(TextUtils.isEmpty(et_password.getText().toString())){
+            Toast.makeText(context, "密码不能为空",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
 
@@ -217,6 +257,26 @@ public class LoginActivity extends AppCompatActivity {
             mInfo.getUserInfo(listener);
 
         }
+    }
+
+
+    private void dohandler(){
+        login_handler=new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String result=responseBody.toString();
+                if(result.equals("ERROR")){
+                    Toast.makeText(context,"登录失败",Toast.LENGTH_SHORT).show();
+                }else{
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        };
     }
 
 

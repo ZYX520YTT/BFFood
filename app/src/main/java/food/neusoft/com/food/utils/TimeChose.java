@@ -41,6 +41,12 @@ public class TimeChose {
     private Context context;
     private Activity activity;
 
+    /**
+     *
+     * 1.当前日期为null,默认没选中
+     * 2.当前时间为null,默认没选中
+     * 3.当前人数为null,默认没选中
+     */
     public static String Currentdate = null;
     public static String Currenttime = null;
     public static String Currentpeople = null;
@@ -112,6 +118,7 @@ public class TimeChose {
     }
 
 
+    //弹出黑框
     public void DiaLog() {
         InitData();
 
@@ -192,6 +199,7 @@ public class TimeChose {
         dialog.getWindow().setContentView(view);// 把自定義view加上去
     }
 
+    //日期
 
     private class DateAdapter extends RecyclerView.Adapter<DateAdapter.MyDateViewHolder> {
 
@@ -242,6 +250,7 @@ public class TimeChose {
         }
     }
 
+    //时间
 
     private class TimeAdapter extends RecyclerView.Adapter<TimeAdapter.MyTimeViewHolder> {
 
@@ -289,6 +298,7 @@ public class TimeChose {
         }
     }
 
+    //人数
 
     private class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.MyPeopleViewHolder> {
 
