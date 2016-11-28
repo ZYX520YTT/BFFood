@@ -8,6 +8,8 @@ package food.neusoft.com.food.domian;
 
 public class HotMarketInfo {
 
+    private String bookIconPath;
+    private String discountIconPath;
     private String marketAdress;
     private String marketBigPicture;
     private double marketDiscount;
@@ -18,18 +20,40 @@ public class HotMarketInfo {
     private String marketName;
     private long marketNo;
     private double marketPrice;
+    private String newIconPath;
+    private String typeName;
 
-    public HotMarketInfo(String marketAdress, double marketPrice, long marketNo, String marketName, String marketIntroduce, String marketIconPath, double marketDistance, double marketDiscount, String marketBigPicture, double marketHotLevel) {
+    public HotMarketInfo(String bookIconPath, String discountIconPath, String marketAdress, String marketBigPicture, double marketDiscount, double marketDistance, double marketHotLevel, String marketIconPath, String marketIntroduce, String marketName, long marketNo, double marketPrice, String newIconPath, String typeName) {
+        this.bookIconPath = bookIconPath;
+        this.discountIconPath = discountIconPath;
         this.marketAdress = marketAdress;
-        this.marketPrice = marketPrice;
-        this.marketNo = marketNo;
-        this.marketName = marketName;
-        this.marketIntroduce = marketIntroduce;
-        this.marketIconPath = marketIconPath;
-        this.marketDistance = marketDistance;
-        this.marketDiscount = marketDiscount;
         this.marketBigPicture = marketBigPicture;
+        this.marketDiscount = marketDiscount;
+        this.marketDistance = marketDistance;
         this.marketHotLevel = marketHotLevel;
+        this.marketIconPath = marketIconPath;
+        this.marketIntroduce = marketIntroduce;
+        this.marketName = marketName;
+        this.marketNo = marketNo;
+        this.marketPrice = marketPrice;
+        this.newIconPath = newIconPath;
+        this.typeName = typeName;
+    }
+
+    public String getBookIconPath() {
+        return bookIconPath;
+    }
+
+    public void setBookIconPath(String bookIconPath) {
+        this.bookIconPath = bookIconPath;
+    }
+
+    public String getDiscountIconPath() {
+        return discountIconPath;
+    }
+
+    public void setDiscountIconPath(String discountIconPath) {
+        this.discountIconPath = discountIconPath;
     }
 
     public String getMarketAdress() {
@@ -38,6 +62,14 @@ public class HotMarketInfo {
 
     public void setMarketAdress(String marketAdress) {
         this.marketAdress = marketAdress;
+    }
+
+    public String getMarketBigPicture() {
+        return marketBigPicture;
+    }
+
+    public void setMarketBigPicture(String marketBigPicture) {
+        this.marketBigPicture = marketBigPicture;
     }
 
     public double getMarketDiscount() {
@@ -64,20 +96,20 @@ public class HotMarketInfo {
         this.marketHotLevel = marketHotLevel;
     }
 
-    public String getMarketIconPath() {
-        return marketIconPath;
-    }
-
-    public void setMarketIconPath(String marketIconPath) {
-        this.marketIconPath = marketIconPath;
-    }
-
     public String getMarketIntroduce() {
         return marketIntroduce;
     }
 
     public void setMarketIntroduce(String marketIntroduce) {
         this.marketIntroduce = marketIntroduce;
+    }
+
+    public String getMarketIconPath() {
+        return marketIconPath;
+    }
+
+    public void setMarketIconPath(String marketIconPath) {
+        this.marketIconPath = marketIconPath;
     }
 
     public String getMarketName() {
@@ -104,11 +136,19 @@ public class HotMarketInfo {
         this.marketPrice = marketPrice;
     }
 
-    public String getMarketBigPicture() {
-        return marketBigPicture;
+    public String getNewIconPath() {
+        return newIconPath;
     }
 
-    public void setMarketBigPicture(String marketBigPicture) {
-        this.marketBigPicture = marketBigPicture;
+    public void setNewIconPath(String newIconPath) {
+        this.newIconPath = newIconPath;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }

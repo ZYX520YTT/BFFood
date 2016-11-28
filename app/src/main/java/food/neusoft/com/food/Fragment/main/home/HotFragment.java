@@ -348,11 +348,18 @@ public class HotFragment extends BaseFragment {
                 String result=new String(responseBody);
                 if(result.equals("ERROR")){
                     Toast.makeText(getContext(),"获取数据失败",Toast.LENGTH_SHORT).show();
+                    if(isLoadmore){
+                        refresh_view.loadmoreFinish(PullToRefreshLayout.FAIL);
+                    }else{
+                        refresh_view.refreshFinish(PullToRefreshLayout.FAIL);
+                    }
                 }else{
                     try {
                         JSONArray jsonArray=new JSONArray(result);
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonobject=jsonArray.getJSONObject(i);
+                            String bookIconPath=jsonobject.getString("bookIconPath");
+                            String discountIconPath=jsonobject.getString("discountIconPath");
                             String marketAdress=jsonobject.getString("marketAdress");
                             String marketBigPicture=Url.getImgURL(jsonobject.getString("marketBigPicture"));
                             double marketDiscount=jsonobject.getDouble("marketDiscount");
@@ -363,8 +370,13 @@ public class HotFragment extends BaseFragment {
                             String marketName=jsonobject.getString("marketName");
                             long marketNo=jsonobject.getLong("marketNo");
                             double marketPrice=jsonobject.getDouble("marketPrice");
-                            HotMarketInfo hotmarketinfo=new HotMarketInfo(marketAdress,marketPrice,marketNo,marketName,marketIntroduce
-                            ,marketIconPath,marketDistance,marketDiscount,marketBigPicture,marketHotLevel);
+                            String newIconPath=jsonobject.getString("newIconPath");
+                            String typeName=jsonobject.getString("typeName");
+
+
+                            HotMarketInfo hotmarketinfo=new HotMarketInfo(bookIconPath,discountIconPath,marketAdress,marketBigPicture
+                            ,marketDiscount,marketDistance,marketHotLevel,marketIconPath,marketIntroduce,marketName,marketNo,marketPrice
+                            ,newIconPath,typeName);
                             hotMarketInfos.add(hotmarketinfo);
 
                         }

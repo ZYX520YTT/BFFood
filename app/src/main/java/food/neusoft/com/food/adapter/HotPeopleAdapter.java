@@ -60,7 +60,7 @@ public class HotPeopleAdapter extends BaseAdapter {
         }else{
             holder= (ViewHolder) view.getTag();
         }
-        utils.display(holder.iv_hotpeople_image,getItem(i).getMarketIconPath());
+        utils.display(holder.iv_hotpeople_image,getItem(i).getMarketBigPicture());
         return view;
     }
 
