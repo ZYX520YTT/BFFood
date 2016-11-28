@@ -30,6 +30,7 @@ import food.neusoft.com.food.MainActivity;
 import food.neusoft.com.food.R;
 import food.neusoft.com.food.thread.HttpUtils;
 import food.neusoft.com.food.thread.Url;
+import food.neusoft.com.food.thread.User;
 
 import static food.neusoft.com.food.NApplication.ImageUrl;
 import static food.neusoft.com.food.NApplication.nickname;
@@ -67,12 +68,11 @@ public class LoginActivity extends AppCompatActivity {
     private ImageView iv_weibo;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        context=this;
+        context = this;
         ViewUtils.inject(this);
         dohandler();
         Init();
@@ -89,7 +89,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     private void Init() {
 
         //设置提示的颜色
@@ -101,10 +100,7 @@ public class LoginActivity extends AppCompatActivity {
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(judge()){
-//                    Toast.makeText(context,"登录",Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                    finish();
+                if (judge()) {
                     loginInfo();
                 }
             }
@@ -114,8 +110,8 @@ public class LoginActivity extends AppCompatActivity {
         rl_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"注册",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                Toast.makeText(context, "注册", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
 
@@ -123,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
         iv_weixin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"微信",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "微信", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -131,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
         iv_qq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"qq",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "qq", Toast.LENGTH_SHORT).show();
 
                 onClickQQLogin();
             }
@@ -141,7 +137,7 @@ public class LoginActivity extends AppCompatActivity {
         iv_weibo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,"微博",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "微博", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -150,20 +146,20 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * 登录
      */
-    private void loginInfo(){
-        RequestParams params=new RequestParams();
-        params.put("userId ",et_number.getText().toString());
-        params.put("userPassword ",et_password.getText().toString());
-        HttpUtils.get(context, Url.login,params,login_handler);
+    private void loginInfo() {
+        RequestParams params = new RequestParams();
+        params.put("userId", et_number.getText().toString());
+        params.put("userPassword", et_password.getText().toString());
+        HttpUtils.get(context, Url.login, params, login_handler);
     }
 
     //判断登录信息是否合法
-    private boolean judge(){
-        if(TextUtils.isEmpty(et_number.getText().toString())){
+    private boolean judge() {
+        if (TextUtils.isEmpty(et_number.getText().toString())) {
             Toast.makeText(context, "用户名不能为空",
                     Toast.LENGTH_SHORT).show();
             return false;
-        }else if(TextUtils.isEmpty(et_password.getText().toString())){
+        } else if (TextUtils.isEmpty(et_password.getText().toString())) {
             Toast.makeText(context, "密码不能为空",
                     Toast.LENGTH_SHORT).show();
             return false;
@@ -172,10 +168,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
-
     //qq登录
-    private void onClickQQLogin(){
+    private void onClickQQLogin() {
         if (!mQQAuth.isSessionValid()) {
             IUiListener listener = new BaseUiListener() {
                 @Override
@@ -187,7 +181,6 @@ public class LoginActivity extends AppCompatActivity {
             mTencent.login(this, "all", listener);
         }
     }
-
 
 
     private class BaseUiListener implements IUiListener {
@@ -231,8 +224,8 @@ public class LoginActivity extends AppCompatActivity {
                         public void run() {
                             JSONObject json = (JSONObject) response;
                             try {
-                                ImageUrl=json.getString("figureurl_qq_2");
-                                nickname=json.getString("nickname");
+                                ImageUrl = json.getString("figureurl_qq_2");
+                                nickname = json.getString("nickname");
 //                                System.out.println("网址:"+ImageUrl);
 //                                System.out.println("昵称："+nickname);
                             } catch (JSONException e) {
@@ -260,21 +253,32 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    private void dohandler(){
-        login_handler=new AsyncHttpResponseHandler() {
+    private void dohandler() {
+        login_handler = new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                String result=responseBody.toString();
-                if(result.equals("ERROR")){
-                    Toast.makeText(context,"登录失败",Toast.LENGTH_SHORT).show();
-                }else{
-
+                String result = new String(responseBody);
+                System.out.println(result);
+                if (result.equals("ERROR")) {
+                    Toast.makeText(context, "登录失败", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        JSONObject jsonObject=new JSONObject(result);
+                        String userId = jsonObject.getString("userId");
+                        User user = new User(context);
+                        user.saveUserNumber(userId);
+                        Toast.makeText(context, "登录成功!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(context, MainActivity.class));
+                        finish();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                Toast.makeText(context, "网络连接错误，请检查网络设置后重试。", Toast.LENGTH_SHORT).show();
             }
         };
     }

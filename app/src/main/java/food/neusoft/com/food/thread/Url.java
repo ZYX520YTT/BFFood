@@ -14,6 +14,8 @@ public class Url {
 
     //http://100.0.101.18:8080/CDFood/login?userId=21&userPassword=1
     //http://100.0.101.18:8080/CDFood/signIn?userId=21&userPassword=1
+    //http://100.0.101.18:8080/CDFood/login?userId=67&userPassword=6
+    //http://100.0.101.18:8080/CDFood/signIn?userId=32&userPassword=1
 
     private static String getUrl(String activity){
         String url=null;

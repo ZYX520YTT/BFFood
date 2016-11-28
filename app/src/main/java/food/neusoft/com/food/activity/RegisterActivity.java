@@ -100,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void setPersonal() {
         RequestParams params = new RequestParams();
         params.put("userId", et_number.getText().toString());
-        params.put("userPassword", et_password2.toString().toString());
+        params.put("userPassword", et_password1.getText().toString());
         HttpUtils.post(context, Url.signIn, params, signIn_handler);
     }
 
