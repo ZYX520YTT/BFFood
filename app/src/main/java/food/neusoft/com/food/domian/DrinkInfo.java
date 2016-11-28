@@ -3,83 +3,142 @@ package food.neusoft.com.food.domian;
 /**
  * Created by 张宇翔 on 2016/11/24 22:35.
  * Email：1124751755@qq.com
- * 功能：
+ * 功能：饮品信息
  */
 
 public class DrinkInfo {
-    private int imageid;
-    private int PhotoLeftType;
-    private int PhotoRightType;
-    private String storename;
-    private float rating;
-    private String yh;//优惠
+    private String bookIconPath;
+    private String discountIconPath;
+    private String marketAdress;
+    private String marketBigPicture;
+    private double marketDiscount;
+    private double marketDistance;
+    private double marketHotLevel;
+    private String marketIconPath;
+    private String marketIntroduce;
+    private String marketName;
+    private double marketNo;
+    private double marketPrice;
+    private String typeName;
 
-    public DrinkInfo(int imageid, String yh, String storename, float rating, int photoLeftType, int photoRightType) {
-        this.imageid = imageid;
-        this.yh = yh;
-        this.storename = storename;
-        this.rating = rating;
-        PhotoLeftType = photoLeftType;
-        PhotoRightType = photoRightType;
+    public DrinkInfo(String bookIconPath, String typeName, double marketPrice, double marketNo, String marketName, String marketIntroduce, String marketIconPath, double marketHotLevel, double marketDistance, double marketDiscount, String marketBigPicture, String marketAdress, String discountIconPath) {
+        this.bookIconPath = bookIconPath;
+        this.typeName = typeName;
+        this.marketPrice = marketPrice;
+        this.marketNo = marketNo;
+        this.marketName = marketName;
+        this.marketIntroduce = marketIntroduce;
+        this.marketIconPath = marketIconPath;
+        this.marketHotLevel = marketHotLevel;
+        this.marketDistance = marketDistance;
+        this.marketDiscount = marketDiscount;
+        this.marketBigPicture = marketBigPicture;
+        this.marketAdress = marketAdress;
+        this.discountIconPath = discountIconPath;
     }
 
-    public float getRating() {
-        return rating;
+    public String getBookIconPath() {
+        return bookIconPath;
     }
 
-    public void setRating(float rating) {
-        this.rating = rating;
+    public void setBookIconPath(String bookIconPath) {
+        this.bookIconPath = bookIconPath;
     }
 
-    public int getPhotoRightType() {
-        return PhotoRightType;
+    public String getDiscountIconPath() {
+        return discountIconPath;
     }
 
-    public void setPhotoRightType(int photoRightType) {
-        PhotoRightType = photoRightType;
+    public void setDiscountIconPath(String discountIconPath) {
+        this.discountIconPath = discountIconPath;
     }
 
-    public int getPhotoLeftType() {
-        return PhotoLeftType;
+    public String getMarketBigPicture() {
+        return marketBigPicture;
     }
 
-    public void setPhotoLeftType(int photoLeftType) {
-        PhotoLeftType = photoLeftType;
+    public void setMarketBigPicture(String marketBigPicture) {
+        this.marketBigPicture = marketBigPicture;
     }
 
-    public int getImageid() {
-        return imageid;
+    public double getMarketDiscount() {
+        return marketDiscount;
     }
 
-    public void setImageid(int imageid) {
-        this.imageid = imageid;
+    public void setMarketDiscount(double marketDiscount) {
+        this.marketDiscount = marketDiscount;
     }
 
-    public String getStorename() {
-        return storename;
+    public double getMarketDistance() {
+        return marketDistance;
     }
 
-    public void setStorename(String storename) {
-        this.storename = storename;
+    public void setMarketDistance(double marketDistance) {
+        this.marketDistance = marketDistance;
     }
 
-    public String getYh() {
-        return yh;
+    public double getMarketHotLevel() {
+        return marketHotLevel;
     }
 
-    public void setYh(String yh) {
-        this.yh = yh;
+    public void setMarketHotLevel(double marketHotLevel) {
+        this.marketHotLevel = marketHotLevel;
     }
 
-    @Override
-    public String toString() {
-        return "DessertInfo{" +
-                "imageid=" + imageid +
-                ", PhotoLeftType=" + PhotoLeftType +
-                ", PhotoRightType=" + PhotoRightType +
-                ", storename='" + storename + '\'' +
-                ", rating=" + rating +
-                ", yh='" + yh + '\'' +
-                '}';
+    public String getMarketIconPath() {
+        return marketIconPath;
     }
+
+    public void setMarketIconPath(String marketIconPath) {
+        this.marketIconPath = marketIconPath;
+    }
+
+    public String getMarketIntroduce() {
+        return marketIntroduce;
+    }
+
+    public void setMarketIntroduce(String marketIntroduce) {
+        this.marketIntroduce = marketIntroduce;
+    }
+
+    public String getMarketName() {
+        return marketName;
+    }
+
+    public void setMarketName(String marketName) {
+        this.marketName = marketName;
+    }
+
+    public double getMarketNo() {
+        return marketNo;
+    }
+
+    public void setMarketNo(double marketNo) {
+        this.marketNo = marketNo;
+    }
+
+    public double getMarketPrice() {
+        return marketPrice;
+    }
+
+    public void setMarketPrice(double marketPrice) {
+        this.marketPrice = marketPrice;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public String getMarketAdress() {
+        return marketAdress;
+    }
+
+    public void setMarketAdress(String marketAdress) {
+        this.marketAdress = marketAdress;
+    }
+
 }

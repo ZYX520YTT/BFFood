@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.lidroid.xutils.BitmapUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +27,14 @@ public class DrinkAdapter extends BaseAdapter {
     private Context context;
     private List<DrinkInfo> drinkInfos;
 
+    private BitmapUtils butils;
+    private BitmapUtils yutils;
+
     public DrinkAdapter(Context context, List<DrinkInfo> drinkInfos) {
         this.context = context;
         this.drinkInfos = drinkInfos;
+        butils=new BitmapUtils(context);
+        yutils=new BitmapUtils(context);
     }
 
     @Override
@@ -84,19 +91,19 @@ public class DrinkAdapter extends BaseAdapter {
         }else{
             holder= (ViewHolder) view.getTag();
         }
-        holder.iv_image_one.setImageResource(drinkInfo1.getImageid());
-        holder.iv_photolefttype_one.setImageResource(drinkInfo1.getPhotoLeftType());
-        holder.iv_photorighttype_one.setImageResource(drinkInfo1.getPhotoRightType());
-        holder.tv_storename_one.setText(drinkInfo1.getStorename());
-        holder.item_rating_one.setRating(drinkInfo1.getRating());
-        holder.tv_youhui_one.setText(drinkInfo1.getYh());
+        butils.display(holder.iv_image_one,drinkInfo1.getMarketIconPath());
+        yutils.display(holder.iv_photolefttype_one,drinkInfo1.getDiscountIconPath());
+        yutils.display(holder.iv_photorighttype_one,drinkInfo1.getBookIconPath());
+        holder.tv_storename_one.setText(drinkInfo1.getMarketName());
+        holder.item_rating_one.setRating((float) drinkInfo1.getMarketHotLevel());
+        holder.tv_youhui_one.setText(drinkInfo1.getMarketIntroduce());
         if(drinkInfo2!=null){
-            holder.iv_image_two.setImageResource(drinkInfo2.getImageid());
-            holder.iv_photolefttype_two.setImageResource(drinkInfo2.getPhotoLeftType());
-            holder.iv_photorighttype_two.setImageResource(drinkInfo2.getPhotoRightType());
-            holder.tv_storename_two.setText(drinkInfo2.getStorename());
-            holder.item_rating_two.setRating(drinkInfo2.getRating());
-            holder.tv_youhui_two.setText(drinkInfo2.getYh());
+            butils.display(holder.iv_image_two,drinkInfo2.getMarketIconPath());
+            yutils.display(holder.iv_photolefttype_two,drinkInfo2.getDiscountIconPath());
+            yutils.display(holder.iv_photorighttype_two,drinkInfo2.getBookIconPath());
+            holder.tv_storename_two.setText(drinkInfo2.getMarketName());
+            holder.item_rating_two.setRating((float) drinkInfo2.getMarketHotLevel());
+            holder.tv_youhui_two.setText(drinkInfo2.getMarketIntroduce());
         }
         return view;
     }

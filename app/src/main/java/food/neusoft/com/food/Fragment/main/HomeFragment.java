@@ -99,6 +99,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private WesternFragment westernFragment;
     private HotpotFragment hotpotFragment;
     private DessertFragment dessertFragment;
+    private DrinkFragment drinkFragment;
 
 
     @Override
@@ -155,7 +156,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         fragments.add(dessertFragment);
 
 
-        fragments.add(new DrinkFragment());
+        drinkFragment = new DrinkFragment();
+        drinkFragment.LOCAL=tv_local.getText().toString();
+        fragments.add(drinkFragment);
 
 
         setupFragment();
@@ -196,6 +199,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 hotpotFragment.LOCAL=tv_local.getText().toString();
                 westernFragment.LOCAL=tv_local.getText().toString();
                 dessertFragment.LOCAL=tv_local.getText().toString();
+                drinkFragment.LOCAL=tv_local.getText().toString();
                 adapter.notifyDataSetChanged();
                 break;
             case R.id.iv_sign:
