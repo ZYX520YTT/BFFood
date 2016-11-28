@@ -97,6 +97,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private MyFragmentAdapter adapter;
     private HotFragment hotFragment;
     private WesternFragment westernFragment;
+    private HotpotFragment hotpotFragment;
 
 
     @Override
@@ -138,7 +139,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         hotFragment.LOCAL=tv_local.getText().toString();
         fragments.add(hotFragment);
 
-        fragments.add(new HotpotFragment());
+
+        hotpotFragment = new HotpotFragment();
+        hotpotFragment.LOCAL=tv_local.getText().toString();
+        fragments.add(hotpotFragment);
 
 
         westernFragment = new WesternFragment();
@@ -185,6 +189,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.iv_search:
 //                Toast.makeText(getContext(),tv_local.getText().toString(),Toast.LENGTH_SHORT).show();
                 hotFragment.LOCAL=tv_local.getText().toString();
+                hotpotFragment.LOCAL=tv_local.getText().toString();
                 westernFragment.LOCAL=tv_local.getText().toString();
                 adapter.notifyDataSetChanged();
                 break;

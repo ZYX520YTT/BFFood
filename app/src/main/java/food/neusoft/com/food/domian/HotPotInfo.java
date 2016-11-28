@@ -8,79 +8,137 @@ package food.neusoft.com.food.domian;
 
 public class HotPotInfo {
 
-    private int imageid;
-    private String storename;
-    private float rating;
-    private String money;
-    private String name;
-    private String price;
+    private String bookIconPath;
+    private String discountIconPath;
+    private String marketAdress;
+    private String marketBigPicture;
+    private double marketDiscount;
+    private double marketDistance;
+    private double marketHotLevel;
+    private String marketIconPath;
+    private String marketIntroduce;
+    private String marketName;
+    private long marketNo;
+    private double marketPrice;
+    private String typeName;
 
-    public HotPotInfo(int imageid, String storename, float rating, String price, String money, String name) {
-        this.imageid = imageid;
-        this.storename = storename;
-        this.rating = rating;
-        this.price = price;
-        this.money = money;
-        this.name = name;
+    public HotPotInfo(String bookIconPath, String typeName, double marketPrice, long marketNo, String marketName, String marketIntroduce, String marketIconPath, double marketHotLevel, double marketDiscount, String marketBigPicture, String discountIconPath, String marketAdress, double marketDistance) {
+        this.bookIconPath = bookIconPath;
+        this.typeName = typeName;
+        this.marketPrice = marketPrice;
+        this.marketNo = marketNo;
+        this.marketName = marketName;
+        this.marketIntroduce = marketIntroduce;
+        this.marketIconPath = marketIconPath;
+        this.marketHotLevel = marketHotLevel;
+        this.marketDiscount = marketDiscount;
+        this.marketBigPicture = marketBigPicture;
+        this.discountIconPath = discountIconPath;
+        this.marketAdress = marketAdress;
+        this.marketDistance = marketDistance;
     }
 
-    public int getImageid() {
-        return imageid;
+    public String getBookIconPath() {
+        return bookIconPath;
     }
 
-    public void setImageid(int imageid) {
-        this.imageid = imageid;
+    public void setBookIconPath(String bookIconPath) {
+        this.bookIconPath = bookIconPath;
     }
 
-    public String getName() {
-        return name;
+    public String getMarketIntroduce() {
+        return marketIntroduce;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMarketIntroduce(String marketIntroduce) {
+        this.marketIntroduce = marketIntroduce;
     }
 
-    public String getMoney() {
-        return money;
+    public double getMarketHotLevel() {
+        return marketHotLevel;
     }
 
-    public void setMoney(String money) {
-        this.money = money;
+    public void setMarketHotLevel(double marketHotLevel) {
+        this.marketHotLevel = marketHotLevel;
     }
 
-    public float getRating() {
-        return rating;
+    public String getMarketBigPicture() {
+        return marketBigPicture;
     }
 
-    public void setRating(float rating) {
-        this.rating = rating;
+    public void setMarketBigPicture(String marketBigPicture) {
+        this.marketBigPicture = marketBigPicture;
     }
 
-    public String getStorename() {
-        return storename;
+    public String getMarketAdress() {
+        return marketAdress;
     }
 
-    public void setStorename(String storename) {
-        this.storename = storename;
+    public void setMarketAdress(String marketAdress) {
+        this.marketAdress = marketAdress;
     }
 
-    public String getPrice() {
-        return price;
+    public String getDiscountIconPath() {
+        return discountIconPath;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setDiscountIconPath(String discountIconPath) {
+        this.discountIconPath = discountIconPath;
     }
 
-    @Override
-    public String toString() {
-        return "HotPotInfo{" +
-                "imageid=" + imageid +
-                ", storename='" + storename + '\'' +
-                ", rating=" + rating +
-                ", money='" + money + '\'' +
-                ", name='" + name + '\'' +
-                ", price='" + price + '\'' +
-                '}';
+    public double getMarketDiscount() {
+        return marketDiscount;
+    }
+
+    public void setMarketDiscount(double marketDiscount) {
+        this.marketDiscount = marketDiscount;
+    }
+
+    public double getMarketDistance() {
+        return marketDistance;
+    }
+
+    public void setMarketDistance(double marketDistance) {
+        this.marketDistance = marketDistance;
+    }
+
+    public String getMarketIconPath() {
+        return marketIconPath;
+    }
+
+    public void setMarketIconPath(String marketIconPath) {
+        this.marketIconPath = marketIconPath;
+    }
+
+    public String getMarketName() {
+        return marketName;
+    }
+
+    public void setMarketName(String marketName) {
+        this.marketName = marketName;
+    }
+
+    public long getMarketNo() {
+        return marketNo;
+    }
+
+    public void setMarketNo(long marketNo) {
+        this.marketNo = marketNo;
+    }
+
+    public double getMarketPrice() {
+        return marketPrice;
+    }
+
+    public void setMarketPrice(double marketPrice) {
+        this.marketPrice = marketPrice;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }

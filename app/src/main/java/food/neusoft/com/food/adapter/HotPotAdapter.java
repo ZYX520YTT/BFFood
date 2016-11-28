@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.lidroid.xutils.BitmapUtils;
+
 import java.util.List;
 
 import food.neusoft.com.food.R;
@@ -24,9 +26,16 @@ public class HotPotAdapter extends BaseAdapter {
     private Context context;
     private List<HotPotInfo> hotPotInfos;
 
+    private BitmapUtils butils;
+    private BitmapUtils yutils;
+
     public HotPotAdapter(Context context,List<HotPotInfo> hotPotInfos) {
         this.context=context;
         this.hotPotInfos=hotPotInfos;
+        butils=new BitmapUtils(context);
+        butils.configDefaultLoadingImage(R.drawable.pic_hotpot_one);
+        yutils=new BitmapUtils(context);
+        yutils.configDefaultLoadingImage(R.drawable.view_privilige);
     }
 
     @Override
@@ -56,17 +65,19 @@ public class HotPotAdapter extends BaseAdapter {
             holder.tv_money= (TextView) view.findViewById(R.id.tv_money);
             holder.item_name= (TextView) view.findViewById(R.id.item_name);
             holder.tv_price= (TextView) view.findViewById(R.id.tv_price);
+            holder.iv_hui= (ImageView) view.findViewById(R.id.iv_hui);
             view.setTag(holder);
         }else{
             holder= (ViewHolder) view.getTag();
         }
         HotPotInfo hotPotInfo=getItem(i);
-        holder.item_icon.setImageResource(hotPotInfo.getImageid());
-        holder.item_title.setText(hotPotInfo.getStorename());
-        holder.item_rating.setRating(hotPotInfo.getRating());
-        holder.tv_money.setText(hotPotInfo.getMoney());
-        holder.item_name.setText(hotPotInfo.getName());
-        holder.tv_price.setText(hotPotInfo.getPrice());
+        butils.display(holder.item_icon,hotPotInfo.getMarketIconPath());
+        holder.item_title.setText(hotPotInfo.getMarketName());
+        holder.item_rating.setRating((float) hotPotInfo.getMarketHotLevel());
+        holder.tv_money.setText("¥"+hotPotInfo.getMarketPrice()+"/人");
+        holder.item_name.setText(hotPotInfo.getTypeName());
+        holder.tv_price.setText(hotPotInfo.getMarketDiscount()+"折(预约专享受)");
+        yutils.display(holder.iv_hui,hotPotInfo.getBookIconPath());
         return view;
     }
 
@@ -78,6 +89,6 @@ public class HotPotAdapter extends BaseAdapter {
         public TextView tv_money;
         public TextView item_name;
         public TextView tv_price;
-
+        public ImageView iv_hui;
     }
 }
