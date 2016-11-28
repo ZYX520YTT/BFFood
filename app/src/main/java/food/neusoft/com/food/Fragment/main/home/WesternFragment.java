@@ -86,7 +86,7 @@ public class WesternFragment extends BaseFragment {
 
     //下拉刷新
     private void getFirst(){
-        Toast.makeText(getContext(),LOCAL,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(),LOCAL,Toast.LENGTH_SHORT).show();
         isLoadmore=false;
         firstIndex=0;
         westFoodInfos=new ArrayList<>();

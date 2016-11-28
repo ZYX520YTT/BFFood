@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.lidroid.xutils.BitmapUtils;
+
 import java.util.List;
 
 import food.neusoft.com.food.R;
@@ -24,9 +26,17 @@ public class AttachAdapter extends BaseAdapter {
     private Context context;
     private List<AttachInfo> attachInfos;
 
+    private BitmapUtils butils;
+    private BitmapUtils yutils;
+
+
     public AttachAdapter(Context context, List<AttachInfo> attachInfos) {
         this.context=context;
         this.attachInfos=attachInfos;
+        butils=new BitmapUtils(context);
+        butils.configDefaultLoadingImage(R.drawable.pic_attach_one);
+        yutils=new BitmapUtils(context);
+        yutils.configDefaultLoadingImage(R.drawable.view_privilige);
     }
 
     @Override
@@ -57,18 +67,20 @@ public class AttachAdapter extends BaseAdapter {
             holder.item_name= (TextView) view.findViewById(R.id.item_name);
             holder.tv_price= (TextView) view.findViewById(R.id.tv_price);
             holder.tv_distance= (TextView) view.findViewById(R.id.tv_distance);
+            holder.iv_hui= (ImageView) view.findViewById(R.id.iv_hui);
             view.setTag(holder);
         }else{
             holder= (ViewHolder) view.getTag();
         }
         AttachInfo attachInfo=getItem(i);
-        holder.item_icon.setImageResource(attachInfo.getImageid());
-        holder.item_title.setText(attachInfo.getStorename());
-        holder.item_rating.setRating(attachInfo.getRating());
-        holder.tv_money.setText(attachInfo.getMoney());
-        holder.item_name.setText(attachInfo.getName());
-        holder.tv_price.setText(attachInfo.getPrice());
-        holder.tv_distance.setText(attachInfo.getDistance());
+        butils.display(holder.item_icon,attachInfo.getMarketIconPath());
+        holder.item_title.setText(attachInfo.getMarketName());
+        holder.item_rating.setRating((float) attachInfo.getMarketHotLevel());
+        holder.tv_money.setText("¥"+attachInfo.getMarketPrice()+"/人");
+        holder.item_name.setText(attachInfo.getTypeName());
+        holder.tv_price.setText(attachInfo.getMarketDiscount()+"折(预约专享受)");
+        holder.tv_distance.setText(attachInfo.getMarketDistance()+"");
+        yutils.display(holder.iv_hui,attachInfo.getDiscountIconPath());
         return view;
     }
 
@@ -81,6 +93,7 @@ public class AttachAdapter extends BaseAdapter {
         public TextView item_name;
         public TextView tv_price;
         public TextView tv_distance;
+        public ImageView iv_hui;
 
     }
 }
