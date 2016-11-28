@@ -96,6 +96,11 @@ public class LoginActivity extends AppCompatActivity {
         et_password.setHintTextColor(getResources().getColor(R.color.white));
 
 
+        //测试的时候我的默认手机号和密码都是1
+        et_number.setText("1");
+        et_password.setText("1");
+
+
         //登录
         bt_login.setOnClickListener(new View.OnClickListener() {
             @Override

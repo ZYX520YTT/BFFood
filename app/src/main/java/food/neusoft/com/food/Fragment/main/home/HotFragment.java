@@ -1,5 +1,6 @@
 package food.neusoft.com.food.Fragment.main.home;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,18 +13,30 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.msebera.android.httpclient.Header;
 import food.neusoft.com.food.Fragment.main.base.BaseFragment;
 import food.neusoft.com.food.R;
 import food.neusoft.com.food.adapter.HotPeopleAdapter;
 import food.neusoft.com.food.adapter.PhotoListAdapter;
 import food.neusoft.com.food.domian.FoodPhotoInfo;
+import food.neusoft.com.food.domian.HotMarketInfo;
+import food.neusoft.com.food.thread.HttpUtils;
+import food.neusoft.com.food.thread.Url;
+import food.neusoft.com.food.widget.pulltorefresh.PullToRefreshLayout;
 
 /**
  * Created by 张宇翔 on 2016/11/22 19:14.
@@ -31,7 +44,12 @@ import food.neusoft.com.food.domian.FoodPhotoInfo;
  * 功能：
  */
 
+@SuppressLint("ValidFragment")
 public class HotFragment extends BaseFragment {
+
+
+    private AsyncHttpResponseHandler foundFood_handler;
+    private AsyncHttpResponseHandler hotmarket_handler;
     private View view;
 
     @ViewInject(R.id.myimpager)
@@ -42,15 +60,28 @@ public class HotFragment extends BaseFragment {
     private ListView ls_show;
     @ViewInject(R.id.ls_show_hotpeople)
     private ListView ls_show_hotpeople;
+    @ViewInject(R.id.refresh_view)
+    private PullToRefreshLayout refresh_view;
 
     private List<Integer> imageId;
 
 
+    private boolean isLoadmore;
+
+    private int firstIndex;//页数
+
+
+
+
     private Handler handler;
     private List<FoodPhotoInfo> foodPhotoInfos;
-    private List<Integer> hotpeoples;
+    private List<HotMarketInfo> hotMarketInfos;
 
 
+
+    public static String LOCAL;
+    private PhotoListAdapter photoadapter;
+    private HotPeopleAdapter hotPeopleAdapter;
 
 
     @Override
@@ -63,6 +94,7 @@ public class HotFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_hot, container, false);
         ViewUtils.inject(this, view);
+        dohandler();
         Init();
         return view;
     }
@@ -80,56 +112,74 @@ public class HotFragment extends BaseFragment {
         //默认选中第一张图片
         ChosePhoto(0);
 
+        refresh_view.setOnRefreshListener(new MyListener());
 
-        InitFood();//初始化“发现美食”
-
-        InitHot();//初始化热门商家
-
+        getFirst();
 
         setupFragment();
 
 
     }
 
-    private void InitHot() {
+    //热门商家
+    private void  InitHot() {
 
-        hotpeoples = new ArrayList<>();
-        for(int i=0;i<5;i++){
-            hotpeoples.add(R.drawable.title1);
-        }
-
-
+//        Toast.makeText(getContext(),"我是:"+LOCAL,Toast.LENGTH_SHORT).show();
+        firstIndex=0;
+        hotMarketInfos = new ArrayList<>();
+        RequestParams params=new RequestParams();
+        params.put("count",10);//默认每次加载10条数据
+        params.put("marketAdress",LOCAL);
+        params.put("firstIndex",firstIndex);
+        HttpUtils.get(getContext(),Url.getHotMarket,params,hotmarket_handler);
     }
 
+    //发现美食
     private void InitFood() {
 
         foodPhotoInfos = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            int id = 0;
-            String desc = "";
-            if (i == 0) {
-                id = R.drawable.food1;
-                desc = getResources().getString(R.string.hot_food1);
-            } else if (i == 1) {
-                id = R.drawable.food2;
-                desc = getResources().getString(R.string.hot_food2);
-            } else if (i == 2) {
-                id = R.drawable.food3;
-                desc = getResources().getString(R.string.hot_food3);
-            } else if (i == 3) {
-                id = R.drawable.food4;
-                desc = getResources().getString(R.string.hot_food4);
-            } else if (i == 4) {
-                id = R.drawable.food5;
-                desc = getResources().getString(R.string.hot_food5);
-            } else if (i == 5) {
-                id = R.drawable.food6;
-                desc = getResources().getString(R.string.hot_food6);
-            }
-            FoodPhotoInfo foodPhotoInfo = new FoodPhotoInfo(id, desc);
-            foodPhotoInfos.add(foodPhotoInfo);
-        }
+        RequestParams params=new RequestParams();
+        params.put("count",6);//总共6条数据
+        HttpUtils.get(getContext(), Url.getHotFood,params,foundFood_handler);
     }
+
+    //下拉刷新
+    private void getFirst(){
+
+
+
+        InitFood();//初始化“发现美食”
+
+        InitHot();//初始化热门商家
+
+
+        photoadapter = new PhotoListAdapter(getContext(),foodPhotoInfos);
+
+        ls_show.setAdapter(photoadapter);
+
+
+        hotPeopleAdapter = new HotPeopleAdapter(getContext(),hotMarketInfos);
+
+        ls_show_hotpeople.setAdapter(hotPeopleAdapter);
+
+
+        isLoadmore=false;
+    }
+
+
+    //下拉加载更多
+    private void getNext(){
+        RequestParams params=new RequestParams();
+        params.put("count",10);//默认每次加载10条数据
+        params.put("marketAdress",LOCAL);
+        params.put("firstIndex",firstIndex);
+        HttpUtils.get(getContext(),Url.getHotMarket,params,hotmarket_handler);
+        isLoadmore=true;
+    }
+
+
+
+
 
     private void setupFragment() {
 
@@ -170,13 +220,6 @@ public class HotFragment extends BaseFragment {
             handler.sendEmptyMessageDelayed(0, 2000);
         }
 
-
-        //发现美食
-        ls_show.setAdapter(new PhotoListAdapter(getContext(),foodPhotoInfos));
-
-        //热门商家
-        ls_show_hotpeople.setAdapter(new HotPeopleAdapter(getContext(),hotpeoples));
-
     }
 
     private void ChosePhoto(int postion) {
@@ -190,6 +233,7 @@ public class HotFragment extends BaseFragment {
     }
 
 
+    //初始化小圆点
     private void InitPoint() {
         for (int i = 0; i < imageId.size(); i++) {
             ImageView view = new ImageView(getContext());
@@ -202,6 +246,7 @@ public class HotFragment extends BaseFragment {
     }
 
 
+    //顶部轮播图
     class MyPagerAdapter extends PagerAdapter {
 
         @Override
@@ -231,6 +276,7 @@ public class HotFragment extends BaseFragment {
     }
 
 
+    //对轮播图监听
     class TopNewsTouchListener implements View.OnTouchListener {
 
         @Override
@@ -249,6 +295,119 @@ public class HotFragment extends BaseFragment {
                     break;
             }
             return true;
+        }
+    }
+
+
+
+    private void dohandler(){
+        foundFood_handler=new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String result=new String(responseBody);
+                if(result.equals("ERROR")){
+                    Toast.makeText(getContext(),"获取数据失败",Toast.LENGTH_SHORT).show();
+                }else{
+                    try {
+                        JSONArray jsonArray=new JSONArray(result);
+                        for(int i=0;i<jsonArray.length();i++){
+                            JSONObject jsonObject=jsonArray.getJSONObject(i);
+                            double foodDiscount=jsonObject.getDouble("foodDiscount");
+                            boolean foodHot=jsonObject.getBoolean("foodHot");
+                            String foodIconPath= Url.getImgURL(jsonObject.getString("foodIconPath"));
+                            String foodIntroduce=jsonObject.getString("foodIntroduce");
+                            String foodName=jsonObject.getString("foodName");
+                            long foodNo=jsonObject.getLong("foodNo");
+                            FoodPhotoInfo foodPhotoInfo=new FoodPhotoInfo(foodDiscount,foodHot,foodIconPath,foodName,foodIntroduce,foodNo);
+                            foodPhotoInfos.add(foodPhotoInfo);
+
+                        }
+                        //发现美食
+                        photoadapter.notifyDataSetChanged();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(getContext(), R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        hotmarket_handler=new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String result=new String(responseBody);
+                if(result.equals("ERROR")){
+                    Toast.makeText(getContext(),"获取数据失败",Toast.LENGTH_SHORT).show();
+                }else{
+                    try {
+                        JSONArray jsonArray=new JSONArray(result);
+                        for(int i=0;i<jsonArray.length();i++){
+                            JSONObject jsonobject=jsonArray.getJSONObject(i);
+                            String marketAdress=jsonobject.getString("marketAdress");
+                            String marketBigPicture=Url.getImgURL(jsonobject.getString("marketBigPicture"));
+                            double marketDiscount=jsonobject.getDouble("marketDiscount");
+                            double marketDistance=jsonobject.getDouble("marketDistance");
+                            double marketHotLevel=jsonobject.getDouble("marketHotLevel");
+                            String marketIconPath=Url.getImgURL(jsonobject.getString("marketIconPath"));
+                            String marketIntroduce=jsonobject.getString("marketIntroduce");
+                            String marketName=jsonobject.getString("marketName");
+                            long marketNo=jsonobject.getLong("marketNo");
+                            double marketPrice=jsonobject.getDouble("marketPrice");
+                            HotMarketInfo hotmarketinfo=new HotMarketInfo(marketAdress,marketPrice,marketNo,marketName,marketIntroduce
+                            ,marketIconPath,marketDistance,marketDiscount,marketBigPicture,marketHotLevel);
+                            hotMarketInfos.add(hotmarketinfo);
+
+                        }
+
+                        //热门商家
+                        hotPeopleAdapter.notifyDataSetChanged();
+                        firstIndex++;
+                        if(isLoadmore){
+                            refresh_view.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+                        }else{
+                            refresh_view.loadmoreFinish(PullToRefreshLayout.SUCCEED);
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        if(isLoadmore){
+                            refresh_view.loadmoreFinish(PullToRefreshLayout.FAIL);
+                        }else{
+                            refresh_view.refreshFinish(PullToRefreshLayout.FAIL);
+                        }
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(getContext(), R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+            }
+        };
+    }
+
+
+
+
+    //监听下拉和上拉
+    class MyListener implements PullToRefreshLayout.OnRefreshListener {
+
+        @Override
+        public void onRefresh(PullToRefreshLayout pullToRefreshLayout) {
+            getFirst();
+        }
+
+        @Override
+        public void onLoadMore(PullToRefreshLayout pullToRefreshLayout) {
+            getNext();
         }
     }
 

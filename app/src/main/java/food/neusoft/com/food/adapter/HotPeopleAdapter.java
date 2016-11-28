@@ -6,9 +6,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.lidroid.xutils.BitmapUtils;
+
 import java.util.List;
 
 import food.neusoft.com.food.R;
+import food.neusoft.com.food.domian.HotMarketInfo;
 
 /**
  * Created by 张宇翔 on 2016/11/23 11:43.
@@ -19,12 +22,17 @@ import food.neusoft.com.food.R;
 public class HotPeopleAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Integer> hotpeoples;
+    private List<HotMarketInfo> hotpeoples;
 
-    public HotPeopleAdapter(Context context,List<Integer> hotpeoples){
+    private BitmapUtils utils;
+
+    public HotPeopleAdapter(Context context,List<HotMarketInfo> hotpeoples){
         this.context=context;
         this.hotpeoples=hotpeoples;
+        utils=new BitmapUtils(context);
+        utils.configDefaultLoadingImage(R.drawable.title1);
     }
+
 
     @Override
     public int getCount() {
@@ -32,7 +40,7 @@ public class HotPeopleAdapter extends BaseAdapter {
     }
 
     @Override
-    public Integer getItem(int i) {
+    public HotMarketInfo getItem(int i) {
         return hotpeoples.get(i);
     }
 
@@ -52,7 +60,7 @@ public class HotPeopleAdapter extends BaseAdapter {
         }else{
             holder= (ViewHolder) view.getTag();
         }
-        holder.iv_hotpeople_image.setImageResource(getItem(i));
+        utils.display(holder.iv_hotpeople_image,getItem(i).getMarketIconPath());
         return view;
     }
 

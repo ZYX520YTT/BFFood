@@ -7,6 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lidroid.xutils.BitmapUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +26,14 @@ public class PhotoListAdapter extends BaseAdapter {
     private Context context;
     private List<FoodPhotoInfo> foodPhotoInfos;
 
+
+    private BitmapUtils utils;
+
     public PhotoListAdapter(Context context,List<FoodPhotoInfo> foodPhotoInfos){
         this.foodPhotoInfos=foodPhotoInfos;
         this.context=context;
+        utils=new BitmapUtils(context);
+        utils.configDefaultLoadingImage(R.drawable.food1);
     }
 
     @Override
@@ -84,15 +91,15 @@ public class PhotoListAdapter extends BaseAdapter {
         }else{
             holder= (ViewHolder) view.getTag();
         }
-        holder.iv_image_one.setImageResource(foodPhotoInfo1.getImageid());
-        holder.tv_dynamic_title_one.setText(foodPhotoInfo1.getImagedesc());
+        utils.display(holder.iv_image_one,foodPhotoInfo1.getFoodIconPath());
+        holder.tv_dynamic_title_one.setText(foodPhotoInfo1.getFoodName());
         if(foodPhotoInfo2!=null){
-            holder.iv_image_two.setImageResource(foodPhotoInfo2.getImageid());
-            holder.tv_dynamic_title_two.setText(foodPhotoInfo2.getImagedesc());
+            utils.display(holder.iv_image_two,foodPhotoInfo2.getFoodIconPath());
+            holder.tv_dynamic_title_two.setText(foodPhotoInfo2.getFoodName());
         }
         if(foodPhotoInfo3!=null){
-            holder.iv_image_three.setImageResource(foodPhotoInfo3.getImageid());
-            holder.tv_dynamic_title_three.setText(foodPhotoInfo3.getImagedesc());
+            utils.display(holder.iv_image_three,foodPhotoInfo3.getFoodIconPath());
+            holder.tv_dynamic_title_three.setText(foodPhotoInfo3.getFoodName());
         }
         return view;
     }

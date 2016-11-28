@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -95,7 +94,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
 
     private List<BaseFragment> fragments;
-
+    private MyFragmentAdapter adapter;
+    private HotFragment hotFragment;
 
 
     @Override
@@ -133,7 +133,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         rlyt_drink.setOnClickListener(this);
 
 
-        fragments.add(new HotFragment());
+        hotFragment = new HotFragment();
+        hotFragment.LOCAL=tv_local.getText().toString();
+        fragments.add(hotFragment);
+
+
         fragments.add(new HotpotFragment());
         fragments.add(new WesternFragment());
         fragments.add(new DessertFragment());
@@ -148,7 +152,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private void setupFragment(){
         FragmentManager fm=this.getChildFragmentManager();
 
-        MyFragmentAdapter adapter=new MyFragmentAdapter(fm,fragments);
+        adapter = new MyFragmentAdapter(fm,fragments);
         viewPager.setAdapter(adapter);
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -173,7 +177,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_search:
-                Toast.makeText(getContext(),tv_local.getText().toString(),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(),tv_local.getText().toString(),Toast.LENGTH_SHORT).show();
+                hotFragment.LOCAL=tv_local.getText().toString();
+                adapter.notifyDataSetChanged();
                 break;
             case R.id.iv_sign:
             case R.id.tv_local:

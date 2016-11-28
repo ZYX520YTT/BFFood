@@ -32,4 +32,9 @@ public class MyFragmentAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return fs.size();
     }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
 }

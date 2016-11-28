@@ -17,6 +17,7 @@ public class BaseFragment extends Fragment {
     public static List<String> local;
 
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

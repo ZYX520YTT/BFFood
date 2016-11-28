@@ -8,35 +8,67 @@ package food.neusoft.com.food.domian;
 
 public class FoodPhotoInfo {
 
-    private int imageid;
-    private String imagedesc;
+    private double foodDiscount;//打折
+    private boolean foodHot;//是否是热门
+    private String foodIconPath;//图片
+    private String foodIntroduce;//介绍
+    private String foodName;//美食名字
+    private long foodNo;//美食编号
 
-    public FoodPhotoInfo(int imageid, String imagedesc) {
-        this.imageid = imageid;
-        this.imagedesc = imagedesc;
+    public FoodPhotoInfo(double foodDiscount, boolean foodHot, String foodIconPath, String foodName, String foodIntroduce, long foodNo) {
+        this.foodDiscount = foodDiscount;
+        this.foodHot = foodHot;
+        this.foodIconPath = foodIconPath;
+        this.foodName = foodName;
+        this.foodIntroduce = foodIntroduce;
+        this.foodNo = foodNo;
     }
 
-    public String getImagedesc() {
-        return imagedesc;
+    public String getFoodIntroduce() {
+        return foodIntroduce;
     }
 
-    public void setImagedesc(String imagedesc) {
-        this.imagedesc = imagedesc;
+    public void setFoodIntroduce(String foodIntroduce) {
+        this.foodIntroduce = foodIntroduce;
     }
 
-    public int getImageid() {
-        return imageid;
+    public boolean isFoodHot() {
+        return foodHot;
     }
 
-    public void setImageid(int imageid) {
-        this.imageid = imageid;
+    public void setFoodHot(boolean foodHot) {
+        this.foodHot = foodHot;
     }
 
-    @Override
-    public String toString() {
-        return "FoodPhotoInfo{" +
-                "imagedesc='" + imagedesc + '\'' +
-                ", imageid=" + imageid +
-                '}';
+    public double getFoodDiscount() {
+        return foodDiscount;
+    }
+
+    public void setFoodDiscount(float foodDiscount) {
+        this.foodDiscount = foodDiscount;
+    }
+
+    public String getFoodIconPath() {
+        return foodIconPath;
+    }
+
+    public void setFoodIconPath(String foodIconPath) {
+        this.foodIconPath = foodIconPath;
+    }
+
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
+    }
+
+    public long getFoodNo() {
+        return foodNo;
+    }
+
+    public void setFoodNo(long foodNo) {
+        this.foodNo = foodNo;
     }
 }
