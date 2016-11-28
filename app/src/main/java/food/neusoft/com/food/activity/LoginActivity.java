@@ -106,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (judge()) {
+                    bt_login.setEnabled(false);//点了登录后不可以再点，避免用户乱点
                     loginInfo();
                 }
             }

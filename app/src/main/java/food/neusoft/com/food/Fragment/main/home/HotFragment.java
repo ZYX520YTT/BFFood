@@ -69,6 +69,7 @@ public class HotFragment extends BaseFragment {
     private boolean isLoadmore;
 
     private int firstIndex;//页数
+    private int count=10;//每次去10条数据
 
 
 
@@ -128,7 +129,7 @@ public class HotFragment extends BaseFragment {
         firstIndex=0;
         hotMarketInfos = new ArrayList<>();
         RequestParams params=new RequestParams();
-        params.put("count",10);//默认每次加载10条数据
+        params.put("count",count);//默认每次加载10条数据
         params.put("marketAdress",LOCAL);
         params.put("firstIndex",firstIndex);
         HttpUtils.get(getContext(),Url.getHotMarket,params,hotmarket_handler);
@@ -145,8 +146,7 @@ public class HotFragment extends BaseFragment {
 
     //下拉刷新
     private void getFirst(){
-
-
+        isLoadmore=false;
 
         InitFood();//初始化“发现美食”
 
@@ -162,19 +162,18 @@ public class HotFragment extends BaseFragment {
 
         ls_show_hotpeople.setAdapter(hotPeopleAdapter);
 
-
-        isLoadmore=false;
     }
 
 
     //下拉加载更多
     private void getNext(){
+        isLoadmore=true;
         RequestParams params=new RequestParams();
-        params.put("count",10);//默认每次加载10条数据
+        params.put("count",count);//默认每次加载10条数据
         params.put("marketAdress",LOCAL);
         params.put("firstIndex",firstIndex);
         HttpUtils.get(getContext(),Url.getHotMarket,params,hotmarket_handler);
-        isLoadmore=true;
+//      Toast.makeText(getContext(),"firstIndex:"+firstIndex,Toast.LENGTH_SHORT).show();
     }
 
 
@@ -307,6 +306,11 @@ public class HotFragment extends BaseFragment {
                 String result=new String(responseBody);
                 if(result.equals("ERROR")){
                     Toast.makeText(getContext(),"获取数据失败",Toast.LENGTH_SHORT).show();
+                    if(isLoadmore){
+                        refresh_view.loadmoreFinish(PullToRefreshLayout.FAIL);
+                    }else{
+                        refresh_view.refreshFinish(PullToRefreshLayout.FAIL);
+                    }
                 }else{
                     try {
                         JSONArray jsonArray=new JSONArray(result);
@@ -367,7 +371,7 @@ public class HotFragment extends BaseFragment {
 
                         //热门商家
                         hotPeopleAdapter.notifyDataSetChanged();
-                        firstIndex++;
+                        firstIndex+=count;
                         if(isLoadmore){
                             refresh_view.loadmoreFinish(PullToRefreshLayout.SUCCEED);
                         }else{

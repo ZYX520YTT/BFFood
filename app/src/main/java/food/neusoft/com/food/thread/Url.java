@@ -18,6 +18,9 @@ public class Url {
     //http://100.0.101.18:8080/CDFood/login?userId=67&userPassword=6
     //http://100.0.101.18:8080/CDFood/getHotMarket?count=5&marketAdress=温江区&firstIndex=0
     //http://100.0.101.18:8080/CDFood/Images/SY_pic.png
+    //http://100.0.101.18:8080/CDFood/getHotpotMarket?count=10&firstIndex=0&marketAdress=温江区
+    //http://100.0.101.18:8080/CDFood/getWesternMarket?count=10&firstIndex=0&marketAdress=青羊区
+    //http://100.0.101.18:8080/CDFood/Images/XC_pic_one.png
 
 
     private static String getUrl(String activity){
@@ -46,7 +49,11 @@ public class Url {
     /**获取热门商铺**/
     public static String getHotMarket=getUrl("getHotMarket");
 
+    /**获取火锅的商铺**/
+    public static String getHotpotMarket =getUrl("getHotpotMarket");
 
+    /**获取西餐的商铺**/
+    public static String getWesternMarket =getUrl("getWesternMarket");
 
 
 }
