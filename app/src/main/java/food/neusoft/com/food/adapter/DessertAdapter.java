@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.lidroid.xutils.BitmapUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +26,16 @@ public class DessertAdapter extends BaseAdapter {
 
     private Context context;
     private List<DessertInfo> dessertInfos;
+    private BitmapUtils butils;
+    private BitmapUtils yutils;
 
     public DessertAdapter(Context context, List<DessertInfo> dessertInfos) {
         this.context = context;
         this.dessertInfos = dessertInfos;
+        butils=new BitmapUtils(context);
+        butils.configDefaultLoadingImage(R.drawable.pic_dessert_one);
+        yutils=new BitmapUtils(context);
+        yutils.configDefaultLoadingImage(R.drawable.view_yu);
     }
 
     @Override
@@ -84,19 +92,19 @@ public class DessertAdapter extends BaseAdapter {
         }else{
             holder= (ViewHolder) view.getTag();
         }
-        holder.iv_image_one.setImageResource(dessertinfo1.getImageid());
-        holder.iv_photolefttype_one.setImageResource(dessertinfo1.getPhotoLeftType());
-        holder.iv_photorighttype_one.setImageResource(dessertinfo1.getPhotoRightType());
-        holder.tv_storename_one.setText(dessertinfo1.getStorename());
-        holder.item_rating_one.setRating(dessertinfo1.getRating());
-        holder.tv_youhui_one.setText(dessertinfo1.getYh());
+        butils.display(holder.iv_image_one,dessertinfo1.getMarketIconPath());
+        yutils.display(holder.iv_photolefttype_one,dessertinfo1.getDiscountIconPath());
+        yutils.display(holder.iv_photorighttype_one,dessertinfo1.getBookIconPath());
+        holder.tv_storename_one.setText(dessertinfo1.getMarketName());
+        holder.item_rating_one.setRating((float) dessertinfo1.getMarketHotLevel());
+        holder.tv_youhui_one.setText(dessertinfo1.getMarketIntroduce());
         if(dessertinfo2!=null){
-            holder.iv_image_two.setImageResource(dessertinfo2.getImageid());
-            holder.iv_photolefttype_two.setImageResource(dessertinfo2.getPhotoLeftType());
-            holder.iv_photorighttype_two.setImageResource(dessertinfo2.getPhotoRightType());
-            holder.tv_storename_two.setText(dessertinfo2.getStorename());
-            holder.item_rating_two.setRating(dessertinfo2.getRating());
-            holder.tv_youhui_two.setText(dessertinfo2.getYh());
+            butils.display(holder.iv_image_two,dessertinfo2.getMarketIconPath());
+            yutils.display(holder.iv_photolefttype_two,dessertinfo2.getDiscountIconPath());
+            yutils.display(holder.iv_photorighttype_two,dessertinfo2.getBookIconPath());
+            holder.tv_storename_two.setText(dessertinfo2.getMarketName());
+            holder.item_rating_two.setRating((float) dessertinfo2.getMarketHotLevel());
+            holder.tv_youhui_two.setText(dessertinfo2.getMarketIntroduce());
         }
         return view;
     }
