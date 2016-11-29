@@ -1,213 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <RelativeLayout
+        android:id="@+id/rlyt_headimage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background">
+        android:layout_height="166dp"
+        android:background="@drawable/ic_mine_bg">
 
         <RelativeLayout
-            android:id="@+id/rlyt_headimage"
-            android:layout_width="match_parent"
-            android:layout_height="166dp"
-            android:background="@drawable/ic_mine_bg">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
 
-            <RelativeLayout
+            <!-- <ImageView -->
+            <food.neusoft.com.food.widget.roundhead.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/iv_headimage"
+                android:layout_width="@dimen/head_height"
+                android:layout_height="@dimen/head_height"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_mine_personal"
+                app:border_color="#FFFFFFFF"
+                app:border_width="1dp" />
+
+            <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
-
-                <!-- <ImageView -->
-                <food.neusoft.com.food.widget.roundhead.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/iv_headimage"
-                    android:layout_width="@dimen/head_height"
-                    android:layout_height="@dimen/head_height"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_mine_personal"
-                    app:border_color="#FFFFFFFF"
-                    app:border_width="1dp" />
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/iv_headimage"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="12dp"
-                    android:text="SXM13628181460"
-                    android:textColor="#ffffff"
-                    android:textSize="16sp" />
-            </RelativeLayout>
-
+                android:layout_below="@id/iv_headimage"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:text="SXM13628181460"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
         </RelativeLayout>
-
-
-        <LinearLayout
-            android:id="@+id/llyt_my_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rlyt_headimage"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/rlyt_collect"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/mine_item_height"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:background="@drawable/bg_list">
-
-                <ImageView
-                    android:id="@+id/iv_icon_heart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/icon_heart"
-                    />
-
-
-                <TextView
-                    android:id="@+id/tv_collect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/iv_icon_heart"
-                    android:layout_marginLeft="@dimen/mine_item_marginLeft"
-                    android:text="@string/mine_collect"
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/mine_item_textsize" />
-
-                <ImageView
-                    android:id="@+id/iv_collect"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/mine_item_marginRight"
-                    android:src="@drawable/ic_main_go" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rlyt_my_order"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/mine_item_height"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:background="@drawable/bg_list">
-
-                <ImageView
-                    android:id="@+id/iv_icon_order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/icon_order"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_my_order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/iv_icon_order"
-                    android:layout_marginLeft="@dimen/mine_item_marginLeft"
-                    android:text="@string/mine_order"
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/mine_item_textsize" />
-
-                <ImageView
-                    android:id="@+id/iv_my_order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/mine_item_marginRight"
-                    android:src="@drawable/ic_main_go" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rlyt_local"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/mine_item_height"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:background="@drawable/bg_list">
-
-
-                <ImageView
-                    android:id="@+id/iv_icon_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/icon_address"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_local"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/iv_icon_address"
-                    android:layout_marginLeft="@dimen/mine_item_marginLeft"
-                    android:text="@string/mine_local"
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/mine_item_textsize" />
-
-                <ImageView
-                    android:id="@+id/iv_local"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/mine_item_marginRight"
-                    android:src="@drawable/ic_main_go" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rlyt_share"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/mine_item_height"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:background="@drawable/bg_list">
-
-                <ImageView
-                    android:id="@+id/iv_icon_share"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/icon_share"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_share"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/iv_icon_share"
-                    android:layout_marginLeft="@dimen/mine_item_marginLeft"
-                    android:text="@string/mine_share"
-                    android:textColor="@color/textcolor"
-                    android:textSize="@dimen/mine_item_textsize" />
-
-                <ImageView
-                    android:id="@+id/iv_share"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/mine_item_marginRight"
-                    android:src="@drawable/ic_main_go" />
-            </RelativeLayout>
-
-        </LinearLayout>
-
 
     </RelativeLayout>
 
 
-</ScrollView>
+    <RelativeLayout
+        android:id="@+id/rlyt_collect"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mine_item_height"
+        android:layout_below="@+id/rlyt_headimage"
+        android:background="@drawable/bg_list"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <ImageView
+            android:id="@+id/iv_icon_heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_heart" />
+
+
+        <TextView
+            android:id="@+id/tv_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/mine_item_marginLeft"
+            android:layout_toRightOf="@+id/iv_icon_heart"
+            android:text="@string/mine_collect"
+            android:textColor="@color/textcolor"
+            android:textSize="@dimen/mine_item_textsize" />
+
+        <ImageView
+            android:id="@+id/iv_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/mine_item_marginRight"
+            android:src="@drawable/ic_main_go" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlyt_my_order"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mine_item_height"
+        android:layout_below="@+id/rlyt_collect"
+        android:background="@drawable/bg_list"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <ImageView
+            android:id="@+id/iv_icon_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_order" />
+
+        <TextView
+            android:id="@+id/tv_my_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/mine_item_marginLeft"
+            android:layout_toRightOf="@+id/iv_icon_order"
+            android:text="@string/mine_order"
+            android:textColor="@color/textcolor"
+            android:textSize="@dimen/mine_item_textsize" />
+
+        <ImageView
+            android:id="@+id/iv_my_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/mine_item_marginRight"
+            android:src="@drawable/ic_main_go" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlyt_local"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mine_item_height"
+        android:layout_below="@+id/rlyt_my_order"
+        android:background="@drawable/bg_list"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+
+        <ImageView
+            android:id="@+id/iv_icon_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_address" />
+
+        <TextView
+            android:id="@+id/tv_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/mine_item_marginLeft"
+            android:layout_toRightOf="@+id/iv_icon_address"
+            android:text="@string/mine_local"
+            android:textColor="@color/textcolor"
+            android:textSize="@dimen/mine_item_textsize" />
+
+        <ImageView
+            android:id="@+id/iv_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/mine_item_marginRight"
+            android:src="@drawable/ic_main_go" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlyt_share"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/mine_item_height"
+        android:layout_below="@+id/rlyt_local"
+        android:background="@drawable/bg_list"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <ImageView
+            android:id="@+id/iv_icon_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_share" />
+
+        <TextView
+            android:id="@+id/tv_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/mine_item_marginLeft"
+            android:layout_toRightOf="@+id/iv_icon_share"
+            android:text="@string/mine_share"
+            android:textColor="@color/textcolor"
+            android:textSize="@dimen/mine_item_textsize" />
+
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/mine_item_marginRight"
+            android:src="@drawable/ic_main_go" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
+
