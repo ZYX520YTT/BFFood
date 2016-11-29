@@ -1,9 +1,11 @@
 package food.neusoft.com.food.Fragment.main.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 import food.neusoft.com.food.Fragment.main.base.BaseFragment;
 import food.neusoft.com.food.R;
+import food.neusoft.com.food.activity.StroeActivity;
 import food.neusoft.com.food.adapter.HotPotAdapter;
 import food.neusoft.com.food.domian.HotPotInfo;
 import food.neusoft.com.food.thread.HttpUtils;
@@ -94,6 +97,20 @@ public class HotpotFragment extends BaseFragment {
 
         hotPotAdapter = new HotPotAdapter(getContext(),hotPotInfos);
         ls_show.setAdapter(hotPotAdapter);
+
+
+        ls_show.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent=new Intent(getContext(), StroeActivity.class);
+                HotPotInfo hotPotInfo=hotPotInfos.get(i);
+                intent.putExtra("marketNo",hotPotInfo.getMarketNo());
+                intent.putExtra("type","火锅");
+                intent.putExtra("storename",hotPotInfo.getMarketName());
+                intent.putExtra("introduce",hotPotInfo.getMarketIntroduce());
+                startActivity(intent);
+            }
+        });
     }
 
     //下拉加载更多

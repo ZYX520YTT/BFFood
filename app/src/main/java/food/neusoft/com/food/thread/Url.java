@@ -21,7 +21,7 @@ public class Url {
     //http://100.0.101.18:8080/CDFood/getHotFood?count=10&marketAdress=温江区&firstIndex=0
     //http://100.0.101.18:8080/CDFood/getDrinkMarket?count=10&firstIndex=0&marketAdress=青羊区
     //http://100.0.101.18:8080/CDFood/Images/Re_pic_three.png.png
-    //http://100.0.101.18:8080/CDFood/getUserInfo?userId=1
+    //http://100.0.101.18:8080/CDFood/getFoods?marketNo=10
 
 
     private static String getUrl(String activity){
@@ -65,6 +65,9 @@ public class Url {
 
     /**获取附近的商铺**/
     public static String getNearMarket =getUrl("getNearMarket");
+
+    /**获取某个店铺里的商品**/
+    public static String getFoods=getUrl("getFoods");
 
 
 

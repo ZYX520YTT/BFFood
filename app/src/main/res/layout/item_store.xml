@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:layout_marginTop="13dp">
+
+    <RelativeLayout
+        android:id="@+id/llyt_dynamic_one"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+       >
+
+        <ImageView
+            android:id="@+id/iv_image_one"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/hg_pic_1" />
+
+        <TextView
+            android:id="@+id/tv_dynamic_title_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/iv_image_one"
+            android:singleLine="true"
+            android:text="慕斯蛋糕"
+            android:layout_alignLeft="@id/iv_image_one"
+            android:layout_alignRight="@id/iv_image_one"
+            android:textColor="@color/textcolor"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tv_money_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_dynamic_title_one"
+            android:layout_below="@id/tv_dynamic_title_one"
+            android:layout_marginTop="5dp"
+            android:text="45元"
+            android:textColor="#ea6b4e"
+            />
+        <TextView
+            android:id="@+id/tv_fen_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_money_one"
+            android:layout_below="@id/tv_dynamic_title_one"
+            android:layout_marginTop="5dp"
+            android:text="/份"
+            android:textColor="@color/title_color"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/llyt_dynamic_two"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+
+        <ImageView
+            android:id="@+id/iv_image_two"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/hg_pic_2" />
+
+        <TextView
+            android:id="@+id/tv_dynamic_title_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/iv_image_two"
+            android:singleLine="true"
+            android:text="培根三明治"
+            android:layout_alignLeft="@id/iv_image_two"
+            android:layout_alignRight="@id/iv_image_two"
+            android:textColor="@color/textcolor"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tv_money_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_dynamic_title_two"
+            android:layout_below="@id/tv_dynamic_title_two"
+            android:layout_marginTop="5dp"
+            android:text="48元"
+            android:textColor="#ea6b4e"
+            />
+        <TextView
+            android:id="@+id/tv_fen_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_money_two"
+            android:layout_below="@id/tv_dynamic_title_two"
+            android:layout_marginTop="5dp"
+            android:text="/份"
+            android:textColor="@color/title_color"
+            />
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/llyt_dynamic_three"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+
+        <ImageView
+            android:id="@+id/iv_image_three"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/hg_pic_3" />
+
+        <TextView
+            android:id="@+id/tv_dynamic_title_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/iv_image_three"
+            android:singleLine="true"
+            android:text="虾仁披萨"
+            android:layout_alignLeft="@id/iv_image_three"
+            android:layout_alignRight="@id/iv_image_three"
+            android:textColor="@color/textcolor"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tv_money_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_dynamic_title_three"
+            android:layout_below="@id/tv_dynamic_title_three"
+            android:layout_marginTop="5dp"
+            android:text="45元"
+            android:textColor="#ea6b4e"
+            />
+        <TextView
+            android:id="@+id/tv_fen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tv_money_three"
+            android:layout_below="@id/tv_dynamic_title_three"
+            android:layout_marginTop="5dp"
+            android:text="/份"
+            android:textColor="@color/title_color"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>
