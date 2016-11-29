@@ -13,8 +13,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:name=".NApplication"
@@ -34,16 +33,7 @@
             android:name=".activity.PhotoActivity"
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".activity.RegisterActivity"></activity>
-
-
-
-
-
-
-
-
-
+        <activity android:name=".activity.RegisterActivity" />
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -52,15 +42,18 @@
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="tencent1105843660" />
                 <!-- 100380359 100381104 222222 -->
             </intent-filter>
         </activity>
+        <activity android:name=".activity.StroeActivity"></activity>
     </application>
 
 </manifest>

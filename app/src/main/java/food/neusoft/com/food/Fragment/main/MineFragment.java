@@ -3,6 +3,7 @@ package food.neusoft.com.food.Fragment.main;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,6 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 import cz.msebera.android.httpclient.Header;
@@ -137,13 +137,35 @@ public class MineFragment extends BaseFragment{
      * 上传我的头像
      * @param bitmap
      */
-    private void savePicture(Bitmap bitmap){
-        ByteArrayOutputStream baos=new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
-        byte[] byte1=baos.toByteArray();
+    private void savePicture(Bitmap bitmap)  {
+
+        /**
+         * bt.compress(Bitmap.CompressFormat.JPEG, 60, stream);
+
+         byte[] bytes = stream.toByteArray();
+
+         //将bitmap进行Base64编码
+
+         String img = new String(Base64.encode(bytes, Base64.DEFAULT));
+
+         */
+//        ByteArrayOutputStream baos=new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
+//        byte[] byte1=baos.toByteArray();
+//        RequestParams params=new RequestParams();
+//        params.put("userId",NApplication.user_number);
+//        params.put("fileName","aa.jpeg");
+//        params.put("byteArrayInputStream",new ByteArrayInputStream(byte1));
+//        HttpUtils.post(getContext(), Url.uploadPhotos,params,imageup_handler);
+        ByteArrayOutputStream stream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,60,stream);
+        byte[] bytes =stream.toByteArray();
+        String img = new String(Base64.encode(bytes, Base64.DEFAULT));//把图片转换成字符串
+
         RequestParams params=new RequestParams();
         params.put("userId",NApplication.user_number);
-        params.put("byteArrayInputStream",new ByteArrayInputStream(byte1),"aa.jpeg");
+        params.put("fileName","aa.jpeg");
+        params.put("byteArrayInputStream",img);
         HttpUtils.post(getContext(), Url.uploadPhotos,params,imageup_handler);
     }
 
