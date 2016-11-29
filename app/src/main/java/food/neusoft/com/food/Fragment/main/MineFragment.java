@@ -143,8 +143,7 @@ public class MineFragment extends BaseFragment{
         byte[] byte1=baos.toByteArray();
         RequestParams params=new RequestParams();
         params.put("userId",NApplication.user_number);
-        params.put("fileName","aa.jpg");
-        params.put("byteArrayInputStream",new ByteArrayInputStream(byte1));
+        params.put("byteArrayInputStream",new ByteArrayInputStream(byte1),"aa.jpeg");
         HttpUtils.post(getContext(), Url.uploadPhotos,params,imageup_handler);
     }
 
