@@ -141,7 +141,7 @@ public class MineFragment extends BaseFragment{
         params.put("userId", NApplication.user_number);
         params.put("fileName","aa.jpeg");
         params.put("fileInputStream",new ByteArrayInputStream(byte1));
-        HttpUtils.post(getContext(), Url.uploadPhotos,params,imageup_handler);
+        HttpUtils.post(getContext(), Url.test,params,imageup_handler);
     }
 
 

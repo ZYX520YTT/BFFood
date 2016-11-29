@@ -69,7 +69,11 @@ public class Url {
 
     /**上传我的头像**/
     public static String uploadPhotos=getUrl("uploadPhotos");
-    
 
+
+    /**
+     * 测试头像上传
+     */
+    public static String test="http://localhost:8080/CDFood/uploadPhotos";
 
 }

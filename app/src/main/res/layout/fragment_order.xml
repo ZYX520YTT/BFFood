@@ -58,9 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+
 
                 <food.neusoft.com.food.widget.ShowListView
                     android:id="@+id/ls_show"
@@ -71,7 +69,7 @@
                 </food.neusoft.com.food.widget.ShowListView>
 
 
-            </RelativeLayout>
+
 
 
         </food.neusoft.com.food.widget.pulltorefresh.PullableScrollView>
