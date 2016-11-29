@@ -6,6 +6,47 @@
     android:layout_height="match_parent"
     tools:context="food.neusoft.com.food.activity.StroeActivity">
 
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@drawable/hg_background"
+        >
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/dp_arrow"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
+            />
+        <ImageView
+            android:id="@+id/iv_heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/stroe_heart"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <food.neusoft.com.food.widget.roundhead.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/iv_headimage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:scaleType="centerCrop"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_mine_personal"
+            app:border_color="#FFFFFFFF"
+            app:border_width="1dp"
+            />
+
+
+    </RelativeLayout>
+
+
 
 
 
