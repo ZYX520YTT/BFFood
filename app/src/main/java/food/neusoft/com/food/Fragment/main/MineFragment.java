@@ -9,10 +9,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -40,7 +44,7 @@ import static food.neusoft.com.food.NApplication.nickname;
 
 public class MineFragment extends BaseFragment{
 
-    private AsyncHttpResponseHandler imageup_handler;
+    private AsyncHttpResponseHandler imageup_handler,get_personal_handler;
     private View view;
 
     public static Bitmap headimage;
@@ -63,6 +67,7 @@ public class MineFragment extends BaseFragment{
         ViewUtils.inject(this,view);
         dohandler();
         Init();
+        getPersonalInfo();
         return view;
     }
 
@@ -99,7 +104,6 @@ public class MineFragment extends BaseFragment{
         if (resultCode == RequestCode.HEAD_IMAGE) {
             if(headimage != null){
                 savePicture(headimage);
-                System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                 iv_headimage.setImageBitmap(headimage);
             }
         }
@@ -138,10 +142,16 @@ public class MineFragment extends BaseFragment{
         bitmap.compress(Bitmap.CompressFormat.PNG,100,baos);
         byte[] byte1=baos.toByteArray();
         RequestParams params=new RequestParams();
-        params.put("userId", NApplication.user_number);
-        params.put("fileName","aa.jpeg");
-        params.put("fileInputStream",new ByteArrayInputStream(byte1));
-        HttpUtils.post(getContext(), Url.test,params,imageup_handler);
+        params.put("userId",NApplication.user_number);
+        params.put("fileName","aa.jpg");
+        params.put("byteArrayInputStream",new ByteArrayInputStream(byte1));
+        HttpUtils.post(getContext(), Url.uploadPhotos,params,imageup_handler);
+    }
+
+    private void getPersonalInfo(){
+        RequestParams params=new RequestParams();
+        params.put("userId",NApplication.user_number);
+        HttpUtils.get(getContext(),Url.getUserInfo,params,get_personal_handler);
     }
 
 
@@ -155,6 +165,47 @@ public class MineFragment extends BaseFragment{
                 }else{
                     System.out.println("结果---------"+result+"---------结果");
                     Toast.makeText(getContext(),"上传头像成功！",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(getContext(), R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+
+        get_personal_handler=new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String result=new String(responseBody);
+                if(result.equals("ERROR")){
+
+                }else{
+                    BitmapUtils utils=new BitmapUtils(getContext());
+                    utils.configDefaultLoadingImage(R.drawable.ic_mine_personal);
+                    try {
+                        JSONObject jsonObject=new JSONObject(result);
+                        String userNo=jsonObject.getString("userNo");
+                        String userId=jsonObject.getString("userId");
+                        String userAdress=jsonObject.getString("userAdress");
+                        String userIconPath=jsonObject.getString("userIconPath");
+                        String userName=jsonObject.getString("userName");
+                        if(userIconPath!="null"){
+                            utils.display(iv_headimage,Url.getImgURL(userIconPath));
+                        }else{
+                            iv_headimage.setImageResource(R.drawable.ic_mine_personal);
+                        }
+                        if(userName!="null"){//如果用户名不为空，就设置用户名，为空就设置用户的电话号码
+                            tv_name.setText(userName);
+                            System.out.println("名字地址："+userName);
+                        }else{
+                            tv_name.setText(userId);
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
