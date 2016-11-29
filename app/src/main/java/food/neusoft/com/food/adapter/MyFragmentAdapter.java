@@ -2,7 +2,7 @@ package food.neusoft.com.food.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import food.neusoft.com.food.Fragment.main.base.BaseFragment;
  * 功能：FragmentPagerAdapter
  */
 
-public class MyFragmentAdapter extends FragmentPagerAdapter {
+public class MyFragmentAdapter extends FragmentStatePagerAdapter {
 
     private List<BaseFragment> fs;
 

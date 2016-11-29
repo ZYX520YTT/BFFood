@@ -66,4 +66,10 @@ public class Url {
     public static String getNearMarket =getUrl("getNearMarket");
 
 
+
+    /**上传我的头像**/
+    public static String uploadPhotos=getUrl("uploadPhotos");
+    
+
+
 }

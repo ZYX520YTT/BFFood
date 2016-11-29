@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 import food.neusoft.com.food.MainActivity;
+import food.neusoft.com.food.NApplication;
 import food.neusoft.com.food.R;
 import food.neusoft.com.food.thread.HttpUtils;
 import food.neusoft.com.food.thread.Url;
@@ -273,6 +274,7 @@ public class LoginActivity extends AppCompatActivity {
                         String userId = jsonObject.getString("userId");
                         User user = new User(context);
                         user.saveUserNumber(userId);
+                        NApplication.user_number=userId;
                         Toast.makeText(context, "登录成功!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(context, MainActivity.class));
                         finish();

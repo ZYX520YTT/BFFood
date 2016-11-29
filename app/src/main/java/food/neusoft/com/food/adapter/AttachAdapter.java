@@ -79,7 +79,7 @@ public class AttachAdapter extends BaseAdapter {
         holder.tv_money.setText("¥"+attachInfo.getMarketPrice()+"/人");
         holder.item_name.setText(attachInfo.getTypeName());
         holder.tv_price.setText(attachInfo.getMarketDiscount()+"折(预约专享受)");
-        holder.tv_distance.setText(attachInfo.getMarketDistance()+"");
+        holder.tv_distance.setText(attachInfo.getMarketDistance()+"km");
         yutils.display(holder.iv_hui,attachInfo.getDiscountIconPath());
         return view;
     }
@@ -94,6 +94,5 @@ public class AttachAdapter extends BaseAdapter {
         public TextView tv_price;
         public TextView tv_distance;
         public ImageView iv_hui;
-
     }
 }
