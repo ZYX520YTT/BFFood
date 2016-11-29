@@ -12,34 +12,31 @@
         android:layout_height="166dp"
         android:background="@drawable/ic_mine_bg">
 
-        <RelativeLayout
+
+        <!-- <ImageView -->
+        <food.neusoft.com.food.widget.roundhead.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/iv_headimage"
+            android:layout_width="@dimen/head_height"
+            android:layout_height="@dimen/head_height"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_mine_personal"
+            app:border_color="#FFFFFFFF"
+            app:border_width="1dp" />
+
+        <TextView
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-
-            <!-- <ImageView -->
-            <food.neusoft.com.food.widget.roundhead.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/iv_headimage"
-                android:layout_width="@dimen/head_height"
-                android:layout_height="@dimen/head_height"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_mine_personal"
-                app:border_color="#FFFFFFFF"
-                app:border_width="1dp" />
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/iv_headimage"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="12dp"
-                android:text="SXM13628181460"
-                android:textColor="#ffffff"
-                android:textSize="16sp" />
-        </RelativeLayout>
+            android:layout_below="@id/iv_headimage"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="12dp"
+            android:text="SXM13628181460"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
 
     </RelativeLayout>
 

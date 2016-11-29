@@ -17,7 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/title_line_height"
-            android:divider="@null"></food.neusoft.com.food.widget.ShowListView>
+            android:divider="@null">
+
+        </food.neusoft.com.food.widget.ShowListView>
 
 
     </food.neusoft.com.food.widget.pulltorefresh.PullableScrollView>

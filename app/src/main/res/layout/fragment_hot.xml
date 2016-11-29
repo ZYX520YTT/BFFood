@@ -17,55 +17,42 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:id="@+id/ll_pager"
+
+            <food.neusoft.com.food.view.TopNewsViewPager
+                android:id="@+id/myimpager"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/MyPhoto_height">
 
-                <food.neusoft.com.food.view.TopNewsViewPager
-                    android:id="@+id/myimpager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            </food.neusoft.com.food.view.TopNewsViewPager>
 
-                </food.neusoft.com.food.view.TopNewsViewPager>
+            <LinearLayout
+                android:id="@+id/ll_point"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bg_photo_height"
+                android:layout_alignBottom="@+id/myimpager"
+                android:background="@color/bg_ll_point"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/ll_point"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/bg_photo_height"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/bg_ll_point"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                </LinearLayout>
-
-
-            </RelativeLayout>
+            </LinearLayout>
 
 
             <LinearLayout
                 android:id="@+id/ll_pic"
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
-                android:layout_below="@id/ll_pager"
+                android:layout_below="@id/myimpager"
                 android:layout_marginTop="@dimen/group_padding"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
-                <RelativeLayout
+
+                <ImageView
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="2dp"
-                    android:layout_weight="1">
-
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/icon_panel_one" />
-
-                </RelativeLayout>
+                    android:layout_weight="1"
+                    android:src="@drawable/icon_panel_one" />
 
                 <View
                     android:layout_width="2dp"
@@ -81,20 +68,14 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <LinearLayout
+
+                    <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_marginBottom="2dp"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:src="@drawable/icon_panel_two" />
 
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/icon_panel_two" />
-
-                    </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
@@ -103,21 +84,13 @@
                         android:layout_marginRight="14dp"
                         android:background="@color/background" />
 
-                    <LinearLayout
+
+                    <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_marginTop="2dp"
                         android:layout_weight="1"
-                        android:orientation="vertical">
-
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/icon_panel_three" />
-
-                    </LinearLayout>
-
+                        android:src="@drawable/icon_panel_three" />
 
                 </LinearLayout>
 
@@ -163,7 +136,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
-                    android:divider="@null"></food.neusoft.com.food.widget.ShowListView>
+                    android:divider="@null">
+
+                </food.neusoft.com.food.widget.ShowListView>
 
 
             </LinearLayout>
@@ -175,28 +150,23 @@
                 android:layout_below="@+id/ll_food"
                 android:orientation="vertical">
 
-                <RelativeLayout
-                    android:id="@+id/ll_tv_hotpeople"
-                    android:layout_width="match_parent"
+
+                <ImageView
+                    android:id="@+id/ivtitle_hotpeople"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/ll_pic"
-                    android:layout_marginTop="13dp">
+                    android:layout_below="@+id/ll_food"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="13dp"
+                    android:src="@drawable/hotpeople" />
 
-                    <ImageView
-                        android:id="@+id/ivtitle_hotpeople"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/hotpeople" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ivtitle_hotpeople"
-                        android:layout_centerHorizontal="true"
-                        android:paddingTop="6dp"
-                        android:src="@drawable/icon_line" />
-                </RelativeLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ivtitle_hotpeople"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="6dp"
+                    android:src="@drawable/icon_line" />
 
 
                 <food.neusoft.com.food.widget.ShowListView
@@ -204,7 +174,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
-                    android:divider="@null"></food.neusoft.com.food.widget.ShowListView>
+                    android:divider="@null">
+
+                </food.neusoft.com.food.widget.ShowListView>
 
 
             </LinearLayout>
@@ -216,5 +188,6 @@
     </food.neusoft.com.food.widget.pulltorefresh.PullableScrollView>
 
     <include layout="@layout/load_more" />
+
 </food.neusoft.com.food.widget.pulltorefresh.PullToRefreshLayout>
 

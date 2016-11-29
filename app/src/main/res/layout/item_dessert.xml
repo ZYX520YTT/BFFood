@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="4dp"
+                android:layout_alignTop="@+id/iv_photolefttype_one"
                 android:layout_marginLeft="3dp"
                 android:src="@drawable/view_yu" />
 
@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="4dp"
+                android:layout_alignTop="@+id/iv_photolefttype_two"
                 android:layout_marginLeft="3dp"
                 android:src="@drawable/view_yu" />
 
