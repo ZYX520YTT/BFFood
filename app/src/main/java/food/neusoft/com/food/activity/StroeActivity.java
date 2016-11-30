@@ -66,16 +66,16 @@ public class StroeActivity extends BaseActivity {
         ViewUtils.inject(this);
         Intent intent=getIntent();
         marketNo=intent.getLongExtra("marketNo",0);
-//        Toast.makeText(this,marketNo+"",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,marketNo+"",Toast.LENGTH_SHORT).show();
         type = intent.getStringExtra("type");
         String storename=intent.getStringExtra("storename");
         String introduce=intent.getStringExtra("introduce");
 
         String imagepath=intent.getStringExtra("imagepath");//图片的网络地址
-        food.neusoft.com.food.utils.LogUtils.d("结果:"+imagepath);
-        food.neusoft.com.food.utils.LogUtils.i("结果:"+imagepath);
-        food.neusoft.com.food.utils.LogUtils.e("结果:"+imagepath);
-        food.neusoft.com.food.utils.LogUtils.w("结果:"+imagepath);
+//        food.neusoft.com.food.utils.LogUtils.d("结果:"+imagepath);
+//        food.neusoft.com.food.utils.LogUtils.i("结果:"+imagepath);
+//        food.neusoft.com.food.utils.LogUtils.e("结果:"+imagepath);
+//        food.neusoft.com.food.utils.LogUtils.w("结果:"+imagepath);
 
         //更换背景图片
         if(type.equals("甜品")){
@@ -118,7 +118,7 @@ public class StroeActivity extends BaseActivity {
 
         putadapter = new StoreAdapter(this,putinfos);
         hotadapter = new StoreAdapter(this,hotinfos);
-        ls_hotshow.setAdapter(hotadapter);
+         ls_hotshow.setAdapter(hotadapter);
         ls_putshow.setAdapter(putadapter);
 
     }
@@ -129,7 +129,6 @@ public class StroeActivity extends BaseActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String result=new String(responseBody);
-                System.out.println("结果："+result);
                 if(result.equals("ERROR")){
                     Toast.makeText(StroeActivity.this,"获取数据失败",Toast.LENGTH_SHORT).show();
                 }else{
@@ -138,16 +137,16 @@ public class StroeActivity extends BaseActivity {
                         for(int i=0;i<jsonarray.length();i++){
                             JSONObject jsonobject=jsonarray.getJSONObject(i);
                             String foodDiscount=jsonobject.getString("foodDiscount");
-                            boolean foodHot=jsonobject.getBoolean("foodHot");
+                            String foodHot=jsonobject.getString("foodHot");
                             String foodIconPath=Url.getImgURL(jsonobject.getString("foodIconPath"));
                             String foodIntroduce=jsonobject.getString("foodIntroduce");
                             String foodName=jsonobject.getString("foodName");
                             long foodNo=jsonobject.getLong("foodNo");
                             double foodPrice=jsonobject.getDouble("foodPrice");
-                            FoodInfo foodInfo=new FoodInfo(foodDiscount,foodHot,foodIconPath,foodIntroduce,foodName,foodNo,foodPrice);
-                            if(foodHot){
+                            FoodInfo foodInfo=new FoodInfo(foodName,foodIntroduce,foodHot,foodIconPath,foodDiscount,foodNo,foodPrice);
+                            if(foodHot=="null"||foodHot=="true"){//是热卖
                                 hotinfos.add(foodInfo);
-                            }else{
+                            }else{//不是热卖
                                 putinfos.add(foodInfo);
                             }
                         }

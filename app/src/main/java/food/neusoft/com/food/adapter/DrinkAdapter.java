@@ -69,7 +69,7 @@ public class DrinkAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        ViewHolder holder;
+        ViewHolder holder=null;
         DrinkInfo drinkInfo1=drinkInfos.get(i*2);
         DrinkInfo drinkInfo2=null;
         try{
@@ -77,27 +77,29 @@ public class DrinkAdapter extends BaseAdapter {
         }catch (Exception e){
             drinkInfo2=null;
         }
-        if(view==null){
-            view=View.inflate(context, R.layout.item_drink,null);
+        if(holder==null){
             holder=new ViewHolder();
-            holder.iv_image_one= (ImageView) view.findViewById(R.id.iv_image_one);
-            holder.iv_photolefttype_one= (ImageView) view.findViewById(R.id.iv_photolefttype_one);
-            holder.iv_photorighttype_one= (ImageView) view.findViewById(R.id.iv_photorighttype_one);
-            holder.tv_storename_one= (TextView) view.findViewById(R.id.tv_storename_one);
-            holder.item_rating_one= (RatingBar) view.findViewById(R.id.item_rating_one);
-            holder.tv_youhui_one= (TextView) view.findViewById(R.id.tv_youhui_one);
-            holder.iv_image_two= (ImageView) view.findViewById(R.id.iv_image_two);
-            holder.iv_photolefttype_two= (ImageView) view.findViewById(R.id.iv_photolefttype_two);
-            holder.iv_photorighttype_two= (ImageView) view.findViewById(R.id.iv_photorighttype_two);
-            holder.tv_storename_two= (TextView) view.findViewById(R.id.tv_storename_two);
-            holder.item_rating_two= (RatingBar) view.findViewById(R.id.item_rating_two);
-            holder.tv_youhui_two= (TextView) view.findViewById(R.id.tv_youhui_two);
-            holder.llyt_one= (RelativeLayout) view.findViewById(R.id.llyt_one);
-            holder.llyt_two= (RelativeLayout) view.findViewById(R.id.llyt_two);
-            view.setTag(holder);
+            view=View.inflate(context, R.layout.item_drink,null);
         }else{
             holder= (ViewHolder) view.getTag();
         }
+
+        holder.iv_image_one= (ImageView) view.findViewById(R.id.iv_image_one);
+        holder.iv_photolefttype_one= (ImageView) view.findViewById(R.id.iv_photolefttype_one);
+        holder.iv_photorighttype_one= (ImageView) view.findViewById(R.id.iv_photorighttype_one);
+        holder.tv_storename_one= (TextView) view.findViewById(R.id.tv_storename_one);
+        holder.item_rating_one= (RatingBar) view.findViewById(R.id.item_rating_one);
+        holder.tv_youhui_one= (TextView) view.findViewById(R.id.tv_youhui_one);
+        holder.iv_image_two= (ImageView) view.findViewById(R.id.iv_image_two);
+        holder.iv_photolefttype_two= (ImageView) view.findViewById(R.id.iv_photolefttype_two);
+        holder.iv_photorighttype_two= (ImageView) view.findViewById(R.id.iv_photorighttype_two);
+        holder.tv_storename_two= (TextView) view.findViewById(R.id.tv_storename_two);
+        holder.item_rating_two= (RatingBar) view.findViewById(R.id.item_rating_two);
+        holder.tv_youhui_two= (TextView) view.findViewById(R.id.tv_youhui_two);
+        holder.llyt_one= (RelativeLayout) view.findViewById(R.id.llyt_one);
+        holder.llyt_two= (RelativeLayout) view.findViewById(R.id.llyt_two);
+
+
         butils.display(holder.iv_image_one,drinkInfo1.getMarketIconPath());
         yutils.display(holder.iv_photolefttype_one,drinkInfo1.getDiscountIconPath());
         yutils.display(holder.iv_photorighttype_one,drinkInfo1.getBookIconPath());
@@ -111,6 +113,8 @@ public class DrinkAdapter extends BaseAdapter {
             holder.tv_storename_two.setText(drinkInfo2.getMarketName());
             holder.item_rating_two.setRating((float) drinkInfo2.getMarketHotLevel());
             holder.tv_youhui_two.setText(drinkInfo2.getMarketIntroduce());
+        }else{
+            holder.llyt_two.setVisibility(View.INVISIBLE);
         }
         Oncleck(holder,i);
         return view;

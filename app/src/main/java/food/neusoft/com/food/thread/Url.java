@@ -21,7 +21,7 @@ public class Url {
     //http://100.0.101.18:8080/CDFood/getHotFood?count=10&marketAdress=温江区&firstIndex=0
     //http://100.0.101.18:8080/CDFood/getDrinkMarket?count=10&firstIndex=0&marketAdress=青羊区
     //http://100.0.101.18:8080/CDFood/Images/Re_pic_three.png.png
-    //http://100.0.101.18:8080/CDFood/saveFoodOrder?marketNo=10&userId=1&orderDay=11月12日orderTime=11:30orderPeopleCount=11
+    //http://100.0.101.18:8080/CDFood/getFoods?marketNo=19
 
 
     private static String getUrl(String activity){
