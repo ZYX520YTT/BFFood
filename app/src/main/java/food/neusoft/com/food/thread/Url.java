@@ -21,8 +21,8 @@ public class Url {
     //http://100.0.101.18:8080/CDFood/getHotFood?count=10&marketAdress=温江区&firstIndex=0
     //http://100.0.101.18:8080/CDFood/getDrinkMarket?count=10&firstIndex=0&marketAdress=青羊区
     //http://100.0.101.18:8080/CDFood/Images/Re_pic_three.png.png
-    //http://100.0.101.18:8080/CDFood/getBookMarket?count=10&firstIndex=0&marketAdress=青羊区
-
+    //http://100.0.101.18:8080/CDFood/removeCollect?userId=1&marketNo=10
+    //http://100.0.101.18:8080/CDFood/saveCollect?userId=1&marketNo=10
 
     private static String getUrl(String activity){
         String url=null;
@@ -77,6 +77,12 @@ public class Url {
     /**获取可预约的商铺**/
     public static String getBookMarket =getUrl("getBookMarket");
 
+    /**收藏店铺（保存）**/
+    public static String saveCollect =getUrl("saveCollect");
+
+    /**取消收藏**/
+    public static String removeCollect =getUrl("removeCollect");
+
 
 
     /**上传我的头像**/
@@ -85,6 +91,8 @@ public class Url {
 
     /**获取用户资料**/
     public static String getUserInfo=getUrl("getUserInfo");
+
+
 
 
 

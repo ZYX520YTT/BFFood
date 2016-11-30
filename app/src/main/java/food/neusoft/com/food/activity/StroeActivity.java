@@ -3,6 +3,8 @@ package food.neusoft.com.food.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
+import food.neusoft.com.food.NApplication;
 import food.neusoft.com.food.R;
 import food.neusoft.com.food.adapter.StoreAdapter;
 import food.neusoft.com.food.domian.FoodInfo;
@@ -37,7 +40,7 @@ public class StroeActivity extends BaseActivity {
     @ViewInject(R.id.iv_back)
     private ImageView iv_back;
     @ViewInject(R.id.iv_heart)
-    private ImageView iv_heart;
+    private CheckBox iv_heart;
     @ViewInject(R.id.iv_headimage)
     private CircleImageView iv_headimage;
     @ViewInject(R.id.tv_storename)
@@ -55,7 +58,7 @@ public class StroeActivity extends BaseActivity {
 
     private List<FoodInfo> putinfos,hotinfos;
 
-    private AsyncHttpResponseHandler handler;
+    private AsyncHttpResponseHandler handler,collect_handler,removecollect_handler;
     private StoreAdapter putadapter;
     private StoreAdapter hotadapter;
 
@@ -106,6 +109,21 @@ public class StroeActivity extends BaseActivity {
         });
 
 
+
+
+        //对桃心进行监听，选中则为收藏。没选中则说明用户没收藏。切换时进行收藏或取消收藏
+        iv_heart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){//收藏
+                    Collect(NApplication.user_number,marketNo);
+                }else{//取消收藏
+                    RemoveCollect(NApplication.user_number,marketNo);
+                }
+            }
+        });
+
+
         dohandler();
         Init();
     }
@@ -122,6 +140,24 @@ public class StroeActivity extends BaseActivity {
         ls_putshow.setAdapter(putadapter);
 
     }
+
+
+    //收藏店铺
+    private void Collect(String userId,long marketNo){
+        RequestParams params=new RequestParams();
+        params.put("userId",userId);
+        params.put("marketNo",marketNo);
+        HttpUtils.post(this,Url.saveCollect,params,collect_handler);
+    }
+    //取消收藏
+    private void RemoveCollect(String userId,long marketNo){
+        RequestParams params=new RequestParams();
+        params.put("userId",userId);
+        params.put("marketNo",marketNo);
+        HttpUtils.post(this,Url.removeCollect,params,removecollect_handler);
+    }
+
+
 
 
     private void dohandler(){
@@ -157,6 +193,43 @@ public class StroeActivity extends BaseActivity {
                         e.printStackTrace();
                         Toast.makeText(StroeActivity.this,"解析数据失败",Toast.LENGTH_SHORT).show();
                     }
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(StroeActivity.this, R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        //收藏店铺
+        collect_handler=new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String result=new String(responseBody);
+                if(result.equals("SUCCESS")){
+                    Toast.makeText(StroeActivity.this,"收藏成功!",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(StroeActivity.this,"收藏失败",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(StroeActivity.this, R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+
+        //取消收藏
+        removecollect_handler=new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String result=new String(responseBody);
+                if(result.equals("SUCCESS")){
+                    Toast.makeText(StroeActivity.this,"已经取消收藏",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(StroeActivity.this,"取消收藏失败",Toast.LENGTH_SHORT).show();
                 }
             }
 

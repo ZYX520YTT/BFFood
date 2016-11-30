@@ -18,7 +18,9 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_margin="12dp"
-            android:src="@drawable/re_arrow" />
+            android:src="@drawable/re_arrow"
+            android:visibility="invisible"
+            />
 
         <TextView
             android:layout_width="wrap_content"
