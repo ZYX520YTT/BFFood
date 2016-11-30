@@ -37,6 +37,8 @@
     <string name="mine_order">我的预约</string>
     <string name="mine_local">我的地址</string>
     <string name="mine_share">我的分享</string>
+    <string name="order_success">预约成功</string>
+    <string name="order_failure">预约失效</string>
 
 
     <!--网络-->

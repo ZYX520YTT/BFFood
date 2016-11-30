@@ -23,6 +23,7 @@ public class Url {
     //http://100.0.101.18:8080/CDFood/Images/Re_pic_three.png.png
     //http://100.0.101.18:8080/CDFood/removeCollect?userId=1&marketNo=10
     //http://100.0.101.18:8080/CDFood/saveCollect?userId=1&marketNo=10
+    //http://100.0.101.18:8080/CDFood/getMyOrder?userId=1&count=10&firstIndex=0
 
     private static String getUrl(String activity){
         String url=null;
@@ -51,20 +52,20 @@ public class Url {
     public static String getHotMarket=getUrl("getHotMarket");
 
     /**获取火锅的商铺**/
-    public static String getHotpotMarket =getUrl("getHotpotMarket");
+    public static String getHotpotMarket=getUrl("getHotpotMarket");
 
     /**获取西餐的商铺**/
-    public static String getWesternMarket =getUrl("getWesternMarket");
+    public static String getWesternMarket=getUrl("getWesternMarket");
 
     /**获取甜品的商铺**/
-    public static String getSweetMarket =getUrl("getSweetMarket");
+    public static String getSweetMarket=getUrl("getSweetMarket");
 
     /**获取饮料的商铺**/
-    public static String getDrinkMarket =getUrl("getDrinkMarket");
+    public static String getDrinkMarket=getUrl("getDrinkMarket");
 
 
     /**获取附近的商铺**/
-    public static String getNearMarket =getUrl("getNearMarket");
+    public static String getNearMarket=getUrl("getNearMarket");
 
     /**获取某个店铺里的商品**/
     public static String getFoods=getUrl("getFoods");
@@ -74,14 +75,18 @@ public class Url {
     public static String saveFoodOrder=getUrl("saveFoodOrder");
 
 
+    /**得到我的预约订单**/
+    public static String getBookMarket=getUrl("getBookMarket");
+
     /**获取可预约的商铺**/
-    public static String getBookMarket =getUrl("getBookMarket");
+    public static String getMyOrder=getUrl("getMyOrder");
+
 
     /**收藏店铺（保存）**/
-    public static String saveCollect =getUrl("saveCollect");
+    public static String saveCollect=getUrl("saveCollect");
 
     /**取消收藏**/
-    public static String removeCollect =getUrl("removeCollect");
+    public static String removeCollect=getUrl("removeCollect");
 
 
 

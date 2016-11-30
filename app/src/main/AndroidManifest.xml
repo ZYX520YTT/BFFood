@@ -53,7 +53,8 @@
                 <!-- 100380359 100381104 222222 -->
             </intent-filter>
         </activity>
-        <activity android:name=".activity.StroeActivity"></activity>
+        <activity android:name=".activity.StroeActivity" />
+        <activity android:name=".activity.OrderActivity"></activity>
     </application>
 
 </manifest>

@@ -15,6 +15,8 @@
     <color name="title_background">#ea6b4b</color>
     <color name="bg_ll_point">#505c5858</color>
 
+    <color name="ordersuccess">#ea6b4b</color>
+    <color name="orderfailure">#888888</color>
 
     <color name="textcolor">#646464</color>
     <color name="title_color">#2e2e2e</color>
