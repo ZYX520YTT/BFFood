@@ -7,6 +7,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import cz.msebera.android.httpclient.Header;
 import food.neusoft.com.food.Fragment.main.base.BaseFragment;
 import food.neusoft.com.food.NApplication;
 import food.neusoft.com.food.R;
+import food.neusoft.com.food.activity.OrderActivity;
 import food.neusoft.com.food.activity.PhotoActivity;
 import food.neusoft.com.food.thread.HttpUtils;
 import food.neusoft.com.food.thread.Url;
@@ -53,6 +55,8 @@ public class MineFragment extends BaseFragment{
     private CircleImageView iv_headimage;
     @ViewInject(R.id.tv_name)
     private TextView tv_name;
+    @ViewInject(R.id.rlyt_my_order)
+    private RelativeLayout rlyt_my_order;
 
 
     @Override
@@ -92,6 +96,16 @@ public class MineFragment extends BaseFragment{
                 startActivityForResult(intent, RequestCode.HEAD_IMAGE);
             }
         });
+
+        //点击“我的预约”
+        rlyt_my_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), OrderActivity.class));
+            }
+        });
+
+
 
     }
 

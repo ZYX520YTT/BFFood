@@ -77,8 +77,8 @@ public class MineOrderAdapter extends BaseAdapter {
         String[] splie=mineOrderInfo.getOrderDay().split("日");
         holder.tv_time.setText(splie[0]+"日");
         holder.item_rating.setRating((float) mineOrderInfo.getMarketHotLevel());
-        holder.tv_money.setText(mineOrderInfo.getMarketPrice()+"");
-//        holder.item_name.setText(mineOrderInfo.getT);
+        holder.tv_money.setText("¥"+mineOrderInfo.getMarketPrice()+"/人");
+        holder.item_name.setText(mineOrderInfo.getTypeName());
         holder.tv_distance.setText(mineOrderInfo.getMarketDistance()+"km");
         holder.tv_orderinfo.setText(mineOrderInfo.getOrderState());
         return view;

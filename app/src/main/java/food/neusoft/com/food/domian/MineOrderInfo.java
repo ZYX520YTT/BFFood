@@ -21,6 +21,7 @@ public class MineOrderInfo {
     private long marketNo;
     private double marketPrice;
     private String newIconPath;
+    private String typeName;
 
 
     private String orderDay;
@@ -36,21 +37,25 @@ public class MineOrderInfo {
     private long userNo;
     private String userPassword;
 
-    public MineOrderInfo(String bookIconPath, double marketDistance, double marketHotLevel, String marketIconPath, String marketName, double marketPrice, String orderDay, String orderState, String orderTime, double orderTotalPrice, int orderPeopleCount, long orderNo) {
+    public MineOrderInfo(String bookIconPath, String typeName, String orderState, String orderDay, String marketName, String marketIconPath, double marketHotLevel, double marketDistance, double marketPrice) {
         this.bookIconPath = bookIconPath;
-        this.marketDistance = marketDistance;
-        this.marketHotLevel = marketHotLevel;
-        this.marketIconPath = marketIconPath;
-        this.marketName = marketName;
-        this.marketPrice = marketPrice;
-        this.orderDay = orderDay;
+        this.typeName = typeName;
         this.orderState = orderState;
-        this.orderTime = orderTime;
-        this.orderTotalPrice = orderTotalPrice;
-        this.orderPeopleCount = orderPeopleCount;
-        this.orderNo = orderNo;
+        this.orderDay = orderDay;
+        this.marketName = marketName;
+        this.marketIconPath = marketIconPath;
+        this.marketHotLevel = marketHotLevel;
+        this.marketDistance = marketDistance;
+        this.marketPrice = marketPrice;
     }
 
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
     public String getUserPassword() {
         return userPassword;
     }

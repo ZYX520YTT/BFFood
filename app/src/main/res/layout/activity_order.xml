@@ -43,7 +43,9 @@
     <food.neusoft.com.food.widget.pulltorefresh.PullableScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_title"
+        >
         <food.neusoft.com.food.widget.ShowListView
             android:id="@+id/ls_show"
             android:layout_width="match_parent"
