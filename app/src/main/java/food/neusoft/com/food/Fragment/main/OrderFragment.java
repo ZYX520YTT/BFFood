@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import java.util.Random;
 import cz.msebera.android.httpclient.Header;
 import food.neusoft.com.food.Fragment.main.base.BaseFragment;
 import food.neusoft.com.food.R;
+import food.neusoft.com.food.activity.OrderActivity;
 import food.neusoft.com.food.activity.StroeActivity;
 import food.neusoft.com.food.adapter.OrderAdapter;
 import food.neusoft.com.food.domian.OrderInfo;
@@ -43,6 +45,8 @@ public class OrderFragment extends BaseFragment {
     private AsyncHttpResponseHandler order_handler;
     private View view;
 
+    @ViewInject(R.id.iv_history)
+    private ImageView iv_history;
     @ViewInject(R.id.ls_show)
     private ListView ls_show;
     @ViewInject(R.id.refresh_view)
@@ -75,6 +79,16 @@ public class OrderFragment extends BaseFragment {
     }
 
     private void Init() {
+
+        //点击记录，跳到我的预约记录里面
+        iv_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), OrderActivity.class));
+            }
+        });
+
+
         refresh_view.setOnRefreshListener(new MyListener());
         setupFragment();
     }
