@@ -99,8 +99,9 @@ public class HotPotAdapter extends BaseAdapter {
         holder.iv_hui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                HotPotInfo hotPotInfo=hotPotInfos.get(position);
                 TimeChose timeChose=new TimeChose(context, (Activity) context);
-                timeChose.DiaLog();
+                timeChose.DiaLog(hotPotInfo.getMarketNo());
             }
         });
     }

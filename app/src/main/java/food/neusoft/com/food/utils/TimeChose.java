@@ -17,6 +17,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,7 +27,11 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import cz.msebera.android.httpclient.Header;
+import food.neusoft.com.food.NApplication;
 import food.neusoft.com.food.R;
+import food.neusoft.com.food.thread.HttpUtils;
+import food.neusoft.com.food.thread.Url;
 
 
 /**
@@ -35,9 +42,12 @@ import food.neusoft.com.food.R;
 
 public class TimeChose {
 
+
+    private AsyncHttpResponseHandler order_handler;
+
     private List<String> date;
     private List<String> time;
-    private List<String> people;
+    private List<Integer> people;
     private Context context;
     private Activity activity;
 
@@ -45,11 +55,11 @@ public class TimeChose {
      *
      * 1.当前日期为null,默认没选中
      * 2.当前时间为null,默认没选中
-     * 3.当前人数为null,默认没选中
+     * 3.当前人数为0,默认没选中
      */
     public static String Currentdate = null;
     public static String Currenttime = null;
-    public static String Currentpeople = null;
+    public static int Currentpeople = 0;
     private Dialog dialog;
     private TextView tv_time;
     private TextView tv_now;
@@ -60,6 +70,7 @@ public class TimeChose {
     public TimeChose(Context context, Activity activity) {
         this.context = context;
         this.activity = activity;
+        dohandler();
     }
 
 
@@ -73,7 +84,7 @@ public class TimeChose {
             time.add(i + ":30");
         }
         for (int i = 1; i <= 50; i++) {
-            people.add(i + "人");
+            people.add(i);
         }
     }
 
@@ -119,7 +130,7 @@ public class TimeChose {
 
 
     //弹出黑框
-    public void DiaLog() {
+    public void DiaLog(final  long marketNo) {
         InitData();
 
 
@@ -160,8 +171,18 @@ public class TimeChose {
             @Override
             public void onClick(View view) {
 
-                if (Currentdate != null && Currenttime != null && Currentpeople != null) {
-                    Toast.makeText(context, "日期：" + Currentdate + " ，时间: " + Currenttime + "  人数:  " + Currentpeople, Toast.LENGTH_LONG).show();
+                if (Currentdate != null && Currenttime != null && Currentpeople !=0) {
+
+                    //提交预约信息
+                    RequestParams params=new RequestParams();
+                    params.put("marketNo",marketNo);
+                    params.put("userId",NApplication.user_number);
+                    params.put("orderDay",Currentdate);
+                    params.put("orderTime",Currenttime);
+                    params.put("orderPeopleCount",Currentpeople);
+                    HttpUtils.post(context, Url.saveFoodOrder,params,order_handler);
+
+//                    Toast.makeText(context, "日期：" + Currentdate + " ，时间: " + Currenttime + "  人数:  " + Currentpeople, Toast.LENGTH_LONG).show();
                     dialog.dismiss();
                 } else {
                     Toast.makeText(context, "选择没成功", Toast.LENGTH_SHORT).show();
@@ -239,7 +260,7 @@ public class TimeChose {
                 int position = index;
                 index = getLayoutPosition();
                 Currentdate = date.get(index);
-                Toast.makeText(context, Currentdate, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, Currentdate, Toast.LENGTH_SHORT).show();
                 String s=Currentdate;
                 String[] splite=s.split("日");
                 tv_date.setText(splite[0]+"日");
@@ -290,7 +311,7 @@ public class TimeChose {
                 int position = index;
                 index = getLayoutPosition();
                 Currenttime = time.get(index);
-                Toast.makeText(context, Currenttime, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, Currenttime, Toast.LENGTH_SHORT).show();
                 tv_time.setText(Currenttime);
                 notifyItemChanged(index);
                 notifyItemChanged(position);
@@ -306,7 +327,7 @@ public class TimeChose {
 
         @Override
         public void onBindViewHolder(MyPeopleViewHolder holder, int position) {
-            holder.rb3.setText(people.get(position));
+            holder.rb3.setText(people.get(position)+"人");
             holder.rb3.setBackgroundResource(index == position ? R.drawable.panel_three_light : R.drawable.panel_three);
             holder.rb3.setTextColor(index == position ? Color.WHITE : Color.WHITE);
         }
@@ -338,12 +359,32 @@ public class TimeChose {
                 int position = index;
                 index = getLayoutPosition();
                 Currentpeople = people.get(index);
-                Toast.makeText(context, Currentpeople, Toast.LENGTH_SHORT).show();
-                tv_people.setText(Currentpeople);
+//                Toast.makeText(context, Currentpeople+"人", Toast.LENGTH_SHORT).show();
+                tv_people.setText(Currentpeople+"人");
                 notifyItemChanged(index);
                 notifyItemChanged(position);
             }
         }
+    }
+
+
+    private void dohandler(){
+        order_handler=new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String result=new String(responseBody);
+                if(result.equals("ERROR")){
+                    Toast.makeText(context,"预订失败",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(context,"预订成功!",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(context, R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 
 }

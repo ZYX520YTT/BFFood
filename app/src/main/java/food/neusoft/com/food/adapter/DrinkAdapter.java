@@ -170,16 +170,18 @@ public class DrinkAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 int onclick =position*2;
+                DrinkInfo drinkInfo=drinkInfos.get(onclick);
                 TimeChose timeChose=new TimeChose(context, (Activity) context);
-                timeChose.DiaLog();
+                timeChose.DiaLog(drinkInfo.getMarketNo());
             }
         });
         holder.iv_photorighttype_two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int onclick =position*2+1;
+                DrinkInfo drinkInfo=drinkInfos.get(onclick);
                 TimeChose timeChose=new TimeChose(context, (Activity) context);
-                timeChose.DiaLog();
+                timeChose.DiaLog(drinkInfo.getMarketNo());
             }
         });
     }

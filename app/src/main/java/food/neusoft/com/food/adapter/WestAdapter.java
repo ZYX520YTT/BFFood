@@ -101,8 +101,9 @@ public class WestAdapter extends BaseAdapter {
         holder.iv_phototype.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                WestFoodInfo westFoodInfo=westFoodInfos.get(position);
                 TimeChose timeChose=new TimeChose(context, (Activity) context);
-                timeChose.DiaLog();
+                timeChose.DiaLog(westFoodInfo.getMarketNo());
             }
         });
     }

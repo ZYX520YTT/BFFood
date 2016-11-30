@@ -133,12 +133,13 @@ public class DrinkFragment extends BaseFragment {
                             String marketIconPath=Url.getImgURL(jsonObject.getString("marketIconPath"));
                             String marketIntroduce=jsonObject.getString("marketIntroduce");
                             String marketName=jsonObject.getString("marketName");
-                            double marketNo=jsonObject.getDouble("marketNo");
+                            long marketNo=jsonObject.getLong("marketNo");
                             double marketPrice=jsonObject.getDouble("marketPrice");
                             String typeName=jsonObject.getString("typeName");
-                            DrinkInfo drinkInfo=new DrinkInfo(bookIconPath,typeName,marketPrice,marketNo,marketName,marketIntroduce,
-                                    marketIconPath,marketHotLevel,marketDistance,marketDiscount,marketBigPicture,marketAdress,discountIconPath
-                            );
+                            DrinkInfo drinkInfo=new DrinkInfo(bookIconPath,typeName,marketPrice,
+                            marketNo,marketName,marketIntroduce,marketIconPath,
+                            marketHotLevel,marketDistance,marketDiscount,marketBigPicture,
+                                    marketAdress,discountIconPath);
                             drinkInfos.add(drinkInfo);
                         }
                         drinkAdapter.notifyDataSetChanged();

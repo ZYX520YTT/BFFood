@@ -17,11 +17,14 @@ public class DrinkInfo {
     private String marketIconPath;
     private String marketIntroduce;
     private String marketName;
-    private double marketNo;
+    private long marketNo;
     private double marketPrice;
     private String typeName;
 
-    public DrinkInfo(String bookIconPath, String typeName, double marketPrice, double marketNo, String marketName, String marketIntroduce, String marketIconPath, double marketHotLevel, double marketDistance, double marketDiscount, String marketBigPicture, String marketAdress, String discountIconPath) {
+    public DrinkInfo(String bookIconPath, String typeName, double marketPrice,
+                     long marketNo, String marketName, String marketIntroduce, String marketIconPath,
+                     double marketHotLevel, double marketDistance, double marketDiscount, String marketBigPicture,
+                     String marketAdress, String discountIconPath) {
         this.bookIconPath = bookIconPath;
         this.typeName = typeName;
         this.marketPrice = marketPrice;
@@ -37,44 +40,44 @@ public class DrinkInfo {
         this.discountIconPath = discountIconPath;
     }
 
-    public String getBookIconPath() {
-        return bookIconPath;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setBookIconPath(String bookIconPath) {
-        this.bookIconPath = bookIconPath;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
-    public String getDiscountIconPath() {
-        return discountIconPath;
+    public long getMarketNo() {
+        return marketNo;
     }
 
-    public void setDiscountIconPath(String discountIconPath) {
-        this.discountIconPath = discountIconPath;
+    public void setMarketNo(long marketNo) {
+        this.marketNo = marketNo;
     }
 
-    public String getMarketBigPicture() {
-        return marketBigPicture;
+    public double getMarketPrice() {
+        return marketPrice;
     }
 
-    public void setMarketBigPicture(String marketBigPicture) {
-        this.marketBigPicture = marketBigPicture;
+    public void setMarketPrice(double marketPrice) {
+        this.marketPrice = marketPrice;
     }
 
-    public double getMarketDiscount() {
-        return marketDiscount;
+    public String getMarketName() {
+        return marketName;
     }
 
-    public void setMarketDiscount(double marketDiscount) {
-        this.marketDiscount = marketDiscount;
+    public void setMarketName(String marketName) {
+        this.marketName = marketName;
     }
 
-    public double getMarketDistance() {
-        return marketDistance;
+    public String getMarketIntroduce() {
+        return marketIntroduce;
     }
 
-    public void setMarketDistance(double marketDistance) {
-        this.marketDistance = marketDistance;
+    public void setMarketIntroduce(String marketIntroduce) {
+        this.marketIntroduce = marketIntroduce;
     }
 
     public double getMarketHotLevel() {
@@ -93,44 +96,28 @@ public class DrinkInfo {
         this.marketIconPath = marketIconPath;
     }
 
-    public String getMarketIntroduce() {
-        return marketIntroduce;
+    public double getMarketDistance() {
+        return marketDistance;
     }
 
-    public void setMarketIntroduce(String marketIntroduce) {
-        this.marketIntroduce = marketIntroduce;
+    public void setMarketDistance(double marketDistance) {
+        this.marketDistance = marketDistance;
     }
 
-    public String getMarketName() {
-        return marketName;
+    public double getMarketDiscount() {
+        return marketDiscount;
     }
 
-    public void setMarketName(String marketName) {
-        this.marketName = marketName;
+    public void setMarketDiscount(double marketDiscount) {
+        this.marketDiscount = marketDiscount;
     }
 
-    public double getMarketNo() {
-        return marketNo;
+    public String getMarketBigPicture() {
+        return marketBigPicture;
     }
 
-    public void setMarketNo(double marketNo) {
-        this.marketNo = marketNo;
-    }
-
-    public double getMarketPrice() {
-        return marketPrice;
-    }
-
-    public void setMarketPrice(double marketPrice) {
-        this.marketPrice = marketPrice;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
+    public void setMarketBigPicture(String marketBigPicture) {
+        this.marketBigPicture = marketBigPicture;
     }
 
     public String getMarketAdress() {
@@ -141,4 +128,19 @@ public class DrinkInfo {
         this.marketAdress = marketAdress;
     }
 
+    public String getDiscountIconPath() {
+        return discountIconPath;
+    }
+
+    public void setDiscountIconPath(String discountIconPath) {
+        this.discountIconPath = discountIconPath;
+    }
+
+    public String getBookIconPath() {
+        return bookIconPath;
+    }
+
+    public void setBookIconPath(String bookIconPath) {
+        this.bookIconPath = bookIconPath;
+    }
 }
