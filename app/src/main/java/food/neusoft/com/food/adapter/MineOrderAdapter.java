@@ -80,6 +80,11 @@ public class MineOrderAdapter extends BaseAdapter {
         holder.tv_money.setText("¥"+mineOrderInfo.getMarketPrice()+"/人");
         holder.item_name.setText(mineOrderInfo.getTypeName());
         holder.tv_distance.setText(mineOrderInfo.getMarketDistance()+"km");
+        if(mineOrderInfo.getOrderState().equals(context.getResources().getString(R.string.order_success))){//如果预约成功，字体为红色，不成功则为黑色
+            holder.tv_orderinfo.setTextColor(context.getResources().getColor(R.color.ordersuccess));
+        }else{
+            holder.tv_orderinfo.setTextColor(context.getResources().getColor(R.color.orderfailure));
+        }
         holder.tv_orderinfo.setText(mineOrderInfo.getOrderState());
         return view;
     }
