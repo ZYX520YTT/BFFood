@@ -1,9 +1,11 @@
 package food.neusoft.com.food.Fragment.main.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 import food.neusoft.com.food.Fragment.main.base.BaseFragment;
 import food.neusoft.com.food.R;
+import food.neusoft.com.food.activity.StroeActivity;
 import food.neusoft.com.food.adapter.WestAdapter;
 import food.neusoft.com.food.domian.WestFoodInfo;
 import food.neusoft.com.food.thread.HttpUtils;
@@ -99,6 +102,21 @@ public class WesternFragment extends BaseFragment {
 
         westAdapter = new WestAdapter(getContext(),westFoodInfos);
         ls_show.setAdapter(westAdapter);
+
+
+        ls_show.setOnItemClickListener(new AdapterView.OnItemClickListener() {//设置点击事件
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent=new Intent(getContext(), StroeActivity.class);
+                WestFoodInfo westFoodInfo=westFoodInfos.get(i);
+                intent.putExtra("marketNo",westFoodInfo.getMarketNo());
+                intent.putExtra("type","西餐");
+                intent.putExtra("storename",westFoodInfo.getMarketName());
+                intent.putExtra("introduce",westFoodInfo.getMarketIntroduce());
+                intent.putExtra("imagepath",westFoodInfo.getMarketIconPath());
+                startActivity(intent);
+            }
+        });
 
     }
 

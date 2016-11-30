@@ -1,6 +1,7 @@
 package food.neusoft.com.food.Fragment.main.home;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -30,6 +32,7 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 import food.neusoft.com.food.Fragment.main.base.BaseFragment;
 import food.neusoft.com.food.R;
+import food.neusoft.com.food.activity.StroeActivity;
 import food.neusoft.com.food.adapter.HotPeopleAdapter;
 import food.neusoft.com.food.adapter.PhotoListAdapter;
 import food.neusoft.com.food.domian.FoodPhotoInfo;
@@ -161,6 +164,21 @@ public class HotFragment extends BaseFragment {
         hotPeopleAdapter = new HotPeopleAdapter(getContext(),hotMarketInfos);
 
         ls_show_hotpeople.setAdapter(hotPeopleAdapter);
+
+
+        ls_show_hotpeople.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent=new Intent(getContext(), StroeActivity.class);
+                HotMarketInfo hotMarketInfo=hotMarketInfos.get(i);
+                intent.putExtra("marketNo",hotMarketInfo.getMarketNo());
+                intent.putExtra("type","甜品");
+                intent.putExtra("storename",hotMarketInfo.getMarketName());
+                intent.putExtra("introduce",hotMarketInfo.getMarketIntroduce());
+                intent.putExtra("imagepath",hotMarketInfo.getMarketIconPath());
+                startActivity(intent);
+            }
+        });
 
     }
 

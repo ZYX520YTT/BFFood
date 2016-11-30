@@ -91,6 +91,8 @@ public class DessertFragment extends BaseFragment {
 
         dessertAdapter = new DessertAdapter(getContext(),dessertInfos);
         ls_show.setAdapter(dessertAdapter);
+
+
     }
 
     private void getNext() {

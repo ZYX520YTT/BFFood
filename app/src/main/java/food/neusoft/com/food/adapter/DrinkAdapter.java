@@ -1,11 +1,14 @@
 package food.neusoft.com.food.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lidroid.xutils.BitmapUtils;
@@ -14,7 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import food.neusoft.com.food.R;
+import food.neusoft.com.food.activity.StroeActivity;
 import food.neusoft.com.food.domian.DrinkInfo;
+import food.neusoft.com.food.utils.TimeChose;
 
 /**
  * Created by 张宇翔 on 2016/11/24 21:02.
@@ -87,6 +92,8 @@ public class DrinkAdapter extends BaseAdapter {
             holder.tv_storename_two= (TextView) view.findViewById(R.id.tv_storename_two);
             holder.item_rating_two= (RatingBar) view.findViewById(R.id.item_rating_two);
             holder.tv_youhui_two= (TextView) view.findViewById(R.id.tv_youhui_two);
+            holder.llyt_one= (RelativeLayout) view.findViewById(R.id.llyt_one);
+            holder.llyt_two= (RelativeLayout) view.findViewById(R.id.llyt_two);
             view.setTag(holder);
         }else{
             holder= (ViewHolder) view.getTag();
@@ -105,6 +112,7 @@ public class DrinkAdapter extends BaseAdapter {
             holder.item_rating_two.setRating((float) drinkInfo2.getMarketHotLevel());
             holder.tv_youhui_two.setText(drinkInfo2.getMarketIntroduce());
         }
+        Oncleck(holder,i);
         return view;
     }
 
@@ -122,5 +130,57 @@ public class DrinkAdapter extends BaseAdapter {
         public TextView tv_storename_two;
         public RatingBar item_rating_two;
         public TextView tv_youhui_two;
+        public RelativeLayout llyt_one;
+        public RelativeLayout llyt_two;
+    }
+
+
+    private void Oncleck(ViewHolder holder,final  int position){
+        holder.llyt_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int onclick =position*2;
+                Intent intent=new Intent(context, StroeActivity.class);
+                DrinkInfo drinkInfo=drinkInfos.get(onclick);
+                intent.putExtra("marketNo",drinkInfo.getMarketNo());
+                intent.putExtra("type","甜品");
+                intent.putExtra("storename",drinkInfo.getMarketName());
+                intent.putExtra("introduce",drinkInfo.getMarketIntroduce());
+                intent.putExtra("imagepath",drinkInfo.getMarketIconPath());
+                context.startActivity(intent);
+            }
+        });
+
+        holder.llyt_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int onclick =position*2+1;
+                Intent intent=new Intent(context, StroeActivity.class);
+                DrinkInfo drinkInfo=drinkInfos.get(onclick);
+                intent.putExtra("marketNo",drinkInfo.getMarketNo());
+                intent.putExtra("type","甜品");
+                intent.putExtra("storename",drinkInfo.getMarketName());
+                intent.putExtra("introduce",drinkInfo.getMarketIntroduce());
+                intent.putExtra("imagepath",drinkInfo.getMarketIconPath());
+                context.startActivity(intent);
+            }
+        });
+
+        holder.iv_photorighttype_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int onclick =position*2;
+                TimeChose timeChose=new TimeChose(context, (Activity) context);
+                timeChose.DiaLog();
+            }
+        });
+        holder.iv_photorighttype_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int onclick =position*2+1;
+                TimeChose timeChose=new TimeChose(context, (Activity) context);
+                timeChose.DiaLog();
+            }
+        });
     }
 }

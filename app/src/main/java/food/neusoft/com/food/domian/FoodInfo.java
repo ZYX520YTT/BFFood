@@ -8,7 +8,7 @@ package food.neusoft.com.food.domian;
 
 public class FoodInfo {
 
-    private double foodDiscount;
+    private String foodDiscount;
     private boolean foodHot;
     private String foodIconPath;
     private String foodIntroduce;
@@ -16,54 +16,22 @@ public class FoodInfo {
     private long foodNo;
     private double foodPrice;
 
-    public FoodInfo(double foodDiscount, double foodPrice, long foodNo, String foodName, String foodIconPath, boolean foodHot, String foodIntroduce) {
+    public FoodInfo(String foodDiscount, boolean foodHot, String foodIconPath, String foodIntroduce, String foodName, long foodNo, double foodPrice) {
         this.foodDiscount = foodDiscount;
-        this.foodPrice = foodPrice;
-        this.foodNo = foodNo;
-        this.foodName = foodName;
-        this.foodIconPath = foodIconPath;
         this.foodHot = foodHot;
+        this.foodIconPath = foodIconPath;
         this.foodIntroduce = foodIntroduce;
-    }
-
-    public double getFoodDiscount() {
-        return foodDiscount;
-    }
-
-    public void setFoodDiscount(double foodDiscount) {
-        this.foodDiscount = foodDiscount;
-    }
-
-    public double getFoodPrice() {
-        return foodPrice;
-    }
-
-    public void setFoodPrice(double foodPrice) {
+        this.foodName = foodName;
+        this.foodNo = foodNo;
         this.foodPrice = foodPrice;
     }
 
-    public long getFoodNo() {
-        return foodNo;
+    public String getFoodIconPath() {
+        return foodIconPath;
     }
 
-    public void setFoodNo(long foodNo) {
-        this.foodNo = foodNo;
-    }
-
-    public String getFoodName() {
-        return foodName;
-    }
-
-    public void setFoodName(String foodName) {
-        this.foodName = foodName;
-    }
-
-    public String getFoodIntroduce() {
-        return foodIntroduce;
-    }
-
-    public void setFoodIntroduce(String foodIntroduce) {
-        this.foodIntroduce = foodIntroduce;
+    public void setFoodIconPath(String foodIconPath) {
+        this.foodIconPath = foodIconPath;
     }
 
     public boolean isFoodHot() {
@@ -74,11 +42,43 @@ public class FoodInfo {
         this.foodHot = foodHot;
     }
 
-    public String getFoodIconPath() {
-        return foodIconPath;
+    public String getFoodDiscount() {
+        return foodDiscount;
     }
 
-    public void setFoodIconPath(String foodIconPath) {
-        this.foodIconPath = foodIconPath;
+    public void setFoodDiscount(String foodDiscount) {
+        this.foodDiscount = foodDiscount;
+    }
+
+    public String getFoodIntroduce() {
+        return foodIntroduce;
+    }
+
+    public void setFoodIntroduce(String foodIntroduce) {
+        this.foodIntroduce = foodIntroduce;
+    }
+
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public void setFoodName(String foodName) {
+        this.foodName = foodName;
+    }
+
+    public long getFoodNo() {
+        return foodNo;
+    }
+
+    public void setFoodNo(long foodNo) {
+        this.foodNo = foodNo;
+    }
+
+    public double getFoodPrice() {
+        return foodPrice;
+    }
+
+    public void setFoodPrice(double foodPrice) {
+        this.foodPrice = foodPrice;
     }
 }

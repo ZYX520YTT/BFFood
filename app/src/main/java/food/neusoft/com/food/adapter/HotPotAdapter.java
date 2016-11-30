@@ -1,5 +1,6 @@
 package food.neusoft.com.food.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import java.util.List;
 
 import food.neusoft.com.food.R;
 import food.neusoft.com.food.domian.HotPotInfo;
+import food.neusoft.com.food.utils.TimeChose;
 
 /**
  * Created by 张宇翔 on 2016/11/23 17:06.
@@ -78,6 +80,7 @@ public class HotPotAdapter extends BaseAdapter {
         holder.item_name.setText(hotPotInfo.getTypeName());
         holder.tv_price.setText(hotPotInfo.getMarketDiscount()+"折(预约专享受)");
         yutils.display(holder.iv_hui,hotPotInfo.getBookIconPath());
+        Oncleck(holder,i);
         return view;
     }
 
@@ -90,5 +93,15 @@ public class HotPotAdapter extends BaseAdapter {
         public TextView item_name;
         public TextView tv_price;
         public ImageView iv_hui;
+    }
+
+    private void Oncleck(ViewHolder holder,final  int position){
+        holder.iv_hui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimeChose timeChose=new TimeChose(context, (Activity) context);
+                timeChose.DiaLog();
+            }
+        });
     }
 }

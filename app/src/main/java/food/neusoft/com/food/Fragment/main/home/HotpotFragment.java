@@ -99,7 +99,7 @@ public class HotpotFragment extends BaseFragment {
         ls_show.setAdapter(hotPotAdapter);
 
 
-        ls_show.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ls_show.setOnItemClickListener(new AdapterView.OnItemClickListener() {//设置点击事件
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent(getContext(), StroeActivity.class);
@@ -108,6 +108,7 @@ public class HotpotFragment extends BaseFragment {
                 intent.putExtra("type","火锅");
                 intent.putExtra("storename",hotPotInfo.getMarketName());
                 intent.putExtra("introduce",hotPotInfo.getMarketIntroduce());
+                intent.putExtra("imagepath",hotPotInfo.getMarketIconPath());
                 startActivity(intent);
             }
         });

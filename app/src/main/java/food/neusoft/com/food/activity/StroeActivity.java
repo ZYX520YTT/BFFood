@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -31,10 +32,12 @@ import food.neusoft.com.food.widget.roundhead.CircleImageView;
 
 public class StroeActivity extends BaseActivity {
 
+    @ViewInject(R.id.rl_title)
+    private RelativeLayout rl_title;
     @ViewInject(R.id.iv_back)
     private ImageView iv_back;
     @ViewInject(R.id.iv_heart)
-    private RadioButton iv_heart;
+    private ImageView iv_heart;
     @ViewInject(R.id.iv_headimage)
     private CircleImageView iv_headimage;
     @ViewInject(R.id.tv_storename)
@@ -62,11 +65,33 @@ public class StroeActivity extends BaseActivity {
         setContentView(R.layout.activity_stroe);
         ViewUtils.inject(this);
         Intent intent=getIntent();
-//        marketNo = intent.getIntExtra("marketNo",0);
-        marketNo=10;
+        marketNo = intent.getIntExtra("marketNo",0);
+//        marketNo=10;
         type = intent.getStringExtra("type");
         String storename=intent.getStringExtra("storename");
         String introduce=intent.getStringExtra("introduce");
+
+        String imagepath=intent.getStringExtra("imagepath");//图片的网络地址
+        food.neusoft.com.food.utils.LogUtils.d("结果:"+imagepath);
+        food.neusoft.com.food.utils.LogUtils.i("结果:"+imagepath);
+        food.neusoft.com.food.utils.LogUtils.e("结果:"+imagepath);
+        food.neusoft.com.food.utils.LogUtils.w("结果:"+imagepath);
+
+        //更换背景图片
+        if(type.equals("甜品")){
+            rl_title.setBackgroundResource(R.drawable.tp_background);
+        }else if(type.equals("饮品")){
+            rl_title.setBackgroundResource(R.drawable.yp_background);
+        }else if(type.equals("西餐")){
+            rl_title.setBackgroundResource(R.drawable.xc_background);
+        }
+
+
+        //设置头像
+        BitmapUtils utils=new BitmapUtils(this);
+        utils.configDefaultLoadingImage(R.drawable.ic_mine_personal);
+        utils.display(iv_headimage,imagepath);
+
         if(storename!=null){
             tv_storename.setText(storename);//显示店名
         }
@@ -112,19 +137,18 @@ public class StroeActivity extends BaseActivity {
                         JSONArray jsonarray=new JSONArray(result);
                         for(int i=0;i<jsonarray.length();i++){
                             JSONObject jsonobject=jsonarray.getJSONObject(i);
-                            double foodDiscount=jsonobject.getDouble("foodDiscount");
+                            String foodDiscount=jsonobject.getString("foodDiscount");
                             boolean foodHot=jsonobject.getBoolean("foodHot");
                             String foodIconPath=Url.getImgURL(jsonobject.getString("foodIconPath"));
                             String foodIntroduce=jsonobject.getString("foodIntroduce");
                             String foodName=jsonobject.getString("foodName");
                             long foodNo=jsonobject.getLong("foodNo");
                             double foodPrice=jsonobject.getDouble("foodPrice");
-                            FoodInfo foodinfo=new FoodInfo(foodDiscount,foodPrice,foodNo,foodName,foodIconPath
-                                    ,foodHot,foodIntroduce);
+                            FoodInfo foodInfo=new FoodInfo(foodDiscount,foodHot,foodIconPath,foodIntroduce,foodName,foodNo,foodPrice);
                             if(foodHot){
-                                hotinfos.add(foodinfo);
+                                hotinfos.add(foodInfo);
                             }else{
-                                putinfos.add(foodinfo);
+                                putinfos.add(foodInfo);
                             }
                         }
                         putadapter.notifyDataSetChanged();

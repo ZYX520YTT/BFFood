@@ -93,6 +93,8 @@ public class DrinkFragment extends BaseFragment {
         drinkAdapter = new DrinkAdapter(getContext(),drinkInfos);
         ls_show.setAdapter(drinkAdapter);
 
+
+
     }
 
     private void getNext(){

@@ -4,32 +4,31 @@
     android:id="@+id/activity_stroe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="food.neusoft.com.food.activity.StroeActivity"
-    >
+    tools:context="food.neusoft.com.food.activity.StroeActivity">
 
     <RelativeLayout
         android:id="@+id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:background="@drawable/hg_background"
-        >
+        android:background="@drawable/hg_background">
+
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/dp_arrow"
             android:layout_marginLeft="12dp"
-            android:layout_marginTop="20dp"
-            />
-        <RadioButton
+            android:layout_marginTop="10dp"
+            android:src="@drawable/dp_arrow" />
+
+        <CheckBox
             android:id="@+id/iv_heart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@null"
-            android:drawableTop="@drawable/stroe_heart"
+            android:layout_width="15.5dp"
+            android:layout_height="14dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:button="@null"
+            android:drawableStart="@drawable/stroe_heart"
             />
 
         <food.neusoft.com.food.widget.roundhead.CircleImageView
@@ -37,87 +36,99 @@
             android:id="@+id/iv_headimage"
             android:layout_width="66dp"
             android:layout_height="66dp"
-            android:layout_marginLeft="20dp"
-            android:scaleType="centerCrop"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="24.5dp"
+            android:layout_marginLeft="20dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_mine_personal"
-            app:border_color="#FFFFFFFF"
-            />
+            app:border_color="#FFFFFFFF" />
+
         <TextView
             android:id="@+id/tv_storename"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="19dp"
+            android:layout_marginLeft="16.5dp"
+            android:layout_marginTop="50dp"
+            android:layout_toRightOf="@id/iv_headimage"
             android:text="泰普西餐厅"
             android:textColor="@color/white"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="16.5dp"
-            android:layout_toRightOf="@id/iv_headimage"
-            />
+            android:textSize="19dp" />
+
         <ImageView
             android:id="@+id/iv_trumput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/dp_trumput"
-            android:layout_marginLeft="16.5dp"
-            android:layout_toRightOf="@id/iv_headimage"
             android:layout_below="@id/tv_storename"
+            android:layout_marginLeft="16.5dp"
             android:layout_marginTop="13dp"
-            />
+            android:layout_toRightOf="@id/iv_headimage"
+            android:src="@drawable/dp_trumput" />
+
         <TextView
             android:id="@+id/tv_introduce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="全部菜品9折,提供免费WIFI"
-            android:layout_marginTop="13dp"
             android:layout_below="@id/tv_storename"
-            android:layout_toRightOf="@id/iv_trumput"
             android:layout_marginLeft="4dp"
-            android:textSize="10dp"
+            android:layout_marginTop="13dp"
+            android:layout_toRightOf="@id/iv_trumput"
+            android:text="全部菜品9折,提供免费WIFI"
             android:textColor="@color/white"
-            />
+            android:textSize="10dp" />
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/iv_dp_everday"
+    <food.neusoft.com.food.widget.pulltorefresh.PullableScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/dp_everday_pushout"
-        android:layout_below="@id/rl_title"
-        android:layout_marginTop="20dp"
-        />
-
-    <food.neusoft.com.food.widget.ShowListView
-        android:id="@+id/ls_putshow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iv_dp_everday"
-        android:layout_marginTop="22dp"
-        >
-    </food.neusoft.com.food.widget.ShowListView>
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_title">
 
 
-    <TextView
-        android:id="@+id/tv_hot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="本店热卖"
-        android:textSize="16sp"
-        android:layout_marginLeft="16.5dp"
-        android:textColor="@color/title_color"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/ls_putshow"
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <food.neusoft.com.food.widget.ShowListView
-        android:id="@+id/ls_hotshow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_hot"
-        android:layout_marginTop="22dp"
-        >
-    </food.neusoft.com.food.widget.ShowListView>
+            <ImageView
+                android:id="@+id/iv_dp_everday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/dp_everday_pushout" />
+
+
+            <food.neusoft.com.food.widget.ShowListView
+                android:id="@+id/ls_putshow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_dp_everday"
+                android:layout_marginTop="22dp">
+
+            </food.neusoft.com.food.widget.ShowListView>
+
+
+            <TextView
+                android:id="@+id/tv_hot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ls_putshow"
+                android:layout_marginLeft="16.5dp"
+                android:layout_marginTop="20dp"
+                android:text="本店热卖"
+                android:textColor="@color/title_color"
+                android:textSize="16sp" />
+
+
+            <food.neusoft.com.food.widget.ShowListView
+                android:id="@+id/ls_hotshow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_hot"
+                android:layout_marginTop="22dp">
+
+            </food.neusoft.com.food.widget.ShowListView>
+
+        </RelativeLayout>
+
+    </food.neusoft.com.food.widget.pulltorefresh.PullableScrollView>
 
 
 </RelativeLayout>
