@@ -10,7 +10,7 @@
         android:id="@+id/rlyt_headimage"
         android:layout_width="match_parent"
         android:layout_height="166dp"
-        android:background="@drawable/ic_mine_bg">
+        android:background="@drawable/view_background">
 
 
         <!-- <ImageView -->

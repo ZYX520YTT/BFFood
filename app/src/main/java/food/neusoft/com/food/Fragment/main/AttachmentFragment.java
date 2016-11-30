@@ -1,9 +1,11 @@
 package food.neusoft.com.food.Fragment.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import java.util.Random;
 import cz.msebera.android.httpclient.Header;
 import food.neusoft.com.food.Fragment.main.base.BaseFragment;
 import food.neusoft.com.food.R;
+import food.neusoft.com.food.activity.StroeActivity;
 import food.neusoft.com.food.adapter.AttachAdapter;
 import food.neusoft.com.food.domian.AttachInfo;
 import food.neusoft.com.food.thread.HttpUtils;
@@ -102,6 +105,21 @@ public class AttachmentFragment extends BaseFragment {
 
         attachAdapter = new AttachAdapter(getContext(),attachInfos);
         ls_show.setAdapter(attachAdapter);
+
+
+        ls_show.setOnItemClickListener(new AdapterView.OnItemClickListener() {//设置点击事件
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent=new Intent(getContext(), StroeActivity.class);
+                AttachInfo attachInfo=attachInfos.get(i);
+                intent.putExtra("marketNo",attachInfo.getMarketNo());
+                intent.putExtra("type","附近");
+                intent.putExtra("storename",attachInfo.getMarketName());
+                intent.putExtra("introduce",attachInfo.getMarketIntroduce());
+                intent.putExtra("imagepath",attachInfo.getMarketIconPath());
+                startActivity(intent);
+            }
+        });
 
     }
 
