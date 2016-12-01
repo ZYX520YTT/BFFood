@@ -31,6 +31,7 @@ import food.neusoft.com.food.adapter.StoreAdapter;
 import food.neusoft.com.food.domian.FoodInfo;
 import food.neusoft.com.food.thread.HttpUtils;
 import food.neusoft.com.food.thread.Url;
+import food.neusoft.com.food.utils.Tools;
 import food.neusoft.com.food.widget.roundhead.CircleImageView;
 
 public class StroeActivity extends BaseActivity {
@@ -51,6 +52,8 @@ public class StroeActivity extends BaseActivity {
     private ListView ls_putshow;
     @ViewInject(R.id.ls_hotshow)
     private ListView ls_hotshow;
+    @ViewInject(R.id.iv_share)
+    private ImageView iv_share;
 
 
     private long marketNo;
@@ -74,7 +77,7 @@ public class StroeActivity extends BaseActivity {
         String storename=intent.getStringExtra("storename");
         String introduce=intent.getStringExtra("introduce");
 
-        String imagepath=intent.getStringExtra("imagepath");//图片的网络地址
+        final String imagepath=intent.getStringExtra("imagepath");//图片的网络地址
 //        food.neusoft.com.food.utils.LogUtils.d("结果:"+imagepath);
 //        food.neusoft.com.food.utils.LogUtils.i("结果:"+imagepath);
 //        food.neusoft.com.food.utils.LogUtils.e("结果:"+imagepath);
@@ -122,6 +125,15 @@ public class StroeActivity extends BaseActivity {
                 }else{//取消收藏
                     RemoveCollect(NApplication.user_number,marketNo);
                 }
+            }
+        });
+
+        //对分享按钮进行监听
+        iv_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NApplication.share_marketNo=marketNo;
+                Tools.showShare(StroeActivity.this,"好好吃","真的好吃",imagepath,"http://www.baiud.com");
             }
         });
 

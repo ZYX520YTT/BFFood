@@ -18,6 +18,8 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.mob.tools.utils.R;
 import com.mob.tools.utils.UIHandler;
 
@@ -31,6 +33,10 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
+import cz.msebera.android.httpclient.Header;
+import food.neusoft.com.food.NApplication;
+import food.neusoft.com.food.thread.HttpUtils;
+import food.neusoft.com.food.thread.Url;
 
 /** 快捷分享的主题样式的实现父类 */
 public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Callback {
@@ -44,9 +50,32 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 	protected boolean disableSSO;
 	protected Context context;
 
+	private AsyncHttpResponseHandler saveShare_handler;
+
 
 	public OnekeyShareThemeImpl() {
 		callback = this;
+		dohandler();
+	}
+
+	private void dohandler(){
+		saveShare_handler=new AsyncHttpResponseHandler() {
+			@Override
+			public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+				String result=new String(responseBody);
+				if(result.equals("ERROR")){
+					Toast.makeText(context,"保存失败",Toast.LENGTH_SHORT).show();
+				}else{
+					System.out.println("json:"+result);
+					Toast.makeText(context,"保存成功",Toast.LENGTH_SHORT).show();
+				}
+			}
+
+			@Override
+			public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+				Toast.makeText(context,"保存失败",Toast.LENGTH_SHORT).show();
+			}
+		};
 	}
 
 	public final void setDialogMode(boolean dialogMode) {
@@ -372,6 +401,8 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 		ShareSDK.logDemoEvent(5, platform);
 	}
 
+
+
 	public final boolean handleMessage(Message msg) {
 		switch (msg.arg1) {
 			case 1: {
@@ -379,7 +410,17 @@ public abstract class OnekeyShareThemeImpl implements PlatformActionListener, Ca
 				int resId = R.getStringRes(context, "ssdk_oks_share_completed");
 				if (resId > 0) {
 					toast(context.getString(resId));
+
 				}
+
+				//保存商铺
+
+				RequestParams params=new RequestParams();
+				params.put("userId", NApplication.user_number);
+				params.put("marketNo",NApplication.share_marketNo);
+//				System.out.println(NApplication.user_number+"          "+NApplication.share_marketNo);
+				HttpUtils.post(context, Url.saveShare,params,saveShare_handler);
+
 			} break;
 			case 2: {
 				// 失败

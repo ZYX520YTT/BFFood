@@ -31,6 +31,16 @@
             android:drawableStart="@drawable/stroe_heart"
             />
 
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@id/iv_heart"
+            android:src="@drawable/mine_share"
+            android:layout_marginRight="20dp"
+            />
+
         <food.neusoft.com.food.widget.roundhead.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/iv_headimage"

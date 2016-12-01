@@ -24,7 +24,7 @@ public class Url {
     //http://100.0.101.18:8080/CDFood/removeCollect?userId=1&marketNo=10
     //http://100.0.101.18:8080/CDFood/saveCollect?userId=1&marketNo=10
     //http://100.0.101.18:8080/CDFood/getMyOrder?userId=1&count=10&firstIndex=0
-    //http://100.0.101.18:8080/CDFood/getMyCollect?userId=1
+    //http://100.0.101.18:8080/CDFood/getMyShare?userId=1
 
     private static String getUrl(String activity){
         String url=null;
