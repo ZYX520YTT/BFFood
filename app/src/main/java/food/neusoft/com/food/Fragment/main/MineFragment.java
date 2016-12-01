@@ -1,5 +1,6 @@
 package food.neusoft.com.food.Fragment.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ import static food.neusoft.com.food.NApplication.nickname;
 
 public class MineFragment extends BaseFragment{
 
+    private Context context;
     private AsyncHttpResponseHandler imageup_handler,get_personal_handler;
     private View view;
 
@@ -57,11 +59,13 @@ public class MineFragment extends BaseFragment{
     private TextView tv_name;
     @ViewInject(R.id.rlyt_my_order)
     private RelativeLayout rlyt_my_order;
+    private BitmapUtils utils;
 
 
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context=getContext();
     }
 
 
@@ -77,6 +81,7 @@ public class MineFragment extends BaseFragment{
 
     private void Init() {
 
+        utils = new BitmapUtils(context);
         //用户名
         tv_name.setText(NApplication.user_number);
 
@@ -91,7 +96,7 @@ public class MineFragment extends BaseFragment{
             @Override
             public void onClick(View view) {
                 Intent intent = null;
-                intent = new Intent(getContext(),PhotoActivity.class);
+                intent = new Intent(context,PhotoActivity.class);
                 intent.putExtra("code", RequestCode.HEAD_IMAGE);
                 startActivityForResult(intent, RequestCode.HEAD_IMAGE);
             }
@@ -101,7 +106,7 @@ public class MineFragment extends BaseFragment{
         rlyt_my_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), OrderActivity.class));
+                startActivity(new Intent(context, OrderActivity.class));
             }
         });
 
@@ -180,13 +185,13 @@ public class MineFragment extends BaseFragment{
         params.put("userId",NApplication.user_number);
         params.put("fileName","aa.jpeg");
         params.put("upload",img);
-        HttpUtils.post(getContext(), Url.uploadPhotos,params,imageup_handler);
+        HttpUtils.post(context, Url.uploadPhotos,params,imageup_handler);
     }
 
     private void getPersonalInfo(){
         RequestParams params=new RequestParams();
         params.put("userId",NApplication.user_number);
-        HttpUtils.get(getContext(),Url.getUserInfo,params,get_personal_handler);
+        HttpUtils.get(context,Url.getUserInfo,params,get_personal_handler);
     }
 
 
@@ -196,16 +201,16 @@ public class MineFragment extends BaseFragment{
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String result=new String(responseBody);
                 if(result.equals("ERROR")){
-                    Toast.makeText(getContext(),"上传头像失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"上传头像失败",Toast.LENGTH_SHORT).show();
                 }else{
                     System.out.println("结果---------"+result+"---------结果");
-                    Toast.makeText(getContext(),"上传头像成功！",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"上传头像成功！",Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getContext(), R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -217,7 +222,7 @@ public class MineFragment extends BaseFragment{
                 if(result.equals("ERROR")){
 
                 }else{
-                    BitmapUtils utils=new BitmapUtils(getContext());
+
                     utils.configDefaultLoadingImage(R.drawable.ic_mine_personal);
                     try {
                         JSONObject jsonObject=new JSONObject(result);
@@ -246,7 +251,7 @@ public class MineFragment extends BaseFragment{
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getContext(), R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
             }
         };
     }

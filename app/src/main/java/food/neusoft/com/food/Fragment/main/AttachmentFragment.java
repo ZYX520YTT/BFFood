@@ -1,5 +1,6 @@
 package food.neusoft.com.food.Fragment.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -40,6 +41,7 @@ import food.neusoft.com.food.widget.pulltorefresh.PullToRefreshLayout;
 
 public class AttachmentFragment extends BaseFragment {
 
+    private Context context;
     private AsyncHttpResponseHandler attach_handler;
 
     private View view;
@@ -61,6 +63,11 @@ public class AttachmentFragment extends BaseFragment {
     private int firstIndex;//请求页数
     private AttachAdapter attachAdapter;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        context=getContext();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -101,16 +108,16 @@ public class AttachmentFragment extends BaseFragment {
         params.put("count",count);
         params.put("firstIndex",firstIndex);
         params.put("marketAdress",LOCAL);
-        HttpUtils.get(getContext(),Url.getNearMarket,params,attach_handler);
+        HttpUtils.get(context,Url.getNearMarket,params,attach_handler);
 
-        attachAdapter = new AttachAdapter(getContext(),attachInfos);
+        attachAdapter = new AttachAdapter(context,attachInfos);
         ls_show.setAdapter(attachAdapter);
 
 
         ls_show.setOnItemClickListener(new AdapterView.OnItemClickListener() {//设置点击事件
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(getContext(), StroeActivity.class);
+                Intent intent=new Intent(context, StroeActivity.class);
                 AttachInfo attachInfo=attachInfos.get(i);
                 intent.putExtra("marketNo",attachInfo.getMarketNo());
                 intent.putExtra("type","附近");
@@ -130,7 +137,7 @@ public class AttachmentFragment extends BaseFragment {
         params.put("count",count);
         params.put("firstIndex",firstIndex);
         params.put("marketAdress",LOCAL);
-        HttpUtils.get(getContext(),Url.getNearMarket,params,attach_handler);
+        HttpUtils.get(context,Url.getNearMarket,params,attach_handler);
 
 
     }
@@ -142,7 +149,7 @@ public class AttachmentFragment extends BaseFragment {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String result=new String(responseBody);
                 if(result.equals("ERROR")){
-                    Toast.makeText(getContext(),"获取数据失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"获取数据失败",Toast.LENGTH_SHORT).show();
                     if(isLoadmore){
                         refresh_view.loadmoreFinish(PullToRefreshLayout.FAIL);
                     }else{
@@ -192,7 +199,7 @@ public class AttachmentFragment extends BaseFragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getContext(), R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
             }
         };
     }

@@ -1,5 +1,6 @@
 package food.neusoft.com.food.Fragment.main.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,7 @@ import food.neusoft.com.food.widget.pulltorefresh.PullToRefreshLayout;
 
 public class DrinkFragment extends BaseFragment {
 
+    private Context context;
     private AsyncHttpResponseHandler drink_handler;
     private View view;
 
@@ -59,6 +61,7 @@ public class DrinkFragment extends BaseFragment {
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context=getContext();
     }
 
 
@@ -88,9 +91,9 @@ public class DrinkFragment extends BaseFragment {
         params.put("count",count);
         params.put("firstIndex",firstIndex);
         params.put("marketAdress",LOCAL);
-        HttpUtils.get(getContext(), Url.getDrinkMarket,params,drink_handler);
+        HttpUtils.get(context, Url.getDrinkMarket,params,drink_handler);
 
-        drinkAdapter = new DrinkAdapter(getContext(),drinkInfos);
+        drinkAdapter = new DrinkAdapter(context,drinkInfos);
         ls_show.setAdapter(drinkAdapter);
 
 
@@ -103,7 +106,7 @@ public class DrinkFragment extends BaseFragment {
         params.put("count",count);
         params.put("firstIndex",firstIndex);
         params.put("marketAdress",LOCAL);
-        HttpUtils.get(getContext(), Url.getDrinkMarket,params,drink_handler);
+        HttpUtils.get(context, Url.getDrinkMarket,params,drink_handler);
     }
 
     private void dohandler(){
@@ -112,7 +115,7 @@ public class DrinkFragment extends BaseFragment {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String result=new String(responseBody);
                 if(result.equals("ERROR")){
-                    Toast.makeText(getContext(),"获取数据失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"获取数据失败",Toast.LENGTH_SHORT).show();
                     if(isLoadmore){
                         refresh_view.loadmoreFinish(PullToRefreshLayout.FAIL);
                     }else{
@@ -163,7 +166,7 @@ public class DrinkFragment extends BaseFragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getContext(), R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
             }
         };
     }

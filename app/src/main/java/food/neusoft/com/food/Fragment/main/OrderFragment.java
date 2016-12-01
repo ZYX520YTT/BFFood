@@ -1,5 +1,6 @@
 package food.neusoft.com.food.Fragment.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -42,6 +43,7 @@ import food.neusoft.com.food.widget.pulltorefresh.PullToRefreshLayout;
 
 public class OrderFragment extends BaseFragment {
 
+    private Context context;
     private AsyncHttpResponseHandler order_handler;
     private View view;
 
@@ -66,6 +68,7 @@ public class OrderFragment extends BaseFragment {
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context=getContext();
     }
 
 
@@ -84,7 +87,7 @@ public class OrderFragment extends BaseFragment {
         iv_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), OrderActivity.class));
+                startActivity(new Intent(context, OrderActivity.class));
             }
         });
 
@@ -112,15 +115,15 @@ public class OrderFragment extends BaseFragment {
         params.put("count",count);
         params.put("firstIndex",firstIndex);
         params.put("marketAdress",LOCAL);
-        HttpUtils.get(getContext(), Url.getBookMarket,params,order_handler);
+        HttpUtils.get(context, Url.getBookMarket,params,order_handler);
 
-        orderAdapter = new OrderAdapter(getContext(),orderInfos);
+        orderAdapter = new OrderAdapter(context,orderInfos);
         ls_show.setAdapter(orderAdapter);
 
         ls_show.setOnItemClickListener(new AdapterView.OnItemClickListener() {//设置点击事件
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(getContext(), StroeActivity.class);
+                Intent intent=new Intent(context, StroeActivity.class);
                 OrderInfo orderInfo=orderInfos.get(i);
                 intent.putExtra("marketNo",orderInfo.getMarketNo());
                 intent.putExtra("type","预约");
@@ -139,7 +142,7 @@ public class OrderFragment extends BaseFragment {
         params.put("count",count);
         params.put("firstIndex",firstIndex);
         params.put("marketAdress",LOCAL);
-        HttpUtils.get(getContext(),Url.getBookMarket,params,order_handler);
+        HttpUtils.get(context,Url.getBookMarket,params,order_handler);
 
     }
 
@@ -150,7 +153,7 @@ public class OrderFragment extends BaseFragment {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String result=new String(responseBody);
                 if(result.equals("ERROR")){
-                    Toast.makeText(getContext(),"获取数据失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"获取数据失败",Toast.LENGTH_SHORT).show();
                     if(isLoadmore){
                         refresh_view.loadmoreFinish(PullToRefreshLayout.FAIL);
                     }else{
@@ -201,7 +204,7 @@ public class OrderFragment extends BaseFragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getContext(), R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
             }
         };
     }

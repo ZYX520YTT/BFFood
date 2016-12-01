@@ -1,5 +1,6 @@
 package food.neusoft.com.food.Fragment.main.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,7 @@ import food.neusoft.com.food.widget.pulltorefresh.PullToRefreshLayout;
 
 public class DessertFragment extends BaseFragment {
 
+    private Context context;
     private AsyncHttpResponseHandler dessert_handler;
     private View view;
 
@@ -57,6 +59,7 @@ public class DessertFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context=getContext();
     }
 
 
@@ -86,10 +89,10 @@ public class DessertFragment extends BaseFragment {
         params.put("count",count);
         params.put("firstIndex",firstIndex);
         params.put("marketAdress",LOCAL);
-        HttpUtils.get(getContext(), Url.getSweetMarket,params,dessert_handler);
+        HttpUtils.get(context, Url.getSweetMarket,params,dessert_handler);
 
 
-        dessertAdapter = new DessertAdapter(getContext(),dessertInfos);
+        dessertAdapter = new DessertAdapter(context,dessertInfos);
         ls_show.setAdapter(dessertAdapter);
 
 
@@ -101,7 +104,7 @@ public class DessertFragment extends BaseFragment {
         params.put("count",count);
         params.put("firstIndex",firstIndex);
         params.put("marketAdress",LOCAL);
-        HttpUtils.get(getContext(), Url.getSweetMarket,params,dessert_handler);
+        HttpUtils.get(context, Url.getSweetMarket,params,dessert_handler);
     }
 
     private void dohandler() {
@@ -110,7 +113,7 @@ public class DessertFragment extends BaseFragment {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String result=new String(responseBody);
                 if(result.equals("ERROR")){
-                    Toast.makeText(getContext(),"获取数据失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"获取数据失败",Toast.LENGTH_SHORT).show();
                     if(isLoadmore){
                         refresh_view.loadmoreFinish(PullToRefreshLayout.FAIL);
                     }else{
@@ -162,7 +165,7 @@ public class DessertFragment extends BaseFragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getContext(), R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
             }
         };
     }

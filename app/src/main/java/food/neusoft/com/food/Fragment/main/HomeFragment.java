@@ -1,5 +1,6 @@
 package food.neusoft.com.food.Fragment.main;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -34,6 +35,8 @@ import food.neusoft.com.food.utils.Tools;
  */
 
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
+
+    private Context context;
     private View view;
 
     @ViewInject(R.id.rlyt_title)
@@ -105,6 +108,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context=getContext();
     }
 
 
@@ -206,7 +210,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.tv_local:
                 int size=tv_local.getWidth()+iv_search.getWidth()+
                 (getResources().getDimensionPixelOffset(R.dimen.group_padding));
-                Tools.showLocalList(getContext(), tv_local, local, size);
+                Tools.showLocalList(context, tv_local, local, size);
                 break;
             case R.id.rlyt_hot: /**热门**/
                 viewPager.setCurrentItem(0,false);

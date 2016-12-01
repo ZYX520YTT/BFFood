@@ -1,6 +1,7 @@
 package food.neusoft.com.food.Fragment.main.home;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -51,6 +52,8 @@ import food.neusoft.com.food.widget.pulltorefresh.PullToRefreshLayout;
 public class HotFragment extends BaseFragment {
 
 
+    private Context context;
+
     private AsyncHttpResponseHandler foundFood_handler;
     private AsyncHttpResponseHandler hotmarket_handler;
     private View view;
@@ -91,6 +94,7 @@ public class HotFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context=getContext();
     }
 
 
@@ -356,7 +360,7 @@ public class HotFragment extends BaseFragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getContext(), R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -423,7 +427,7 @@ public class HotFragment extends BaseFragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(getContext(), R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
             }
         };
     }
