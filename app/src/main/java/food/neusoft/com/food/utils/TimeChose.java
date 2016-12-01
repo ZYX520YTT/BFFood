@@ -79,7 +79,7 @@ public class TimeChose {
         time = new ArrayList<>();
         people = new ArrayList<>();
         getDate(date);
-        for (int i = 0; i <= 24; i++) {
+        for (int i = 0; i <= 23; i++) {
             time.add(i + ":00");
             time.add(i + ":30");
         }

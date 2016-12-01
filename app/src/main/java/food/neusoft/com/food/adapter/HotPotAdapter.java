@@ -35,9 +35,8 @@ public class HotPotAdapter extends BaseAdapter {
         this.context=context;
         this.hotPotInfos=hotPotInfos;
         butils=new BitmapUtils(context);
-        butils.configDefaultLoadingImage(R.drawable.pic_hotpot_one);
+        butils.configDefaultLoadingImage(R.drawable.hg_loading);
         yutils=new BitmapUtils(context);
-        yutils.configDefaultLoadingImage(R.drawable.view_privilige);
     }
 
     @Override

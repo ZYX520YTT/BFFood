@@ -38,9 +38,8 @@ public class DessertAdapter extends BaseAdapter {
         this.context = context;
         this.dessertInfos = dessertInfos;
         butils=new BitmapUtils(context);
-        butils.configDefaultLoadingImage(R.drawable.pic_dessert_one);
+        butils.configDefaultLoadingImage(R.drawable.tp_loading);
         yutils=new BitmapUtils(context);
-        yutils.configDefaultLoadingImage(R.drawable.view_yu);
     }
 
     @Override

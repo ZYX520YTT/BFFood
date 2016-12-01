@@ -30,7 +30,7 @@ public class HotPeopleAdapter extends BaseAdapter {
         this.context=context;
         this.hotpeoples=hotpeoples;
         utils=new BitmapUtils(context);
-        utils.configDefaultLoadingImage(R.drawable.title1);
+        utils.configDefaultLoadingImage(R.drawable.xc_loading);
     }
 
 

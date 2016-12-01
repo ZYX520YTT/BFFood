@@ -34,9 +34,8 @@ public class AttachAdapter extends BaseAdapter {
         this.context=context;
         this.attachInfos=attachInfos;
         butils=new BitmapUtils(context);
-        butils.configDefaultLoadingImage(R.drawable.pic_attach_one);
+        butils.configDefaultLoadingImage(R.drawable.fj_loading);
         yutils=new BitmapUtils(context);
-        yutils.configDefaultLoadingImage(R.drawable.view_privilige);
     }
 
     @Override

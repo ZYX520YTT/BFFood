@@ -34,7 +34,7 @@ public class PhotoListAdapter extends BaseAdapter {
         this.foodPhotoInfos=foodPhotoInfos;
         this.context=context;
         utils=new BitmapUtils(context);
-        utils.configDefaultLoadingImage(R.drawable.food1);
+        utils.configDefaultLoadingImage(R.drawable.fj_loading);
     }
 
     @Override

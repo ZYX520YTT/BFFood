@@ -31,17 +31,13 @@ public class WestAdapter extends BaseAdapter {
 
     private BitmapUtils butils;//大图片
     private BitmapUtils yutils;//预的图片
-    private BitmapUtils tutils;//条的图片
 
     public WestAdapter(Context context,List<WestFoodInfo> westFoodInfos) {
         this.westFoodInfos = westFoodInfos;
         this.context = context;
         butils=new BitmapUtils(context);
-        butils.configDefaultLoadingImage(R.drawable.pic_west_one);
+        butils.configDefaultLoadingImage(R.drawable.xc_loading);
         yutils=new BitmapUtils(context);
-        yutils.configDefaultLoadingImage(R.drawable.view_yu);
-        tutils=new BitmapUtils(context);
-        tutils.configDefaultLoadingImage(R.drawable.view_tiaotiao);
     }
 
     @Override
@@ -79,7 +75,7 @@ public class WestAdapter extends BaseAdapter {
         butils.display(holder.iv_west,info.getMarketIconPath());
         holder.tv_storename.setText(info.getMarketName());
         holder.tv_distance.setText(info.getMarketDistance()+"km");
-        tutils.display(holder.iv_tiao,info.getErectLineIconPath());
+        yutils.display(holder.iv_tiao,info.getErectLineIconPath());
         if(info.getBookIconPath()!=null&& !TextUtils.isEmpty(info.getBookIconPath())){
             yutils.display(holder.iv_phototype,info.getBookIconPath());
         }

@@ -39,6 +39,7 @@ public class DrinkAdapter extends BaseAdapter {
         this.context = context;
         this.drinkInfos = drinkInfos;
         butils=new BitmapUtils(context);
+        butils.configDefaultLoadingImage(R.drawable.yp_loading);
         yutils=new BitmapUtils(context);
     }
 

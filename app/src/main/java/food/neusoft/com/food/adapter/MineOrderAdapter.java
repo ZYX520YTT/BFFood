@@ -33,6 +33,7 @@ public class MineOrderAdapter extends BaseAdapter {
         this.context=context;
         this.mineOrderInfos=mineOrderInfos;
         butils=new BitmapUtils(context);
+        butils.configDefaultLoadingImage(R.drawable.fj_loading);
         yutils=new BitmapUtils(context);
     }
 

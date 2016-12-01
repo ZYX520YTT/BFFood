@@ -35,6 +35,7 @@ public class OrderAdapter extends BaseAdapter {
         this.context=context;
         this.orderInfos=orderInfos;
         butils=new BitmapUtils(context);
+        butils.configDefaultLoadingImage(R.drawable.fj_loading);
         yutils=new BitmapUtils(context);
     }
 
