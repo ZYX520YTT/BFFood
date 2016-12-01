@@ -62,6 +62,8 @@ public class MineFragment extends BaseFragment{
     private RelativeLayout rlyt_my_order;
     @ViewInject(R.id.rlyt_collect)
     private RelativeLayout rlyt_collect;
+    @ViewInject(R.id.rlyt_share)
+    private RelativeLayout rlyt_share;
     private BitmapUtils utils;
 
 
@@ -121,8 +123,18 @@ public class MineFragment extends BaseFragment{
             }
         });
 
+        //点击“我的分享”
+        rlyt_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
 
     }
+
+
 
 
     @Override

@@ -22,6 +22,8 @@ public class NApplication extends Application {
 	public static String ImageUrl;//用户用第三方登录时候的头像Url
 	public static String nickname;//用户用第三方登录时候的昵称
 
+	public static long share_marketNo=0;//分享的店铺的编号，默认是0
+
 
 	private static NApplication application;
 	private static int mainTid;
