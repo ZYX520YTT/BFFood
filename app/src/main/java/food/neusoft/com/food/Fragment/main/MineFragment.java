@@ -29,6 +29,7 @@ import food.neusoft.com.food.NApplication;
 import food.neusoft.com.food.R;
 import food.neusoft.com.food.activity.MineCollectActivity;
 import food.neusoft.com.food.activity.MineOrderActivity;
+import food.neusoft.com.food.activity.MineShareActivity;
 import food.neusoft.com.food.activity.PhotoActivity;
 import food.neusoft.com.food.thread.HttpUtils;
 import food.neusoft.com.food.thread.Url;
@@ -127,7 +128,7 @@ public class MineFragment extends BaseFragment{
         rlyt_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(context, MineShareActivity.class));
             }
         });
 

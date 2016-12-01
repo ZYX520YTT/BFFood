@@ -13,37 +13,38 @@ import com.lidroid.xutils.BitmapUtils;
 import java.util.List;
 
 import food.neusoft.com.food.R;
-import food.neusoft.com.food.domian.MineCollectInfo;
+import food.neusoft.com.food.domian.MineShareInfo;
+import food.neusoft.com.food.utils.Tools;
 
 /**
- * Created by 张宇翔 on 2016/12/1 14:32.
+ * Created by 张宇翔 on 2016/12/1 23:26.
  * Email：1124751755@qq.com
- * 功能：我的收藏的Adapter
+ * 功能：
  */
 
-public class MineCollectAdapter extends BaseAdapter{
+public class MineShareAdapter extends BaseAdapter {
 
     private Context context;
-    private List<MineCollectInfo> mineCollectInfos;
+    private List<MineShareInfo> mineShareInfos;
     private BitmapUtils butils;
     private BitmapUtils yutils;
 
-    public MineCollectAdapter(Context context,List<MineCollectInfo> mineCollectInfos){
+    public MineShareAdapter(Context context,List<MineShareInfo> mineShareInfos){
         this.context=context;
-        this.mineCollectInfos=mineCollectInfos;
+        this.mineShareInfos=mineShareInfos;
         butils=new BitmapUtils(context);
         butils.configDefaultLoadingImage(R.drawable.fj_loading);
         yutils=new BitmapUtils(context);
-    }
 
+    }
     @Override
     public int getCount() {
-        return mineCollectInfos.size();
+        return mineShareInfos.size();
     }
 
     @Override
-    public MineCollectInfo getItem(int i) {
-        return mineCollectInfos.get(i);
+    public MineShareInfo getItem(int i) {
+        return mineShareInfos.get(i);
     }
 
     @Override
@@ -69,11 +70,12 @@ public class MineCollectAdapter extends BaseAdapter{
             holder.iv_hui= (ImageView) view.findViewById(R.id.iv_hui);
             holder.tv_hui= (TextView) view.findViewById(R.id.tv_hui);
             holder.tv_time= (TextView) view.findViewById(R.id.tv_time);
+            holder.iv_share= (ImageView) view.findViewById(R.id.iv_share);
             view.setTag(holder);
         }else{
             holder= (ViewHolder) view.getTag();
         }
-        MineCollectInfo info=getItem(i);
+        MineShareInfo info=getItem(i);
         butils.display(holder.item_icon,info.getMarketIconPath());
         yutils.display(holder.iv_order,info.getBookIconPath());
         holder.item_title.setText(info.getMarketName());
@@ -86,9 +88,9 @@ public class MineCollectAdapter extends BaseAdapter{
         yutils.display(holder.iv_hui,info.getDiscountIconPath());
         holder.tv_hui.setText(info.getMarketIntroduce());
         holder.tv_time.setText(info.getDate());
+        OnClick(holder,i);
         return view;
     }
-
 
     static class ViewHolder{
         public ImageView item_icon;
@@ -103,5 +105,17 @@ public class MineCollectAdapter extends BaseAdapter{
         public ImageView iv_hui;
         public TextView tv_hui;
         public TextView tv_time;
+        public ImageView iv_share;
+    }
+
+
+    private void OnClick(ViewHolder holder, final int postion){
+        holder.iv_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Tools.showShare(context,"好吃","好吃",
+                        mineShareInfos.get(postion).getMarketIconPath(),"http://www.baidu.com");
+            }
+        });
     }
 }

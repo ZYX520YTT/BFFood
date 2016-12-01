@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <RelativeLayout
+        android:id="@+id/item_top"
+        android:layout_width="match_parent"
+        android:layout_height="156dp"
+        android:layout_marginTop="@dimen/title_line_height"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/item_icon"
+            android:layout_width="90dp"
+            android:layout_height="67dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/pic_hotpot_one" />
+
+        <ImageView
+            android:id="@+id/iv_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/item_icon"
+            android:layout_alignRight="@+id/item_icon"
+            android:src="@drawable/re_view_order" />
+
+
+        <RelativeLayout
+            android:id="@+id/item_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21.5dp"
+            android:layout_toRightOf="@id/item_icon"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:id="@+id/item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="重庆渝达老火锅(大业路店)"
+                android:textColor="#323232"
+                android:textSize="12dp" />
+
+
+            <RatingBar
+                android:id="@+id/item_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="12dp"
+                android:layout_below="@id/item_title"
+                android:layout_marginTop="10dp"
+                android:isIndicator="true"
+                android:progressDrawable="@drawable/process_ratingbar"
+                android:rating="3" />
+
+
+            <TextView
+                android:id="@+id/tv_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/item_rating"
+                android:layout_marginLeft="14.5dp"
+                android:layout_toRightOf="@+id/item_rating"
+                android:text="¥50/人"
+                android:textColor="#888888"
+                android:textSize="12dp" />
+
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_rating"
+                android:layout_marginTop="10dp"
+                android:singleLine="true"
+                android:text="火锅"
+                android:textColor="#888888"
+                android:textSize="12dp"
+
+                />
+
+
+            <TextView
+                android:id="@+id/tv_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv_money"
+                android:layout_alignTop="@+id/item_name"
+                android:layout_below="@id/tv_money"
+                android:text="1km"
+                android:textColor="#888888"
+                android:textSize="12dp" />
+
+            <RelativeLayout
+                android:id="@+id/rl_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/item_name"
+                android:layout_below="@id/item_name">
+
+                <ImageView
+                    android:id="@+id/iv_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/view_new" />
+
+                <TextView
+                    android:id="@+id/tv_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.5dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@id/iv_new"
+                    android:text="本店有新品推出哦"
+                    android:textColor="@color/orderfailure"
+                    android:textSize="10dp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/rl_new"
+                android:layout_below="@id/rl_new">
+
+                <ImageView
+                    android:id="@+id/iv_hui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:src="@drawable/view_privilige" />
+
+                <TextView
+                    android:id="@+id/tv_hui"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3.5dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@id/iv_hui"
+                    android:text="本店第一次消费可享7折会员优惠"
+                    android:textColor="@color/orderfailure"
+                    android:textSize="10dp" />
+
+                <ImageView
+                    android:id="@+id/iv_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/dp_share_press"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="22dp"
+                    />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="22dp"
+                android:layout_toRightOf="@id/item_title"
+                android:gravity="right"
+                android:text="2016.11.30"
+                android:textColor="#888888"
+                android:textSize="12sp" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>
