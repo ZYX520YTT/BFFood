@@ -85,7 +85,7 @@ public class MineCollectAdapter extends BaseAdapter{
         holder.tv_new.setText(info.getMarketIntroduce());
         yutils.display(holder.iv_hui,info.getDiscountIconPath());
         holder.tv_hui.setText(info.getMarketIntroduce());
-        holder.tv_time.setText("2016.11.26");
+        holder.tv_time.setText(info.getDate());
         return view;
     }
 

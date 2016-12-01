@@ -80,23 +80,24 @@ public class MineCollectActivity extends BaseActivity {
                         JSONArray jsonArray=new JSONArray(result);
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject=jsonArray.getJSONObject(i);
-                            String bookIconPath= Url.getImgURL(jsonObject.getString("bookIconPath"));
-                            String discountIconPath=Url.getImgURL(jsonObject.getString("discountIconPath"));
-                            String marketAdress=jsonObject.getString("marketAdress");
-                            String marketBigPicture=Url.getImgURL(jsonObject.getString("marketBigPicture"));
-                            double marketDiscount=jsonObject.getDouble("marketDiscount");
-                            double marketDistance=jsonObject.getDouble("marketDistance");
-                            double marketHotLevel=jsonObject.getDouble("marketHotLevel");
-                            String marketIconPath=Url.getImgURL(jsonObject.getString("marketIconPath"));
-                            String marketIntroduce=jsonObject.getString("marketIntroduce");
-                            String marketName=jsonObject.getString("marketName");
-                            long marketNo=jsonObject.getLong("marketNo");
-                            double marketPrice=jsonObject.getDouble("marketPrice");
-                            String newIconPath=Url.getImgURL(jsonObject.getString("newIconPath"));
-                            String typeName=jsonObject.getString("typeName");
-                            MineCollectInfo mineCollectInfo=new MineCollectInfo(bookIconPath,discountIconPath,marketAdress,
-                                    marketBigPicture,marketDiscount,marketDistance,marketHotLevel,marketIntroduce,marketIconPath,
-                                    marketNo,marketPrice,newIconPath, typeName,marketName);
+                            String date=jsonObject.getString("date");
+                            JSONObject jsonObject1=jsonObject.getJSONObject("market");
+                            String bookIconPath=Url.getImgURL(jsonObject1.getString("bookIconPath"));
+                            String discountIconPath=Url.getImgURL(jsonObject1.getString("discountIconPath"));
+                            double marketDiscount=jsonObject1.getDouble("marketDiscount");
+                            double marketDistance=jsonObject1.getDouble("marketDistance");
+                            double marketHotLevel=jsonObject1.getDouble("marketHotLevel");
+                            String marketIconPath=Url.getImgURL(jsonObject1.getString("marketIconPath"));
+                            String marketIntroduce=jsonObject1.getString("marketIntroduce");
+                            String marketName=jsonObject1.getString("marketName");
+                            long marketNo=jsonObject1.getLong("marketNo");
+                            double marketPrice=jsonObject1.getDouble("marketPrice");
+                            String newIconPath=Url.getImgURL(jsonObject1.getString("newIconPath"));
+                            JSONObject jsonObject2=jsonObject1.getJSONObject("foodType");
+                            String typeName=jsonObject2.getString("typeName");
+                            MineCollectInfo mineCollectInfo=new MineCollectInfo(bookIconPath,typeName,newIconPath,marketPrice,
+                                    marketNo,marketName,marketIntroduce,marketIconPath,marketHotLevel,marketDistance,marketDiscount
+                            ,discountIconPath,date);
                             mineCollectInfos.add(mineCollectInfo);
                         }
                         mineCollectAdapter.notifyDataSetChanged();

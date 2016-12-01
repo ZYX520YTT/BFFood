@@ -7,26 +7,11 @@ package food.neusoft.com.food.domian;
  */
 
 public class MineCollectInfo {
-/**
- * "bookIconPath": "",
- "discountIconPath": "",
- "marketAdress": "青羊区",
- "marketBigPicture": "SY_pic.png",
- "marketDiscount": 9.9,
- "marketDistance": 6.4,
- "marketHotLevel": 5,
- "marketIconPath": "Re_pic_three.png.png",
- "marketIntroduce": "自助餐",
- "marketName": "自助汤锅",
- "marketNo": 935,
- "marketPrice": 50.0,
- "newIconPath": "",
- "typeName": "火锅"
- */
+
+    private String date;
     private String bookIconPath;
     private String discountIconPath;
-    private String marketAdress;
-    private String marketBigPicture;
+    private String typeName;
     private double marketDiscount;
     private double marketDistance;
     private double marketHotLevel;
@@ -36,23 +21,21 @@ public class MineCollectInfo {
     private long marketNo;
     private double marketPrice;
     private String newIconPath;
-    private String typeName;
 
-    public MineCollectInfo(String bookIconPath, String discountIconPath, String marketAdress, String marketBigPicture, double marketDiscount, double marketDistance, double marketHotLevel, String marketIntroduce, String marketIconPath, long marketNo, double marketPrice, String newIconPath, String typeName, String marketName) {
+    public MineCollectInfo(String bookIconPath, String typeName, String newIconPath, double marketPrice, long marketNo, String marketName, String marketIntroduce, String marketIconPath, double marketHotLevel, double marketDistance, double marketDiscount, String discountIconPath, String date) {
         this.bookIconPath = bookIconPath;
-        this.discountIconPath = discountIconPath;
-        this.marketAdress = marketAdress;
-        this.marketBigPicture = marketBigPicture;
-        this.marketDiscount = marketDiscount;
-        this.marketDistance = marketDistance;
-        this.marketHotLevel = marketHotLevel;
+        this.typeName = typeName;
+        this.newIconPath = newIconPath;
+        this.marketPrice = marketPrice;
+        this.marketNo = marketNo;
+        this.marketName = marketName;
         this.marketIntroduce = marketIntroduce;
         this.marketIconPath = marketIconPath;
-        this.marketNo = marketNo;
-        this.marketPrice = marketPrice;
-        this.newIconPath = newIconPath;
-        this.typeName = typeName;
-        this.marketName = marketName;
+        this.marketHotLevel = marketHotLevel;
+        this.marketDistance = marketDistance;
+        this.marketDiscount = marketDiscount;
+        this.discountIconPath = discountIconPath;
+        this.date = date;
     }
 
     public String getBookIconPath() {
@@ -63,20 +46,20 @@ public class MineCollectInfo {
         this.bookIconPath = bookIconPath;
     }
 
-    public String getNewIconPath() {
-        return newIconPath;
-    }
-
-    public void setNewIconPath(String newIconPath) {
-        this.newIconPath = newIconPath;
-    }
-
     public String getTypeName() {
         return typeName;
     }
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    public String getNewIconPath() {
+        return newIconPath;
+    }
+
+    public void setNewIconPath(String newIconPath) {
+        this.newIconPath = newIconPath;
     }
 
     public double getMarketPrice() {
@@ -143,27 +126,19 @@ public class MineCollectInfo {
         this.marketDiscount = marketDiscount;
     }
 
-    public String getMarketBigPicture() {
-        return marketBigPicture;
-    }
-
-    public void setMarketBigPicture(String marketBigPicture) {
-        this.marketBigPicture = marketBigPicture;
-    }
-
-    public String getMarketAdress() {
-        return marketAdress;
-    }
-
-    public void setMarketAdress(String marketAdress) {
-        this.marketAdress = marketAdress;
-    }
-
     public String getDiscountIconPath() {
         return discountIconPath;
     }
 
     public void setDiscountIconPath(String discountIconPath) {
         this.discountIconPath = discountIconPath;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
