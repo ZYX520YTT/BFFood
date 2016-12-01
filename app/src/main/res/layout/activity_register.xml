@@ -57,7 +57,7 @@
                 android:layout_centerVertical="true"
                 android:background="@null"
                 android:layout_marginLeft="10dp"
-                android:hint="输入短信验证码"
+                android:hint="暂时不输入短信验证码"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:singleLine="true"
