@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">food</string>
+    <string name="app_name">吃都</string>
 
     <!--Fragment页面-->
     <string name="main_home">首页</string>

@@ -92,6 +92,12 @@ public class Url {
     /**取消收藏**/
     public static String removeCollect=getUrl("removeCollect");
 
+    /**分享店铺（保存）**/
+    public static String saveShare=getUrl("saveShare");
+
+
+    /**分享店铺（保存）**/
+    public static String getMyShare=getUrl("getMyShare");
 
 
     /**上传我的头像**/
@@ -100,6 +106,8 @@ public class Url {
 
     /**获取用户资料**/
     public static String getUserInfo=getUrl("getUserInfo");
+
+
 
 
 
