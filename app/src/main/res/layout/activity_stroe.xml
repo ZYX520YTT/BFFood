@@ -10,7 +10,7 @@
         android:id="@+id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="130dp"
-        android:background="@drawable/hg_background">
+        android:background="@drawable/xc_background">
 
         <ImageView
             android:id="@+id/iv_back"

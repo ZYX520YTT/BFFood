@@ -87,6 +87,8 @@ public class StroeActivity extends BaseActivity {
             rl_title.setBackgroundResource(R.drawable.yp_background);
         }else if(type.equals("西餐")){
             rl_title.setBackgroundResource(R.drawable.xc_background);
+        }else if(type.equals("火锅")){
+            rl_title.setBackgroundResource(R.drawable.hg_background);
         }
 
 

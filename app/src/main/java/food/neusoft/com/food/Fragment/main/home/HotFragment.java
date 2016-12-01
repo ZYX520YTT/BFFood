@@ -172,7 +172,7 @@ public class HotFragment extends BaseFragment {
                 Intent intent=new Intent(getContext(), StroeActivity.class);
                 HotMarketInfo hotMarketInfo=hotMarketInfos.get(i);
                 intent.putExtra("marketNo",hotMarketInfo.getMarketNo());
-                intent.putExtra("type","甜品");
+                intent.putExtra("type","热门");
                 intent.putExtra("storename",hotMarketInfo.getMarketName());
                 intent.putExtra("introduce",hotMarketInfo.getMarketIntroduce());
                 intent.putExtra("imagepath",hotMarketInfo.getMarketIconPath());

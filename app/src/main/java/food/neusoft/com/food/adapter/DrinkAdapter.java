@@ -147,7 +147,7 @@ public class DrinkAdapter extends BaseAdapter {
                 Intent intent=new Intent(context, StroeActivity.class);
                 DrinkInfo drinkInfo=drinkInfos.get(onclick);
                 intent.putExtra("marketNo",drinkInfo.getMarketNo());
-                intent.putExtra("type","甜品");
+                intent.putExtra("type","饮品");
                 intent.putExtra("storename",drinkInfo.getMarketName());
                 intent.putExtra("introduce",drinkInfo.getMarketIntroduce());
                 intent.putExtra("imagepath",drinkInfo.getMarketIconPath());
@@ -162,7 +162,7 @@ public class DrinkAdapter extends BaseAdapter {
                 Intent intent=new Intent(context, StroeActivity.class);
                 DrinkInfo drinkInfo=drinkInfos.get(onclick);
                 intent.putExtra("marketNo",drinkInfo.getMarketNo());
-                intent.putExtra("type","甜品");
+                intent.putExtra("type","饮品");
                 intent.putExtra("storename",drinkInfo.getMarketName());
                 intent.putExtra("introduce",drinkInfo.getMarketIntroduce());
                 intent.putExtra("imagepath",drinkInfo.getMarketIconPath());
