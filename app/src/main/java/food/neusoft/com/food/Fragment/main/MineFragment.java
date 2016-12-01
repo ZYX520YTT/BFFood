@@ -27,7 +27,8 @@ import cz.msebera.android.httpclient.Header;
 import food.neusoft.com.food.Fragment.main.base.BaseFragment;
 import food.neusoft.com.food.NApplication;
 import food.neusoft.com.food.R;
-import food.neusoft.com.food.activity.OrderActivity;
+import food.neusoft.com.food.activity.MineCollectActivity;
+import food.neusoft.com.food.activity.MineOrderActivity;
 import food.neusoft.com.food.activity.PhotoActivity;
 import food.neusoft.com.food.thread.HttpUtils;
 import food.neusoft.com.food.thread.Url;
@@ -59,6 +60,8 @@ public class MineFragment extends BaseFragment{
     private TextView tv_name;
     @ViewInject(R.id.rlyt_my_order)
     private RelativeLayout rlyt_my_order;
+    @ViewInject(R.id.rlyt_collect)
+    private RelativeLayout rlyt_collect;
     private BitmapUtils utils;
 
 
@@ -106,10 +109,17 @@ public class MineFragment extends BaseFragment{
         rlyt_my_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, OrderActivity.class));
+                startActivity(new Intent(context, MineOrderActivity.class));
             }
         });
 
+        //点击"我的收藏"
+        rlyt_collect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context, MineCollectActivity.class));
+            }
+        });
 
 
     }

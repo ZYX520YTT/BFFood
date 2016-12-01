@@ -27,7 +27,7 @@ import java.util.Random;
 import cz.msebera.android.httpclient.Header;
 import food.neusoft.com.food.Fragment.main.base.BaseFragment;
 import food.neusoft.com.food.R;
-import food.neusoft.com.food.activity.OrderActivity;
+import food.neusoft.com.food.activity.MineOrderActivity;
 import food.neusoft.com.food.activity.StroeActivity;
 import food.neusoft.com.food.adapter.OrderAdapter;
 import food.neusoft.com.food.domian.OrderInfo;
@@ -87,7 +87,7 @@ public class OrderFragment extends BaseFragment {
         iv_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(context, OrderActivity.class));
+                startActivity(new Intent(context, MineOrderActivity.class));
             }
         });
 

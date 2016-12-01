@@ -54,7 +54,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.StroeActivity" />
-        <activity android:name=".activity.OrderActivity"></activity>
+        <activity android:name=".activity.MineOrderActivity" />
+        <activity android:name=".activity.MineCollectActivity"></activity>
     </application>
 
 </manifest>

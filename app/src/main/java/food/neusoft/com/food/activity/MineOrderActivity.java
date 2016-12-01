@@ -26,7 +26,7 @@ import food.neusoft.com.food.domian.MineOrderInfo;
 import food.neusoft.com.food.thread.HttpUtils;
 import food.neusoft.com.food.thread.Url;
 
-public class OrderActivity extends BaseActivity {
+public class MineOrderActivity extends BaseActivity {
 
     private AsyncHttpResponseHandler mineorder_handler;
     private int count=10;
@@ -44,7 +44,7 @@ public class OrderActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
+        setContentView(R.layout.activity_mineorder);
         ViewUtils.inject(this);
         dohandler();
         Init();
@@ -76,7 +76,7 @@ public class OrderActivity extends BaseActivity {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String result=new String(responseBody);
                 if(result.equals("ERROR")){
-                    Toast.makeText(OrderActivity.this,"获取数据失败",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MineOrderActivity.this,"获取数据失败",Toast.LENGTH_SHORT).show();
                 }else{
                     try {
                         JSONArray jsonArray=new JSONArray(result);
@@ -101,7 +101,7 @@ public class OrderActivity extends BaseActivity {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(OrderActivity.this,"获取数据失败",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MineOrderActivity.this,"获取数据失败",Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -109,7 +109,7 @@ public class OrderActivity extends BaseActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                Toast.makeText(OrderActivity.this, "网络连接错误，请检查网络设置后重试。",
+                Toast.makeText(MineOrderActivity.this, "网络连接错误，请检查网络设置后重试。",
                         Toast.LENGTH_SHORT).show();
             }
         };
