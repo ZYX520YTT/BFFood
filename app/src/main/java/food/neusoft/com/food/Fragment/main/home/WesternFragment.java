@@ -194,6 +194,11 @@ public class WesternFragment extends BaseFragment {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 Toast.makeText(context, R.string.toast_network_error1, Toast.LENGTH_SHORT).show();
+                if(isLoadmore){
+                    refresh_view.loadmoreFinish(PullToRefreshLayout.FAIL);
+                }else{
+                    refresh_view.refreshFinish(PullToRefreshLayout.FAIL);
+                }
             }
         };
     }
