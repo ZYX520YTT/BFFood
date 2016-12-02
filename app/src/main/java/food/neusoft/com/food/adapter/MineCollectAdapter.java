@@ -55,7 +55,7 @@ public class MineCollectAdapter extends BaseAdapter{
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
         if(view==null){
-            view=View.inflate(context, R.layout.item_mineshare,null);
+            view=View.inflate(context, R.layout.item_minecollect,null);
             holder=new ViewHolder();
             holder.item_icon= (ImageView) view.findViewById(R.id.item_icon);
             holder.iv_order= (ImageView) view.findViewById(R.id.iv_order);
