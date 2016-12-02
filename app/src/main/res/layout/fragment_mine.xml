@@ -124,6 +124,7 @@
         android:layout_below="@+id/rlyt_my_order"
         android:background="@drawable/bg_list"
         android:paddingLeft="15dp"
+        android:visibility="gone"
         android:paddingRight="15dp">
 
 
