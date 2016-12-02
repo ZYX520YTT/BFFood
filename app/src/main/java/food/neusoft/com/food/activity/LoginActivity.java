@@ -98,8 +98,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //测试的时候我的默认手机号和密码都是1
-        et_number.setText("1");
-        et_password.setText("1");
+//        et_number.setText("1");
+//        et_password.setText("1");
 
 
         //登录
