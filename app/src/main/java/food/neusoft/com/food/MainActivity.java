@@ -13,12 +13,19 @@ import android.widget.Toast;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cz.msebera.android.httpclient.Header;
 import food.neusoft.com.food.Fragment.main.AttachmentFragment;
 import food.neusoft.com.food.Fragment.main.HomeFragment;
 import food.neusoft.com.food.Fragment.main.MineFragment;
@@ -26,8 +33,12 @@ import food.neusoft.com.food.Fragment.main.OrderFragment;
 import food.neusoft.com.food.Fragment.main.base.BaseFragment;
 import food.neusoft.com.food.activity.BaseActivity;
 import food.neusoft.com.food.adapter.MyFragmentAdapter;
+import food.neusoft.com.food.thread.HttpUtils;
+import food.neusoft.com.food.thread.Url;
 import food.neusoft.com.food.thread.User;
 import food.neusoft.com.food.utils.SystemStatusManager;
+
+import static food.neusoft.com.food.NApplication.MineCollects;
 
 /**
  * Created by 张宇翔 on 2016/11/21 22:32.
@@ -37,6 +48,7 @@ import food.neusoft.com.food.utils.SystemStatusManager;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener{
 
+    private AsyncHttpResponseHandler getmycollect_handler;
 
     @ViewInject(R.id.radioGroup)
     private RadioGroup radioGroup;
@@ -61,6 +73,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 //        setTranslucentStatus();
         setContentView(R.layout.activity_main);
         ViewUtils.inject(this);
+        dohandler();
+
+        //先查询出我的收藏信息
+        QueryMineCollect();
 
         radio0.setOnClickListener(this);
         radio1.setOnClickListener(this);
@@ -171,7 +187,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
 
 
-    //设置再那一次退出程序方法
+    //设置再按一次退出程序方法
     @Override
     public void onBackPressed() {
         if (isExit) {
@@ -192,6 +208,48 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             Toast.makeText(getApplicationContext(), "再点击一次退出程序", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+
+    /**
+     * 查询出我的收藏信息，用于待用户进入店铺页面是，判断是否已经收藏过这个店铺，如果收藏过，桃心变红。没有的话，桃心就是灰色的。
+     * 这里后台没有添加是否收藏过的字段，所以我只能这么做了
+     */
+    private void QueryMineCollect(){
+        RequestParams params=new RequestParams();
+        params.put("userId", NApplication.user_number);
+        HttpUtils.get(this, Url.getMyCollect,params,getmycollect_handler);
+    }
+
+
+
+    private void dohandler(){
+        getmycollect_handler=new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                String result=new String(responseBody);
+                if(!result.equals("ERROR")){
+                    try {
+                        JSONArray jsonArray=new JSONArray(result);
+                        for(int i=0;i<jsonArray.length();i++){
+                            JSONObject jsonObject=jsonArray.getJSONObject(i);
+                            JSONObject jsonObject1=jsonObject.getJSONObject("market");
+                            long marketNo=jsonObject1.getLong("marketNo");
+                            MineCollects.put(marketNo,true);
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        };
     }
 
 

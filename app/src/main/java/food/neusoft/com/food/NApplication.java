@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.os.Handler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +32,11 @@ public class NApplication extends Application {
 
 	private List AllAcivity;
 
+
+
+	public static Map<Long,Boolean> MineCollects;//用户已进入主界面，就先查询出收藏的内容
+
+
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		// TODO Auto-generated method stub
@@ -43,7 +49,7 @@ public class NApplication extends Application {
 		application=this;
 		mainTid = android.os.Process.myTid();
 		handler=new Handler();
-		
+		MineCollects=new HashMap<>();//初始化我的收藏信息
 	}
 	
 	

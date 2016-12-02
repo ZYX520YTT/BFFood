@@ -34,6 +34,8 @@ import food.neusoft.com.food.thread.Url;
 import food.neusoft.com.food.utils.Tools;
 import food.neusoft.com.food.widget.roundhead.CircleImageView;
 
+import static food.neusoft.com.food.NApplication.MineCollects;
+
 public class StroeActivity extends BaseActivity {
 
     @ViewInject(R.id.rl_title)
@@ -114,6 +116,14 @@ public class StroeActivity extends BaseActivity {
         });
 
 
+        //如果在集合中。桃心白变红，没在集合中，桃心变灰
+        if(MineCollects.get(marketNo)!=null&&MineCollects.get(marketNo)==true){
+            iv_heart.setChecked(true);
+        }else{
+            iv_heart.setChecked(false);
+        }
+
+
 
 
         //对桃心进行监听，选中则为收藏。没选中则说明用户没收藏。切换时进行收藏或取消收藏
@@ -122,8 +132,10 @@ public class StroeActivity extends BaseActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){//收藏
                     Collect(NApplication.user_number,marketNo);
+                    MineCollects.put(marketNo,true);
                 }else{//取消收藏
                     RemoveCollect(NApplication.user_number,marketNo);
+                    MineCollects.put(marketNo,false);
                 }
             }
         });
