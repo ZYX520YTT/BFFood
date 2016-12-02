@@ -74,7 +74,7 @@ public class StroeActivity extends BaseActivity {
         ViewUtils.inject(this);
         Intent intent=getIntent();
         marketNo=intent.getLongExtra("marketNo",0);
-        Toast.makeText(this,marketNo+"",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,marketNo+"",Toast.LENGTH_SHORT).show();
         type = intent.getStringExtra("type");
         String storename=intent.getStringExtra("storename");
         String introduce=intent.getStringExtra("introduce");
