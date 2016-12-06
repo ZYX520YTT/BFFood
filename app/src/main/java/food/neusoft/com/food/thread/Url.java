@@ -15,7 +15,7 @@ public class Url {
 
     //http://100.0.101.18:8080/CDFood/login?userId=21&userPassword=1
     //http://100.0.101.18:8080/CDFood/signIn?userId=21&userPassword=1
-    //http://100.0.101.18:8080/CDFood/login?userId=67&userPassword=6
+    //http://100.0.101.18:8080/CDFood/getHotFood?count=10&firstIndex=0
     //http://100.0.101.18:8080/CDFood/getHotpotMarket?count=10&firstIndex=0&marketAdress=温江区
     //http://100.0.101.18:8080/CDFood/Images/SY_pic.png
     //http://100.0.101.18:8080/CDFood/getHotFood?count=10&marketAdress=温江区&firstIndex=0

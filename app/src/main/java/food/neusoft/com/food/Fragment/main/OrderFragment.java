@@ -83,6 +83,7 @@ public class OrderFragment extends BaseFragment {
 
     private void Init() {
 
+        orderInfos=new ArrayList<>();
         //点击记录，跳到我的预约记录里面
         iv_history.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +111,6 @@ public class OrderFragment extends BaseFragment {
 
         firstIndex=0;
         isLoadmore=false;
-        orderInfos=new ArrayList<>();
         RequestParams params=new RequestParams();
         params.put("count",count);
         params.put("firstIndex",firstIndex);
@@ -162,6 +162,9 @@ public class OrderFragment extends BaseFragment {
                 }else{
                     try {
                         JSONArray jsonArray=new JSONArray(result);
+                        if(!isLoadmore){
+                            orderInfos.clear();
+                        }
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject=jsonArray.getJSONObject(i);
                             String bookIconPath=Url.getImgURL(jsonObject.getString("bookIconPath"));

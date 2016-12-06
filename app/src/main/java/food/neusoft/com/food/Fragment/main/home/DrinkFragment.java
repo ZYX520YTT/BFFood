@@ -75,6 +75,7 @@ public class DrinkFragment extends BaseFragment {
     }
 
     private void Init() {
+        drinkInfos=new ArrayList<>();
         refresh_view.setOnRefreshListener(new MyListener());
         setupFragment();
     }
@@ -86,13 +87,11 @@ public class DrinkFragment extends BaseFragment {
     private void getFirst(){
         isLoadmore=false;
         firstIndex=0;
-        drinkInfos=new ArrayList<>();
         RequestParams params=new RequestParams();
         params.put("count",count);
         params.put("firstIndex",firstIndex);
         params.put("marketAdress",LOCAL);
         HttpUtils.get(context, Url.getDrinkMarket,params,drink_handler);
-
         drinkAdapter = new DrinkAdapter(context,drinkInfos);
         ls_show.setAdapter(drinkAdapter);
 
@@ -124,6 +123,9 @@ public class DrinkFragment extends BaseFragment {
                 }else{
                     try {
                         JSONArray jsonArray=new JSONArray(result);
+                        if(!isLoadmore){
+                            drinkInfos.clear();
+                        }
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject=jsonArray.getJSONObject(i);
                             String bookIconPath=Url.getImgURL(jsonObject.getString("bookIconPath"));

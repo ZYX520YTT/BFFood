@@ -79,14 +79,13 @@ public class AttachmentFragment extends BaseFragment {
     }
 
     private void Init() {
-
+        attachInfos=new ArrayList<>();
         refresh_view.setOnRefreshListener(new MyListener());
         setupFragment();
 
     }
 
     private void setupFragment() {
-
         getFirst();
 //        ls_show.setAdapter(new AttachAdapter(getContext(),attachInfos));
     }
@@ -103,7 +102,6 @@ public class AttachmentFragment extends BaseFragment {
 
         firstIndex=0;
         isLoadmore=false;
-        attachInfos=new ArrayList<>();
         RequestParams params=new RequestParams();
         params.put("count",count);
         params.put("firstIndex",firstIndex);
@@ -158,6 +156,9 @@ public class AttachmentFragment extends BaseFragment {
                 }else{
                     try {
                         JSONArray jsonArray=new JSONArray(result);
+                        if(!isLoadmore){
+                            attachInfos.clear();
+                        }
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject=jsonArray.getJSONObject(i);
                             String bookIconPath=Url.getImgURL(jsonObject.getString("bookIconPath"));

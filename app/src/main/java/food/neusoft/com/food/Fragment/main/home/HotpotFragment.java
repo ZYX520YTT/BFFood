@@ -77,6 +77,7 @@ private Context context;
     }
 
     private void InitData() {
+        hotPotInfos=new ArrayList<>();
         refresh_view.setOnRefreshListener(new MyListener());
         setupFragment();
     }
@@ -90,7 +91,6 @@ private Context context;
     private void getFirst(){
         isLoadmore=false;
         firstIndex=0;
-        hotPotInfos=new ArrayList<>();
         RequestParams params=new RequestParams();
         params.put("count",count);
         params.put("firstIndex",firstIndex);
@@ -143,6 +143,9 @@ private Context context;
                 }else{
                     try {
                         JSONArray jsonArray=new JSONArray(result);
+                        if(!isLoadmore){
+                            hotPotInfos.clear();
+                        }
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject=jsonArray.getJSONObject(i);
                             String bookIconPath=Url.getImgURL(jsonObject.getString("bookIconPath"));

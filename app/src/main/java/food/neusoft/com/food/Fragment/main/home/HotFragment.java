@@ -109,6 +109,8 @@ public class HotFragment extends BaseFragment {
 
     private void Init() {
         imageId = new ArrayList<>();
+        hotMarketInfos = new ArrayList<>();
+        foodPhotoInfos = new ArrayList<>();
         imageId.add(R.drawable.pic_one);
         imageId.add(R.drawable.pic_two);
         imageId.add(R.drawable.pic_three);
@@ -134,7 +136,6 @@ public class HotFragment extends BaseFragment {
 
 //        Toast.makeText(getContext(),"我是:"+LOCAL,Toast.LENGTH_SHORT).show();
         firstIndex=0;
-        hotMarketInfos = new ArrayList<>();
         RequestParams params=new RequestParams();
         params.put("count",count);//默认每次加载10条数据
         params.put("marketAdress",LOCAL);
@@ -145,9 +146,9 @@ public class HotFragment extends BaseFragment {
     //发现美食
     private void InitFood() {
 
-        foodPhotoInfos = new ArrayList<>();
         RequestParams params=new RequestParams();
         params.put("count",6);//总共6条数据
+        params.put("firstIndex",0);
         HttpUtils.get(getContext(), Url.getHotFood,params,foundFood_handler);
     }
 
@@ -336,6 +337,9 @@ public class HotFragment extends BaseFragment {
                 }else{
                     try {
                         JSONArray jsonArray=new JSONArray(result);
+                        if(!isLoadmore){
+                            foodPhotoInfos.clear();
+                        }
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject=jsonArray.getJSONObject(i);
                             double foodDiscount=jsonObject.getDouble("foodDiscount");
@@ -383,6 +387,9 @@ public class HotFragment extends BaseFragment {
                 }else{
                     try {
                         JSONArray jsonArray=new JSONArray(result);
+                        if(!isLoadmore){
+                            hotMarketInfos.clear();
+                        }
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonobject=jsonArray.getJSONObject(i);
                             String bookIconPath=jsonobject.getString("bookIconPath");

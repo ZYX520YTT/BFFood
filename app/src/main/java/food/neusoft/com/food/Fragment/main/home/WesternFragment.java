@@ -81,7 +81,7 @@ public class WesternFragment extends BaseFragment {
 
     private void Init() {
 
-
+        westFoodInfos=new ArrayList<>();
         refresh_view.setOnRefreshListener(new MyListener());
         setupFragment();
     }
@@ -95,7 +95,6 @@ public class WesternFragment extends BaseFragment {
 //        Toast.makeText(getContext(),LOCAL,Toast.LENGTH_SHORT).show();
         isLoadmore=false;
         firstIndex=0;
-        westFoodInfos=new ArrayList<>();
         RequestParams params=new RequestParams();
         params.put("count",count);
         params.put("firstIndex",firstIndex);
@@ -149,6 +148,9 @@ public class WesternFragment extends BaseFragment {
                 }else{
                     try {
                         JSONArray jsonArray=new JSONArray(result);
+                        if(!isLoadmore){
+                            westFoodInfos.clear();
+                        }
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject=jsonArray.getJSONObject(i);
                             String marketAdress=jsonObject.getString("marketAdress");

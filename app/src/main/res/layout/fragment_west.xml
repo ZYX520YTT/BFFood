@@ -7,25 +7,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/refresh_head" />
-
-    <food.neusoft.com.food.widget.pulltorefresh.PullableScrollView
-        android:id="@+id/scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <include layout="@layout/refresh_head" />
 
 
-        <food.neusoft.com.food.widget.ShowListView
+
+        <food.neusoft.com.food.widget.pulltorefresh.PullableListView
             android:id="@+id/ls_show"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/title_line_height"
             android:divider="@null">
 
-        </food.neusoft.com.food.widget.ShowListView>
+        </food.neusoft.com.food.widget.pulltorefresh.PullableListView>
 
 
-    </food.neusoft.com.food.widget.pulltorefresh.PullableScrollView>
 
     <include layout="@layout/load_more" />
 

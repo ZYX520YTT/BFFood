@@ -73,6 +73,7 @@ public class DessertFragment extends BaseFragment {
     }
 
     private void Init() {
+        dessertInfos=new ArrayList<>();
         setupFragment();
     }
 
@@ -84,13 +85,11 @@ public class DessertFragment extends BaseFragment {
     private void getFirst() {
         isLoadmore=false;
         firstIndex=0;
-        dessertInfos=new ArrayList<>();
         RequestParams params=new RequestParams();
         params.put("count",count);
         params.put("firstIndex",firstIndex);
         params.put("marketAdress",LOCAL);
         HttpUtils.get(context, Url.getSweetMarket,params,dessert_handler);
-
 
         dessertAdapter = new DessertAdapter(context,dessertInfos);
         ls_show.setAdapter(dessertAdapter);
@@ -123,6 +122,10 @@ public class DessertFragment extends BaseFragment {
                     try {
 
                         JSONArray jsonArray=new JSONArray(result);
+
+                        if(!isLoadmore){
+                            dessertInfos.clear();
+                        }
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject=jsonArray.getJSONObject(i);
                             String bookIconPath=Url.getImgURL(jsonObject.getString("bookIconPath"));
